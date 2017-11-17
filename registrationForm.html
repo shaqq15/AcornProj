@@ -69,15 +69,43 @@
     <div class="sub_heading">
       <h2> 2. Work Eligibility
     </div>
-
+    <!-- If they say 'yes' an option to either upload files or enter their details -->
     <div class="secondSection">
-        <lable class="form_lable">Are you eligible to work in the UK? </lable><br>
+      <lable class="form_lable">Are you eligible to work in the UK? </lable><br>
+          <select name="work_type"><br>
+            <option value="Default_value">Choose an option</option>
+            <option value="Umbrella_Company">Yes</option>
+            <option value="Personal_services">No</option>
+          </select><br>
+
+        <lable class="form_lable">Do you have a driving licence? </lable><br>
             <select name="work_type"><br>
               <option value="Default_value">Choose an option</option>
               <option value="Umbrella_Company">Yes</option>
               <option value="Personal_services">No</option>
-            </select>
-    </div>
+            </select><br>
+
+          <!-- We need to have a hover tooltip that will explain the rehabilination of offfender Act of 1974  -->
+          <lable class="form_lable">Do you have any unspent criminal convictions? </lable><br>
+              <select name="work_type"><br>
+                <option value="Default_value">Choose an option</option>
+                <option value="Umbrella_Company">Yes</option>
+                <option value="Personal_services">No</option>
+              </select><br>
+            <!-- If the user says 'Yes' we need to make a text box appear so that they can enter text regarding their disability. -->
+          <lable class="form_lable">Do you consider having a disability? </lable><br>
+                <select name="work_type"><br>
+                  <option value="Default_value">Choose an option</option>
+                  <option value="Umbrella_Company">Yes</option>
+                  <option value="Personal_services">No</option>
+                </select><br>
+          </div>
+
+          <div class="refrences">
+
+            
+
+          </div>
 
 
   </body>
