@@ -1,116 +1,110 @@
 <html>
-<head>
-  <link rel="stylesheet" type="text/css" href="css/stylesheet.css" />
-</head>
-<body>
-  <div class="form-style-5">
-<form>
-<fieldset>
-<legend><span class="number">1</span> Candidate Info</legend>
+  <head>
+    <link rel="stylesheet" type="text/css" href="css/stylesheet.css" />
+  </head>
+  <body>
+    <div class="form-style-5">
+      <form>
+        <fieldset>
+          <legend><span class="number">1</span> Candidate Info</legend>
 
-<select name="title" required><br>
-  <option value="mr">Title *</option>
-  <option value="mr">Mr</option>
-  <option value="miss">Sir</option>
-  <option value="miss">Dr</option>
-  <option value="miss">Miss</option>
-  <option value="mrs">Mrs</option>
+          <select name="title" required><br>
+            <option value="mr">Title *</option>
+            <option value="mr">Mr</option>
+            <option value="miss">Sir</option>
+            <option value="miss">Dr</option>
+            <option value="miss">Miss</option>
+            <option value="mrs">Mrs</option>
+          </select>
 
-</select>
+          <input type="text" name="field1" placeholder="Your Name *">
+          <input type="email" name="field2" placeholder="Your Email *">
+          <input type="email" name="field2" placeholder="Contact Number ">
+          <textarea name="field3" placeholder="Type of work required *"></textarea>
+          <input type="email" name="field2" placeholder="Qualifications / licences ">
+          <label for="job">Representing:</label>
+          <select id="job" name="field4">
 
-<input type="text" name="field1" placeholder="Your Name *">
-<input type="email" name="field2" placeholder="Your Email *">
-<input type="email" name="field2" placeholder="Contact Number ">
-<textarea name="field3" placeholder="Type of work required *"></textarea>
-<input type="email" name="field2" placeholder="Qualifications / licences ">
-<label for="job">Representing:</label>
-<select id="job" name="field4">
+          <optgroup label="Company Type">
+            <option value="fishkeeping"> Please select</option>
+            <option value="fishkeeping">Umbrella Company</option>
+            <option value="reading">Personal Services Company</option>
+          </optgroup>
 
-<optgroup label="Company Type">
-  <option value="fishkeeping"> Please select</option>
-  <option value="fishkeeping">Umbrella Company</option>
-  <option value="reading">Personal Services Company</option>
-</optgroup>
+        </optgroup>
+      </select>
+    </fieldset>
+    <fieldset>
 
-</optgroup>
-</select>
-</fieldset>
-<fieldset>
+  <legend><span class="number">2</span> Work Eligibility</legend>
+    <label for="job">Are you eligible to work in the UK?</label>
+      <select id="job" name="field4">
+        <optgroup label="Work elgibility">
+          <option value="fishkeeping">Please select</option>
+          <option value="fishkeeping">Yes</option>
+          <option value="reading">No</option>
+        </optgroup>
 
-<legend><span class="number">2</span> Work Eligibility</legend>
-<label for="job">Are you eligible to work in the UK?</label>
-<select id="job" name="field4">
-<optgroup label="Work elgibility">
-  <option value="fishkeeping">Please select</option>
-  <option value="fishkeeping">Yes</option>
-  <option value="reading">No</option>
-</optgroup>
+        <select id="job" name="field4">
 
-<select id="job" name="field4">
+        <label for="job">Do you have a current driving licence?</label>
+          <select id="job" name="field4">
+            <optgroup label="Official Documents">
+              <option value="fishkeeping">Please select</option>
+              <option value="fishkeeping">Yes</option>
+              <option value="reading">No</option>
+            </optgroup>
 
-<label for="job">Do you have a current driving licence?</label>
-<select id="job" name="field4">
-<optgroup label="Official Documents">
-  <option value="fishkeeping">Please select</option>
-  <option value="fishkeeping">Yes</option>
-  <option value="reading">No</option>
-</optgroup>
+            <select id="job" name="field4">
 
-<select id="job" name="field4">
+            <label for="job">Do you have any unspent criminal convictions?</label>
+              <select id="job" name="field4">
+                <optgroup label="criminal offfence">
+                  <option value="fishkeeping">Please select</option>
+                  <option value="fishkeeping">Yes</option>
+                  <option value="reading">No</option>
+                </optgroup>
 
-<label for="job">Do you have any unspent criminal convictions?</label>
-<select id="job" name="field4">
-<optgroup label="criminal offfence">
-  <option value="fishkeeping">Please select</option>
-  <option value="fishkeeping">Yes</option>
-  <option value="reading">No</option>
-</optgroup>
+                <select id="job" name="field4">
 
-<select id="job" name="field4">
+                <label for="job">Do you consider having a disability?</label>
+                  <select id="job" name="field4">
+                    <optgroup label="disability">
+                      <option value="fishkeeping">Please select</option>
+                      <option value="fishkeeping">Yes</option>
+                      <option value="reading">No</option>
+                    </optgroup>
 
-<label for="job">Do you consider having a disability?</label>
-<select id="job" name="field4">
-<optgroup label="disability">
-  <option value="fishkeeping">Please select</option>
-  <option value="fishkeeping">Yes</option>
-  <option value="reading">No</option>
-</optgroup>
+                <textarea name="field3" placeholder="Please provide full details of your disability"></textarea>
+                </fieldset>
 
-<textarea name="field3" placeholder="Please provide full details of your disability"></textarea>
-</fieldset>
+                <legend><span class="number">3</span> Refrences</legend>
 
-<legend><span class="number">3</span> Refrences</legend>
+                  <label for="job">Enter details of your 1st refrence</label>
+                  <input type="text" name="field1" placeholder="Name *">
+                  <input type="email" name="field2" placeholder="Job title *">
+                  <input type="email" name="field2" placeholder="Company *">
+                  <label for="job">Address</label>
+                  <input type="email" name="field2">
+                  <input type="email" name="field2">
+                  <input type="email" name="postcode" placeholder="Postcode">
+                  <input type="email" name="field2" placeholder="Contact Number *">
+                  <input type="email" name="field2" placeholder="Email Address *">
 
-<label for="job">Enter details of your 1st refrence</label>
-<input type="text" name="field1" placeholder="Name *">
-<input type="email" name="field2" placeholder="Job title *">
-<input type="email" name="field2" placeholder="Company *">
-<label for="job">Address</label>
-<input type="email" name="field2">
-<input type="email" name="field2">
-<input type="email" name="postcode" placeholder="Postcode">
-<input type="email" name="field2" placeholder="Contact Number *">
-<input type="email" name="field2" placeholder="Email Address *">
+                  <label for="job">Enter details of your 2nd refrence</label>
+                  <input type="text" name="field1" placeholder="Name *">
+                  <input type="email" name="field2" placeholder="Job title *">
+                  <input type="email" name="field2" placeholder="Company *">
+                  <label for="job">Address</label>
+                  <input type="email" name="field2">
+                  <input type="email" name="field2">
+                  <input type="email" name="postcode" placeholder="Postcode">
+                  <input type="email" name="field2" placeholder="Contact Number *">
+                  <input type="email" name="field2" placeholder="Email Address *">
 
-<label for="job">Enter details of your 2nd refrence</label>
-<input type="text" name="field1" placeholder="Name *">
-<input type="email" name="field2" placeholder="Job title *">
-<input type="email" name="field2" placeholder="Company *">
-<label for="job">Address</label>
-<input type="email" name="field2">
-<input type="email" name="field2">
-<input type="email" name="postcode" placeholder="Postcode">
-<input type="email" name="field2" placeholder="Contact Number *">
-<input type="email" name="field2" placeholder="Email Address *">
+          <input type="submit" value="Apply"/>
 
-
-
-
-
-
-<input type="submit" value="Apply" />
-</form>
-</div>
-
-</body>
+        </form>
+      </div>
+    </body>
 </html>
