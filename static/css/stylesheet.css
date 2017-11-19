@@ -9,6 +9,7 @@ p::first-letter{
 
 
 body{
+  /* Acron's primary font*/
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
 }
 
@@ -41,13 +42,13 @@ Their CSS significantly increased the quality of the form whilst enhancing user 
     margin-bottom: 8px;
 }
 .form-style-5 input[type="text"],
-.form-style-5 input[type="date"],
-.form-style-5 input[type="datetime"],
-.form-style-5 input[type="email"],
-.form-style-5 input[type="number"],
-.form-style-5 input[type="search"],
-.form-style-5 input[type="time"],
-.form-style-5 input[type="url"],
+.form-style-5 input[type="text"],
+.form-style-5 input[type="text"],
+.form-style-5 input[type="text"],
+.form-style-5 input[type="text"],
+.form-style-5 input[type="text"],
+.form-style-5 input[type="text"],
+.form-style-5 input[type="text"],
 .form-style-5 textarea,
 .form-style-5 select {
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
@@ -70,13 +71,13 @@ Their CSS significantly increased the quality of the form whilst enhancing user 
 
 }
 .form-style-5 input[type="text"]:focus,
-.form-style-5 input[type="date"]:focus,
-.form-style-5 input[type="datetime"]:focus,
-.form-style-5 input[type="email"]:focus,
-.form-style-5 input[type="number"]:focus,
-.form-style-5 input[type="search"]:focus,
-.form-style-5 input[type="time"]:focus,
-.form-style-5 input[type="url"]:focus,
+.form-style-5 input[type="text"]:focus,
+.form-style-5 input[type="text"]:focus,
+.form-style-5 input[type="text"]:focus,
+.form-style-5 input[type="text"]:focus,
+.form-style-5 input[type="text"]:focus,
+.form-style-5 input[type="text"]:focus,
+.form-style-5 input[type="text"]:focus,
 .form-style-5 textarea:focus,
 .form-style-5 select:focus{
     background: #d2d9dd;
@@ -86,6 +87,7 @@ Their CSS significantly increased the quality of the form whilst enhancing user 
     height:35px;
 }
 .form-style-5 .number {
+  /* Acron's primary colour*/
     background: #002D62;
     color: #fff;
     height: 30px;
@@ -107,11 +109,13 @@ Their CSS significantly increased the quality of the form whilst enhancing user 
     padding: 19px 39px 18px 39px;
     color: #FFF;
     margin: 0 auto;
+    /* Acron's primary colour*/
     background: #002D62;
     font-size: 18px;
     text-align: center;
     font-style: normal;
     width: 100%;
+    /* Acron's primary colour*/
     border: 1px solid #002D62;
     border-width: 1px 1px 3px;
     margin-bottom: 10px;
