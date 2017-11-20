@@ -1,6 +1,9 @@
 import os
 from flask import Flask, redirect, request, render_template
 import sqlite3
+import pdfkit
+
+# pdfkit.from_url('http://127.0.0.1:5000/static/registrationForm.html','examplePDF.pdf')
 
 DATABASE = "CandidateCenter.db"
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
@@ -51,22 +54,22 @@ def CandidateAddDetails():
         # candidateRefrence2Postcode = request.form.get("refrence2Postcode", default="Error")
         # candidateRefrence2ContactNumber = request.form.get("refrence2ContactNumber", default="Error")
         # candidateRefrence2Email = request.form.get("refrence2Email", default="Error")
-        try:
-            conn = sqlite3.connect(DATABASE)
-            cur = conn.cursor()
-            cur.execute("INSERT INTO CandidateDetails ('CandidateTitle','CandidateFirstname', 'CandidateSecondname', 'CandidateFirstlineAddress', 'CandidateSecondlineAddress', 'CandidatePostcode', 'CandidateContactNumber', 'CandidateEmergencyNumber', 'CandidateEmail', 'CandidateTypeOfWork', 'CandidateQualifications', 'CandidateRepresenting')\
-    					VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",(candidateTitle, candidateFirstname, candidateSecondname, CandidateFirstlineAddress, candidateSecondlineAddress, candidatePostcode, CandidateContactNumber, CandidateEmergencyNumber, candidateEmail, candidateTypeOfWork, candidateQualifications, candidateRepresenting) )
+        # try:
+        conn = sqlite3.connect(DATABASE)
+        cur = conn.cursor()
+        cur.execute("INSERT INTO CandidateDetails ('CandidateTitle','CandidateFirstname', 'CandidateSecondname', 'CandidateFirstlineAddress', 'CandidateSecondlineAddress', 'CandidatePostcode', 'CandidateContactNumber', 'CandidateEmergencyNumber', 'CandidateEmail', 'CandidateTypeOfWork', 'CandidateQualifications', 'CandidateRepresenting')\
+					VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",(candidateTitle, candidateFirstname, candidateSecondname, candidateFirstlineAddress, candidateSecondlineAddress, candidatePostcode, candidateContactNumber, candidateEmergencyNumber, candidateEmail, candidateTypeOfWork, candidateQualifications, candidateRepresenting) )
 
-            conn.commit()
-            msg = "Candidate details successfully added"
-        except:
-            conn.rollback()
-            msg = "Error in insertion"
-        finally:
-            conn.close()
-            return msg
+        conn.commit()
+        print("Candidate details successfully added")
+        # except:
+        #     conn.rollback()
+        #     print("Error in insertion")
+        # finally:
+        conn.close()
+        return "Hello"
 
-        return msg
+        return "Hello2"
 
 
 if __name__ == "__main__":

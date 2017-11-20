@@ -1,10 +1,10 @@
 <html>
   <head>
-    <link rel="stylesheet" type="text/css" href="css/stylesheet.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/stylesheet.css" />
   </head>
   <body>
     <div class="form-style-5">
-      <form>
+      <form action ="/Candidte/AddCandidate" method = "post">
         <fieldset>
           <!-- This legend element is used for the heading of each section for the form. -->
           <legend><span class="number">1</span> Candidate Info</legend>
@@ -37,9 +37,9 @@
 
           <!-- Drop down box for the user to choose what type of company they are representing. -->
           <optgroup label="Company Type">
-            <option value="fishkeeping"> Please select</option>
-            <option value="fishkeeping">Umbrella Company</option>
-            <option value="reading">Personal Services Company</option>
+            <option> Please select</option>
+            <option value="Umbrella company">Umbrella Company</option>
+            <option value="Personal services">Personal Services Company</option>
           </optgroup>
 
         </optgroup>
@@ -54,9 +54,9 @@
 
         <!-- Options for the user to choose their work elegibility -->
         <optgroup label="Work elgibility">
-          <option value="fishkeeping">Please select</option>
-          <option value="fishkeeping">Yes</option>
-          <option value="reading">No</option>
+          <option>Please select</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
         </optgroup>
 
         <select id="workElegibility" name="workElegibility">
@@ -65,9 +65,9 @@
         <label for="drivinglicense">Do you have a current driving licence?</label>
           <select id="drivinglicense" name="drivingLicenseChoice">
             <optgroup label="Official Documents">
-              <option value="fishkeeping">Please select</option>
-              <option value="fishkeeping">Yes</option>
-              <option value="reading">No</option>
+              <option>Please select</option>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
             </optgroup>
 
             <select id="drivingLicense" name="drivingLicense">
@@ -77,9 +77,9 @@
 
                 <!-- Options for the user to if they have a criminal offence or not -->
                 <optgroup label="criminal offfence">
-                  <option value="fishkeeping">Please select</option>
-                  <option value="fishkeeping">Yes</option>
-                  <option value="reading">No</option>
+                  <option>Please select</option>
+                  <option value="yes">Yes</option>
+                  <option value="no">No</option>
                 </optgroup>
 
                 <select id="criminalOffence" name="criminaloffences">
@@ -88,9 +88,9 @@
                 <label for="candidatedisabilities">Do you consider having a disability?</label>
                   <select id="candidatedisabilities" name="candidateDisabilities">
                     <optgroup label="disability">
-                      <option value="fishkeeping">Please select</option>
-                      <option value="fishkeeping">Yes</option>
-                      <option value="reading">No</option>
+                      <option>Please select</option>
+                      <option value="yes">Yes</option>
+                      <option value="no">No</option>
                     </optgroup>
 
                   <select id="candidateDisabilities" name="candidateDisabilities">
