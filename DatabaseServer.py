@@ -86,5 +86,18 @@ def CandidateAddDetails():
     return "Hello2"
 
 
+@app.route("/Login/UserLogin", methods = ['GET'])
+def UserLoginPage():
+    if request.method =='GET':
+    	return render_template('login_page.html')
+    return "Hello"
+
+
+
+
+
+
+
+
 if __name__ == "__main__":
     app.run(debug=True)
