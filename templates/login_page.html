@@ -1,0 +1,47 @@
+<html>
+<head>
+  <title>Login Page</title>
+  <link rel="stylesheet" type="text/css" href="../static/css/stylesheet.css">
+</head>
+  <body>
+  <header>
+    <ul id="header-ul">
+      <li id="header-li"><a id="header-a" class="active" href="TBC">TBC</a></li>
+  </header>
+  <main>
+    <img src = "../static/css/acorn.png"/>
+    <h2>Login Page</h2>
+  </main>
+  <form onsubmit="return validate()" action = "admin.html" method = "post" name="myform">
+        <h2>Username & password:</h2>
+        <input class = "inputbox" type="text" name="Username">
+        <input class = "inputbox" type="text" name="Password">
+        <br>
+        <button type="submit">Login</button>
+      </form>
+
+  <script>
+          function validate(){
+            var pass = true;
+            var text = (document.forms["myform"]["Username"].value);
+            var text1 = (document.forms["myform"]["Password"].value);
+            console.log(text);
+            if (text.match("admin")){
+              pass = true;
+            }
+            else {
+              alert('Incorrect credentials, please try again.');
+              return false;
+            }
+            if (text1.match("password")){
+                pass = true;
+              }
+              else {
+                alert('Incorrect credentials, please try again.');
+                return false;
+          }
+        }
+    </script>
+
+</body>
+</html>

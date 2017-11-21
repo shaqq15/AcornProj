@@ -4,39 +4,39 @@
   </head>
   <body>
     <div class="form-style-5">
-      <form action ="/Candidte/AddCandidate" method = "post">
+      <form action ="/Candidte/AddCandidate" method="post" onsubmit="return FormValidation()">
         <fieldset>
           <!-- This legend element is used for the heading of each section for the form. -->
           <legend><span class="number">1</span> Candidate Info</legend>
 
           <!-- Options for the user to choose their title -->
-          <select name="title" required><br>
-            <option value="mr">Title *</option>
+          <select id="candidate_title" name="title" required ><br>
+            <option placeholder="Title *">Title *</option>
             <option value="mr">Mr</option>
-            <option value="miss">Sir</option>
-            <option value="miss">Dr</option>
+            <option value="sir">Sir</option>
+            <option value="dr">Dr</option>
             <option value="miss">Miss</option>
             <option value="mrs">Mrs</option>
           </select>
 
           <!-- User's details -->
-          <input type="text" name="firstname" placeholder="First Name *">
-          <input type="text" name="surname" placeholder="Surname Name *">
+          <input id="candidate_name" type="text" name="firstname" placeholder="First Name *">
+          <input id="candidate_surname" type="text" name="surname" placeholder="Surname Name *">
           <label for="job">Address</label>
-          <input type="text" name="CandidateAddress1">
-          <input type="text" name="CandidateAddress2">
-          <input type="text" name="CandidatePostcode"  placeholder="Postcode">
-          <input type="text" name="contactNumber" placeholder="Contact Number *">
-          <input type="text" name="emergencyContactNumber" placeholder="Emergency Contact Number">
-          <input type="text" name="email" placeholder="Contact Email *">
-          <textarea name="work" placeholder="Type of work required *"></textarea>
+          <input id="candidate_address1" type="text" name="CandidateAddress1">
+          <input id="candidate_address2" type="text" name="CandidateAddress2">
+          <input id="candidate_postcode" type="text" name="CandidatePostcode"  placeholder="Postcode">
+          <input id="candidate_contact_number" type="text" name="contactNumber" placeholder="Contact Number *">
+          <input id="candidate_emergency_number" type="text" name="emergencyContactNumber" placeholder="Emergency Contact Number">
+          <input id="candidate_email" type="text" name="email" placeholder="Contact Email *">
+          <textarea id="candidate_work_wanted" name="work" placeholder="Type of work required *"></textarea>
           <!--  will need to look at the CSS for this -->
-          <input type="text" name="QualificationsandLicences" placeholder="Qualifications / licences ">
+          <input id="candidate_qualifications" type="text" name="QualificationsandLicences" placeholder="Qualifications / licences ">
           <label for="representing">Representing:</label>
           <select id="representing" name="representingCompany">
 
           <!-- Drop down box for the user to choose what type of company they are representing. -->
-          <optgroup label="Company Type">
+          <optgroup id="candidate_company_type" label="Company Type">
             <option> Please select</option>
             <option value="Umbrella company">Umbrella Company</option>
             <option value="Personal services">Personal Services Company</option>
@@ -132,31 +132,98 @@
 
         </form>
       </div>
-
       <script>
-      function numberFormValidation()
+      function FormValidation()
       {
-        var maxLength = 25;
-        var firstName = document.getElementById('firstname').value;
 
-        if(!firstName.length > maxLength)
+        var candidateTitle = document.getElementById('candidate_title').value;
+        var candidateName = document.getElementById('candidate_name').value;
+        var candidateSurname = document.getElementById('candidate_surname').value;
+        var candidateAddress1 = document.getElementById('candidate_address1').value;
+        var candidateAddress2 = document.getElementById('candidate_address2').value;
+        var candidatePostcode = document.getElementById('candidate_postcode').value;
+        var candidateContactNumber = document.getElementById('candidate_contact_number').value;
+        var candidateEmergencyNumber = document.getElementById('candidate_emergency_number').value;
+        var candidateEmail = document.getElementById('candidate_email').value;
+        var candidateWorkWanted = document.getElementById('candidate_work_wanted').value;
+        var candidateQualifications = document.getElementById('candidate_qualifications').value;
+        var candidateCompanyType = document.getElementById('candidate_company_type').value;
+
+        if(candidateTitle == "title")
         {
-          alert("Too many characters enterd");
+          alert("Please enter your title.");
           return false;
         }
-        // if(emailValidation()){
-        //   return true;
-        // } else {
-        //   alert("Invalid Email Address");
-        //   return false;
-        // }
-        // messageValidation();
+
+        if(candidateName == " ")
+        {
+          alert("Please enter your name.");
+          return false;
+        }
+
+        if(candidateSurname == " ")
+        {
+          alert("Please enter your surname.")
+          return false;
+        }
+
+        if(candidateAddress1 == " ")
+        {
+          alert("Please enter your first line of address.")
+          return false;
+        }
+
+        if(candidateAddress2 == " ")
+        {
+          alert("Please enter your second line of address.")
+          return false;
+        }
+
+        if(candidatePostcode == " ")
+        {
+          alert("Please enter your postcode.")
+          return false;
+        }
+
+        if(candidateContactNumber == " ")
+        {
+          alert("Please enter your contact number.")
+          return false;
+        }
+
+        if(candidateEmergencyNumber == " ")
+        {
+          alert("Please enter your emergency contact number.")
+          return false;
+        }
+
+        if(candidateEmail == " ")
+        {
+          alert("Please enter your email.")
+          return false;
+        }
+
+        if(candidateQualifications == " ")
+        {
+          alert("Please enter your qualifications.")
+          return false;
+        }
+
+        if(candidateWorkWanted == " ")
+        {
+          alert("Please enter the type of work you want.")
+          return false;
+        }
+
+        if(candidateCompanyType == " ")
+        {
+          alert("Please enter your company type.")
+          return false;
+        }
       }
 
-      numberFormValidation();
+      FormValidation();
 
       </script>
-
-
     </body>
 </html>
