@@ -1,7 +1,7 @@
 import os
 from flask import Flask, redirect, request, render_template
 import sqlite3
-import pdfkit
+# import pdfkit
 
 # pdfkit.from_url('http://127.0.0.1:5000/static/registrationForm.html','examplePDF.pdf')
 
@@ -17,7 +17,7 @@ def CandidateAddDetails():
     if request.method =='POST':
         candidateTitle = request.form.get("title", default="Error")
         candidateFirstname = request.form.get("firstname", default="Error")
-        candidateSecondname = request.form.get("secondname", default="Error")
+        candidateSecondname = request.form.get("Secondname", default="Error")
         candidateFirstlineAddress = request.form.get("CandidateAddress1", default="Error")
         candidateSecondlineAddress = request.form.get("CandidateAddress2", default="Error")
         candidatePostcode = request.form.get("CandidatePostcode", default="Error")
@@ -82,7 +82,7 @@ def CandidateAddDetails():
         # finally:
         conn.close()
         return "Hello"
-    
+
     return "Hello2"
 
 

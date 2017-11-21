@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Acorn Registration Form</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+
+      <link rel="stylesheet" href="css/style.css">
+
+
+</head>
+
+<body>
+  <!-- multistep form -->
+<form id="msform">
+  <!-- progressbar -->
+  <ul id="progressbar">
+    <li class="active">Canditate Info</li>
+    <li>Work Eligibility</li>
+    <li>References</li>
+    <li>Declariation</li>
+    <li>Confirmation</li>
+  </ul>
+  <!-- fieldsets -->
+    <form action ="/Candidte/AddCandidate" method = "post">
+      <fieldset>
+        <h2 class="fs-title">Canditate Info</h2>
+        <h3 class="fs-subtitle"></h3>
+
+        <!-- Options for the user to choose their title -->
+
+        <select name="title" required><br>
+          <option value="mr">Title *</option>
+          <option value="mr">Mr</option>
+          <option value="miss">Sir</option>
+          <option value="miss">Dr</option>
+          <option value="miss">Miss</option>
+          <option value="mrs">Mrs</option>
+        </select>
+
+        <!-- User's details -->
+        <input type="text" name="firstname" placeholder="First Name *">
+        <input type="text" name="surname" placeholder="Surname *">
+        <label for="job">Address</label>
+        <input type="text" name="CandidateAddress1" placeholder="Address 1">
+        <input type="text" name="CandidateAddress2" placeholder="Address 2">
+        <input type="text" name="CandidatePostcode"  placeholder="Postcode">
+        <input type="text" name="contactNumber" placeholder="Contact Number *">
+        <input type="text" name="emergencyContactNumber" placeholder="Emergency Contact Number">
+        <input type="text" name="email" placeholder="Contact Email *">
+        <textarea name="work" placeholder="Type of work required *"></textarea>
+        <!--  will need to look at the CSS for this -->
+        <input type="text" name="QualificationsandLicences" placeholder="Qualifications / licences ">
+        <label for="representing">Representing:</label>
+        <select id="representing" name="representingCompany">
+
+        <!-- Drop down box for the user to choose what type of company they are representing. -->
+        <optgroup label="Company Type">
+          <option> Please select</option>
+          <option value="Umbrella company">Umbrella Company</option>
+          <option value="Personal services">Personal Services Company</option>
+          <input type="button" name="next" class="next action-button" value="Next" />
+        </optgroup>
+      </optgroup>
+    </select>
+  </fieldset>
+  <fieldset>
+    <h2 class="fs-title">Work Eligibility</h2>
+    <h3 class="fs-subtitle"></h3>
+    <label for="workElegibility">Are you eligible to work in the UK?</label>
+      <select id="workElegibility" name="elegibilityChoice">
+        <optgroup label="Work elgibility">
+          <option>Please select</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </optgroup>
+          <select id="workElegibility" name="workElegibility">
+
+    <input type="text" name="drivinglicense" placeholder="Driving / licences ">
+    <label for="representing">Do you have a current driving license?</label>
+    <select id="drivinglicense" name="drivingLicenseChoice">
+      <optgroup label="Official Documents">
+        <option>Please select</option>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+      </optgroup> y">
+
+    <input type="text" name="drivinglicense" label="Do you have a current driving licence"/>
+    <input type="text" name="facebook" placeholder="Facebook" />
+    <input type="text" name="gplus" placeholder="Google Plus" />
+    <input type="button" name="previous" class="previous action-button" value="Previous" />
+    <input type="button" name="next" class="next action-button" value="Next" />
+  </fieldset>
+
+
+
+
+  <fieldset>
+    <h2 class="fs-title">References</h2>
+    <h3 class="fs-subtitle">Please provide details of two referees whom we may contact to obtain a reference in connection with your employment</h3>
+
+
+      <!-- Taking details of the first refrence -->
+      <label for="job">Enter details of your 1st refrence</label>
+      <input type="text" name="refrence1Firstname" placeholder="First name *">
+      <input type="text" name="refrence1Secondname" placeholder="Second name *">
+      <input type="text" name="refrence1JobTitle" placeholder="Job title *">
+      <input type="text" name="refrence1Company" placeholder="Company *">
+      <label for="job">Address</label>
+      <input type="text" name="refrence1Address1" placeholder="Address 1">
+      <input type="text" name="refrence1Address2" placeholder="Address 2">
+      <input type="text" name="refrence1Postcode" placeholder="Postcode">
+      <input type="text" name="refrence1ContactNumber" placeholder="Contact Number *">
+      <input type="text" name="refrence1Email" placeholder="Email Address *">
+
+      <!-- Taking details of the second refrence -->
+      <label for="job">Enter details of your 2nd refrence</label>
+      <input type="text" name="refrence1Firstname" placeholder="First name *">
+      <input type="text" name="refrence1Secondname" placeholder="Second name *">
+      <input type="text" name="refrence2JobTitle" placeholder="Job title *">
+      <input type="text" name="refrence2Company" placeholder="Company *">
+      <label for="job">Address</label>
+      <input type="text" name="refrence2Address1" placeholder="Address 1">
+      <input type="text" name="refrence2Address2" placeholder="Address 2">
+      <input type="text" name="refrence2Postcode" placeholder="Postcode">
+      <input type="text" name="refrence2ContactNumber" placeholder="Contact Number *">
+      <input type="text" name="refrence2Email" placeholder="Email Address *">
+
+<!-- Submit button -->
+
+    <input type="button" name="previous" class="previous action-button" value="Previous" />
+    <input type="submit" name="submit" class="submit action-button" value="Next" />
+  </fieldset>
+
+  <fieldset>
+    <h2 class="fs-title">Declariation</h2>
+    <h3 class="fs-subtitle">The information you provide on this online form, associated registration forms and on any CV or additional documents will be used by the Acorn Group to provide you with work finding services. In providing this service to you, you consent to your personal data being inculded on a computerised database and consent to us transferring your personal data to our clients and other third parties as required for recruitment, selection, compliance and payroll purposes. We may check the information collected with third parties or with other information held by us or our clients. I hereby confirm that the information given is true and correct. I consent to my personal data being processed as detailed above. I understand that providing false information or withholding relevant information will result in the termination of an assignment or the withdrawal of an offer of an assignment.</h3>
+    <input type="button" name="previous" class="previous action-button" value="Previous" />
+    <input type="button" name="next" class="next action-button" value="Next" />
+  </fieldset>
+</form>
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js'></script>
+
+    <script  src="js/index.js"></script>
+
+</body>
+</html>
