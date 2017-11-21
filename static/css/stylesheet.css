@@ -1,6 +1,6 @@
 *{
-  /*margin: 0px;
-  padding: 0px;*/
+  margin: 0px;
+  padding: 0px;
 }
 
 p::first-letter{
@@ -119,4 +119,38 @@ Their CSS significantly increased the quality of the form whilst enhancing user 
     border: 1px solid #002D62;
     border-width: 1px 1px 3px;
     margin-bottom: 10px;
+}
+
+/* thankyouPage.html CSS */
+
+.toolbar{
+  padding: 20px;
+}
+
+.page_tick{
+    display: block;
+    margin: auto;
+    width: 10%;
+    padding-top: 100px;
+}
+
+.main_text{
+    text-align: center;
+    width: 50%;
+    margin-left: 20%;
+    padding: 20px 60px;
+    display: block;
+    border-radius: 8px;
+    font-size: 34pt;
+    padding-bottom: 0PX;
+}
+
+.main_content{
+    background: #e8eeef;
+}
+
+.sub_text{
+    text-align: center;
+    /*font-size: 18pt;*/
+    padding-bottom: 25px;
 }
