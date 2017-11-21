@@ -132,5 +132,31 @@
 
         </form>
       </div>
+
+      <script>
+      function numberFormValidation()
+      {
+        var maxLength = 25;
+        var firstName = document.getElementById('firstname').value;
+
+        if(!firstName.length > maxLength)
+        {
+          alert("Too many characters enterd");
+          return false;
+        }
+        // if(emailValidation()){
+        //   return true;
+        // } else {
+        //   alert("Invalid Email Address");
+        //   return false;
+        // }
+        // messageValidation();
+      }
+
+      numberFormValidation();
+
+      </script>
+
+
     </body>
 </html>

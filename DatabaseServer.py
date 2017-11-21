@@ -82,7 +82,10 @@ def CandidateAddDetails():
         # finally:
         conn.close()
         return "Hello"
-    
+
+
+    # render_template('thankyouPage.html')
+
     return "Hello2"
 
 
