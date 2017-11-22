@@ -1,28 +1,19 @@
 <html>
 <head>
   <title>Login Page</title>
-  <link rel="stylesheet" type="text/css" href="../static/css/stylesheet.css">
+  <link rel="stylesheet" type="text/css" href="../static/css/stylesheet.css" />
 </head>
   <body>
-  <header>
-    <ul id="header-ul">
-      <li id="header-li"><a id="header-a" class="active" href="TBC">TBC</a></li>
-  </header>
-  <main>
-    <img src = "../static/css/acorn.png"/>
-    <h2>Login Page</h2>
-  </main>
+  <div id="login_section" class="form-style-5">
   <form onsubmit="return validate()" action = "admin.html" method = "post" name="myform">
-        <h2>Username & password:</h2>
+        <legend>Login Page</legend>
         <input id="username" type="text" name="firstname" placeholder="Username">
         <input id="password" type="text" name="surname" placeholder="Password">
-
-        <input class = "inputbox" type="text" name="Username">
-        <input class = "inputbox" type="text" name="Password">
         <br>
-        <input type="submit" value="Apply"/>
-        <button type="submit" value"Login">Login</button>
+        <input class="login_button" type="submit" value="Login"/>
+        <input class="login_button" type="submit" value="Sign Up"/>
       </form>
+    </div>
 
   <script>
           function validate(){

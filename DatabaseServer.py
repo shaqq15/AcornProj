@@ -1,9 +1,13 @@
 import os
 from flask import Flask, redirect, request, render_template
 import sqlite3
+import datetime
 # import pdfkit
 
 # pdfkit.from_url('http://127.0.0.1:5000/static/registrationForm.html','examplePDF.pdf')
+
+now = datetime.datetime.now()
+
 
 DATABASE = "CandidateCenter.db"
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
@@ -85,18 +89,36 @@ def CandidateAddDetails():
 
     return "Hello2"
 
+@app.route("/Login/UserRegisteration", methods = ['POST','GET'])
+def UserLogin():
+    if request.method == 'GET':
+        return render_template('loginRegistration.html')
+    if request.method == 'POST':
+        UserFirstname = request.form.get("userFirstname", default="Error")
+        UserSurname = request.form.get("userSurname", default="Error")
+        UserEmail = request.form.get("UserEmail", default="Error")
+        username = request.form.get("Username", default="Error")
+        password = request.form.get("Userpassword", default="Error")
+        timeAccessed = str(now)
+
+        conn = sqlite3.connect(DATABASE)
+        cur = conn.cursor()
+        cur.execute("INSERT INTO UserLogins ('UserFirstname','UserSurname', 'UserEmail', 'Username', 'Password', 'DateLastAccessed')\
+					VALUES (?,?,?,?,?,?)",(UserFirstname, UserSurname, UserEmail, username, password, timeAccessed) )
+
+        conn.commit()
+        print("User added")
+        conn.close()
+        return "Hello"
+
+    return "Hello2"
+
 
 @app.route("/Login/UserLogin", methods = ['GET'])
 def UserLoginPage():
     if request.method =='GET':
     	return render_template('login_page.html')
     return "Hello"
-
-
-
-
-
-
 
 
 if __name__ == "__main__":
