@@ -14,7 +14,7 @@ ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
 app = Flask(__name__)
 
-@app.route("/Candidte/AddCandidate", methods = ['POST','GET'])
+@app.route("/Candidate/AddCandidate", methods = ['POST','GET'])
 def CandidateAddDetails():
     if request.method =='GET':
     	return render_template('registrationForm.html')
@@ -85,7 +85,7 @@ def CandidateAddDetails():
         # print("Error in insertion")
         # finally:
         conn.close()
-        return "Hello"
+        return render_template("thankyouPage.html")
 
     return "Hello2"
 

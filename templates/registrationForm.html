@@ -4,14 +4,14 @@
   </head>
   <body>
     <div class="form-style-5">
-      <form action ="/Candidte/AddCandidate" method="post" onsubmit="return FormValidation()">
+      <form action ="/Candidate/AddCandidate" method="post" onsubmit="return FormValidation()">
         <fieldset>
           <!-- This legend element is used for the heading of each section for the form. -->
           <legend><span class="number">1</span> Candidate Info</legend>
 
           <!-- Options for the user to choose their title -->
           <select id="candidate_title" name="title" required ><br>
-            <option placeholder="Title *">Title *</option>
+            <option value="Title *">Title *</option>
             <option value="mr">Mr</option>
             <option value="sir">Sir</option>
             <option value="dr">Dr</option>
@@ -21,7 +21,7 @@
 
           <!-- User's details -->
           <input id="candidate_name" type="text" name="firstname" placeholder="First Name *">
-          <input id="candidate_surname" type="text" name="surname" placeholder="Surname Name *">
+          <input id="candidate_surname" type="text" name="surname" placeholder="Surname *">
           <label for="job">Address</label>
           <input id="candidate_address1" type="text" name="CandidateAddress1">
           <input id="candidate_address2" type="text" name="CandidateAddress2">
@@ -105,25 +105,25 @@
                 </fieldset>
 
                 <!-- This legend element is used for the heading of each section for the form. -->
-                <legend><span class="number">3</span> references</legend>
+                <legend><span class="number">3</span> References</legend>
 
                   <!-- Taking details of the first reference -->
                   <label for="job">Enter details of your 1st reference</label>
-                  <input type="text" name="reference1Firstname" placeholder="First name *">
-                  <input type="text" name="reference1Secondname" placeholder="Second name *">
-                  <input type="text" name="reference1JobTitle" placeholder="Job title *">
-                  <input type="text" name="reference1Company" placeholder="Company *">
+                  <input id="reference1_Firstname" type="text" name="reference1Firstname" placeholder="First name *">
+                  <input id="reference1_Surname" type="text" name="reference1Surname" placeholder="Surname *">
+                  <input id="reference1_JT" type="text" name="reference1JobTitle" placeholder="Job title *">
+                  <input id="reference1_Company" type="text" name="reference1Company" placeholder="Company *">
                   <label for="job">Address *</label>
-                  <input type="text" name="reference1Address1">
+                  <input id="reference1_Address" type="text" name="reference1Address1">
                   <input type="text" name="reference1Address2">
-                  <input type="text" name="reference1Postcode" placeholder="Postcode">
-                  <input type="text" name="reference1ContactNumber" placeholder="Contact Number *">
-                  <input type="text" name="reference1Email" placeholder="Email Address *">
+                  <input id="reference1_PC" type="text" name="reference1Postcode" placeholder="Postcode">
+                  <input id="reference1_CN" type="text" name="reference1ContactNumber" placeholder="Contact Number *">
+                  <input id="reference1_Email" type="text" name="reference1Email" placeholder="Email Address *">
 
                   <!-- Taking details of the second reference -->
                   <label for="job">Enter details of your 2nd reference</label>
-                  <input type="text" name="reference1Firstname" placeholder="First name *">
-                  <input type="text" name="reference1Secondname" placeholder="Second name *">
+                  <input type="text" name="reference2Firstname" placeholder="First name *">
+                  <input type="text" name="reference2Surname" placeholder="Surname *">
                   <input type="text" name="reference2JobTitle" placeholder="Job title *">
                   <input type="text" name="reference2Company" placeholder="Company *">
                   <label for="job">Address *</label>
@@ -147,7 +147,7 @@
       <script>
       function FormValidation()
       {
-
+        // Section 1 //
         var candidateTitle = document.getElementById('candidate_title').value;
         var candidateName = document.getElementById('candidate_name').value;
         var candidateSurname = document.getElementById('candidate_surname').value;
@@ -161,80 +161,97 @@
         var candidateQualifications = document.getElementById('candidate_qualifications').value;
         var candidateCompanyType = document.getElementById('candidate_company_type').value;
 
-        if(candidateTitle == "title")
+        if(candidateTitle == "Title *")
         {
           alert("Please enter your title.");
-          return false;
+      ////    return false;
         }
 
-        if(candidateName == " ")
+        if(candidateName == "")
         {
           alert("Please enter your name.");
-          return false;
+      //    return false;
         }
 
-        if(candidateSurname == " ")
+        if(candidateSurname == "")
         {
           alert("Please enter your surname.")
-          return false;
+      //    return false;
         }
 
-        if(candidateAddress1 == " ")
+        if(candidateAddress1 == "")
         {
           alert("Please enter your first line of address.")
-          return false;
+      //    return false;
         }
 
-        if(candidateAddress2 == " ")
+        // Might not be required //
+        if(candidateAddress2 == "")
         {
           alert("Please enter your second line of address.")
-          return false;
+      //    return false;
         }
 
-        if(candidatePostcode == " ")
+        if(candidatePostcode == "")
         {
           alert("Please enter your postcode.")
-          return false;
+      //    return false;
         }
 
-        if(candidateContactNumber == " ")
+        if(candidateContactNumber == "")
         {
           alert("Please enter your contact number.")
-          return false;
+      //    return false;
         }
 
-        if(candidateEmergencyNumber == " ")
+        if(candidateEmergencyNumber == "")
         {
           alert("Please enter your emergency contact number.")
-          return false;
+      //   return false;
         }
 
-        if(candidateEmail == " ")
+        if(candidateEmail == "")
         {
           alert("Please enter your email.")
-          return false;
+      //    return false;
         }
 
-        if(candidateQualifications == " ")
+        if(candidateQualifications == "")
         {
           alert("Please enter your qualifications.")
-          return false;
+      //    return false;
         }
 
-        if(candidateWorkWanted == " ")
+        if(candidateWorkWanted == "")
         {
           alert("Please enter the type of work you want.")
-          return false;
+      //    return false;
         }
 
-        if(candidateCompanyType == " ")
+        if(candidateCompanyType == "")
         {
           alert("Please enter your company type.")
-          return false;
+      //    return false;
         }
-      }
 
-      FormValidation();
+
+      // Section 3 //
+          var ref1FirstName = document.getElementById('reference1_Firstname').value;
+          var ref1Surname = document.getElementById('reference1_Surname').value;
+          var ref1JobTitle = document.getElementById('reference1_JT').value;
+          var ref1Company = document.getElementById('reference1_Company').value;
+          var ref1Address = document.getElementById('reference1_Address').value;
+          var ref1PostCode = document.getElementById('reference1_PC').value;
+          var ref1ContactNumber = document.getElementById('reference1_CN').value;
+          var ref1Email = document.getElementById('reference1_Email').value;
+
+          if (ref1FirstName == "")
+          {
+            alert("Please enter a valid First Name.")
+          }
+
+        }
+      //FormValidation();
 
       </script>
     </body>
