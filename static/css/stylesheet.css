@@ -164,3 +164,7 @@ Their CSS significantly increased the quality of the form whilst enhancing user 
 .login_title h2{
   padding-bottom: 10px;
 }
+
+.inputFiles{
+  margin-bottom: 20px;
+}

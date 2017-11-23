@@ -30,8 +30,14 @@
           <input id="candidate_emergency_number" type="text" name="emergencyContactNumber" placeholder="Emergency Contact Number">
           <input id="candidate_email" type="text" name="email" placeholder="Contact Email *">
           <textarea id="candidate_work_wanted" name="work" placeholder="Type of work required *"></textarea>
+          <label for="cvUpload">Upload CV</label>
+          <input class="inputFiles" type="file" id="candidateCV">
+          <label for="spacing"> </label>
           <!--  will need to look at the CSS for this -->
           <input id="candidate_qualifications" type="text" name="QualificationsandLicences" placeholder="Qualifications / licences ">
+          <label for="qualificationUpload">Upload Qualifications and Licences</label>
+          <input class="inputFiles" type="file" id="candidateQualificationsandLicences">
+          <label for="spacing"> </label>
           <label for="representing">Representing:</label>
           <select id="representing" name="representingCompany">
 
@@ -126,6 +132,12 @@
                   <input type="text" name="refrence2Postcode" placeholder="Postcode">
                   <input type="text" name="refrence2ContactNumber" placeholder="Contact Number *">
                   <input type="text" name="refrence2Email" placeholder="Email Address *">
+
+              <p> The information you provide on this form, associated registration forms and on any CV or additional documents will be used by the</br>
+              Acorn Group to provide you with work finding services. In providing this service to you, you consent to your personal dara being included on a computerised</br>
+              database and consent to us trasnsferring your personal data to our clients and other third parties or with other information held by us or our clients. I hereby confirm</br>
+              that the information given is true and correct. I consent to my personal data being processed as detailed above. I understand that providing false or whitholding relavant information</br>
+              will result in the termination of an assignment or the withdrawl of an offer of an assignment.</p>
 
           <!-- Submit button -->
           <input type="submit" value="Apply"/>
