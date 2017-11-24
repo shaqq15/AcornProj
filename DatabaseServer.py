@@ -21,7 +21,7 @@ def CandidateAddDetails():
     if request.method =='POST':
         candidateTitle = request.form.get("title", default="Error")
         candidateFirstname = request.form.get("firstname", default="Error")
-        candidateSecondname = request.form.get("Secondname", default="Error")
+        candidateSecondname = request.form.get("surname", default="Error")
         candidateFirstlineAddress = request.form.get("CandidateAddress1", default="Error")
         candidateSecondlineAddress = request.form.get("CandidateAddress2", default="Error")
         candidatePostcode = request.form.get("CandidatePostcode", default="Error")
