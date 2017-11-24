@@ -4,7 +4,7 @@
   </head>
   <body>
     <div class="form-style-5">
-      <form action ="/Candidte/AddCandidate" method="post" onsubmit="return FormValidation()">
+      <form action ="/Candidate/Registration" method="post" onsubmit="return FormValidating()">
         <fieldset>
           <!-- This legend element is used for the heading of each section for the form. -->
           <legend><span class="number">1</span> Candidate Info</legend>
@@ -18,7 +18,7 @@
           <input id="password" type="text" name="Userpassword"  placeholder="Password *">
 
           <!-- Add a tick box here -->
-
+          <input type="checkbox" name="TBC" value="TBC">TBC<br>
           <!-- Sign up button -->
           <input type="submit" value="Sign Up"/>
 
@@ -26,22 +26,41 @@
       </div>
       <script>
 
-      function FormValidation()
+      function FormValidating()
       {
 
-        // var candidateTitle = document.getElementById('candidate_title').value;
-        // var candidateName = document.getElementById('candidate_name').value;
-        // var candidateSurname = document.getElementById('candidate_surname').value;
-        // var candidateAddress1 = document.getElementById('candidate_address1').value;
-        // var candidateAddress2 = document.getElementById('candidate_address2').value;
-        // var candidatePostcode = document.getElementById('candidate_postcode').value;
-        // var candidateContactNumber = document.getElementById('candidate_contact_number').value;
-        // var candidateEmergencyNumber = document.getElementById('candidate_emergency_number').value;
-        // var candidateEmail = document.getElementById('candidate_email').value;
-        // var candidateWorkWanted = document.getElementById('candidate_work_wanted').value;
-        // var candidateQualifications = document.getElementById('candidate_qualifications').value;
-        // var candidateCompanyType = document.getElementById('candidate_company_type').value;
+        var candidateUsername = document.getElementById('candidate_username').value;
+        var candidatePassword = document.getElementById('candidate_password').value;
+        var candidateName = document.getElementById('candidate_name').value;
+        var candidateSurname = document.getElementById('candidate_surname').value;
+        var candidateEmail = document.getElementById('candidate_email').value;
 
+
+        if(candidateUsername == "Username *")
+        {
+          alert("Please enter your Username.");
+          return false;
+        }
+        if(candidatePassword == "Password *")
+        {
+          alert("Please enter your Password.");
+          return false;
+        }
+        if(candidateName == "Name *")
+        {
+          alert("Please enter your name.");
+          return false;
+        }
+        if(candidateSurname == "Surname *")
+        {
+          alert("Please enter your surname.");
+          return false;
+        }
+        if(candidateEmail == "Email *")
+        {
+          alert("Please enter your email.");
+          return false;
+        }
       }
 
 

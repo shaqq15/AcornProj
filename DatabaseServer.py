@@ -115,7 +115,7 @@ def file_upload():
         return render_template('thankyouPage.html', msg=msg)
 
 
-@app.route("/Login/UserRegisteration", methods = ['POST','GET'])
+@app.route("/Candidate/Registration", methods = ['POST','GET'])
 def UserLogin():
     if request.method == 'GET':
         return render_template('loginRegistration.html')
@@ -144,8 +144,11 @@ def UserLogin():
 def UserLoginPage():
     if request.method =='GET':
     	return render_template('login_page.html')
-    return "Hello"
 
+@app.route("/Admin", methods = ['GET'])
+def adminpage():
+    if request.method =='GET':
+    	return render_template('admin.html')
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -5,12 +5,15 @@
 </head>
   <body>
   <div id="login_section" class="form-style-5">
-  <form onsubmit="return validate()" action = "admin.html" method = "post" name="myform">
+  <form onsubmit="return validate()" action = "/Admin" method = "GET" name="myform">
         <legend>Login Page</legend>
         <input id="username" type="text" name="firstname" placeholder="Username">
         <input id="password" type="text" name="surname" placeholder="Password">
         <br>
         <input class="login_button" type="submit" value="Login"/>
+      </form>
+
+  <form onsubmit="return validate()" action = "/Candidate/Registration" method = "GET" name="myform">
         <input class="login_button" type="submit" value="Sign Up"/>
       </form>
     </div>
