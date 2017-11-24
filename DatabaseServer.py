@@ -7,12 +7,14 @@ import datetime
 # pdfkit.from_url('http://127.0.0.1:5000/static/registrationForm.html','examplePDF.pdf')
 
 now = datetime.datetime.now()
-
+APP_ROOT = os.path.dirname(os.path.abspath(__file__))
+UPLOAD_FOLDER = os.path.join(APP_ROOT,'../static/file_uploads')
 
 DATABASE = "CandidateCenter.db"
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
 app = Flask(__name__)
+app.config['../static/file_uploads']=UPLOAD_FOLDER
 
 @app.route("/Candidate/AddCandidate", methods = ['POST','GET'])
 def CandidateAddDetails():
@@ -88,6 +90,30 @@ def CandidateAddDetails():
         return render_template("thankyouPage.html")
 
     return "Hello2"
+
+def allowed_file(filename):
+    ext = filename.rsplit('.',1)[1]
+    print(ext)
+    return '.' in filename and ext in ALLOWED_EXTENSIONS
+
+
+@app.route("/", methods = ['POST','GET'])
+def file_upload():
+    msg = ''
+    if request.method == 'POST':
+        if 'file' not in request.files:
+            msg = 'No file given'
+        else:
+            file = request.files.['file']
+            if file.filename =="":
+                msg='no file name'
+            elif file and allowed_file(file.filename):
+                filename = secure_filename(file.filename)
+                filePath = os.path.join(app.config/['file_uploads'], filename)
+            file.save(filePath)
+            msg=filePath
+        return render_template('thankyouPage.html', msg=msg)
+
 
 @app.route("/Login/UserRegisteration", methods = ['POST','GET'])
 def UserLogin():
