@@ -3,15 +3,21 @@
     <link rel="stylesheet" type="text/css" href="../static/css/stylesheet.css" />
   </head>
   <body>
+    <div class="website_toolbar">
+      <!-- The image used here was provided by Acorn themselves. -->
+      <img src="../static/images/Acorn_logo.png" height="41px" width="105px" alt="www.acornpeople.com" >
+    </div>
     <div class="form-style-5">
-      <form action ="/Candidate/AddCandidate" method="post" onsubmit="return FormValidation()">
+      <form action ="/Candidate/AddCandidate" method="POST" onsubmit="return FormValidation()" enctype = "multipart/form-data">
         <fieldset>
           <!-- This legend element is used for the heading of each section for the form. -->
-          <legend><span class="number">1</span> Candidate Info</legend>
+          <div class="tooltip">
+          <legend><span class="number">1</span>Candidate Information <span class="tooltiptext">Here we will ask you for some basic information</span></legend>
+          </div>
 
           <!-- Options for the user to choose their title -->
-          <select id="candidate_title" name="title" required ><br>
-            <option value="Title *">Title *</option>
+          <select id="candidate_title" name="title" required><br>
+          <option value="Title *">Title *</option>
             <option value="mr">Mr</option>
             <option value="sir">Sir</option>
             <option value="dr">Dr</option>
@@ -19,10 +25,15 @@
             <option value="mrs">Mrs</option>
           </select>
 
+
           <!-- User's details -->
           <input id="candidate_name" type="text" name="firstname" placeholder="First Name *">
           <input id="candidate_surname" type="text" name="surname" placeholder="Surname *">
-          <label for="job">Address</label>
+          <!-- The tooltip has now added but just needs minor adjusting. -->
+          <div class="tooltip">
+          <label for="job">Address<span class="tooltiptext">First line in the first box and second line in the second box</span></label>
+          </div>
+
           <input id="candidate_address1" type="text" name="CandidateAddress1">
           <input id="candidate_address2" type="text" name="CandidateAddress2">
           <input id="candidate_postcode" type="text" name="CandidatePostcode"  placeholder="Postcode">
@@ -30,12 +41,18 @@
           <input id="candidate_emergency_number" type="text" name="emergencyContactNumber" placeholder="Emergency Contact Number">
           <input id="candidate_email" type="text" name="email" placeholder="Contact Email *">
           <textarea id="candidate_work_wanted" name="work" placeholder="Type of work required *"></textarea>
-          <label for="cvUpload">Upload CV</label>
-          <input class="inputFiles" type="file" id="candidateCV">
+          <div class="tooltip">
+            <label for="cvUpload">Upload CV<span class="tooltiptext">File types allowed: txt, pdf, doc</span></label>
+        </div>
+
+          <input class="inputFiles" type="file" id="candidateCV" name="CV">
           <label for="spacing"> </label>
           <!--  will need to look at the CSS for this -->
           <input id="candidate_qualifications" type="text" name="QualificationsandLicences" placeholder="Qualifications / licences ">
-          <label for="qualificationUpload">Upload Qualifications and Licences</label>
+
+          <div class="tooltip">
+          <label for="qualificationUpload">Upload Qualifications and Licences<span class="tooltiptext">File types allowed: pdf, png, jpg, jpeg</span></label>
+        </div>
           <input class="inputFiles" type="file" id="candidateQualificationsandLicences">
           <label for="spacing"> </label>
           <label for="representing">Representing:</label>
@@ -54,7 +71,10 @@
     <fieldset>
 
   <!-- This legend element is used for the heading of each section for the form. -->
-  <legend><span class="number">2</span> Work Eligibility</legend>
+  <div class="tooltip">
+
+  <legend><span class="number">2</span> Work Eligibility <span class="tooltiptext">We will now ask you some work eligibility questions</span></legend>
+</div>
     <label for="workElegibility">Are you eligible to work in the UK?</label>
       <select id="workElegibility" name="elegibilityChoice">
 
@@ -105,8 +125,9 @@
                 </fieldset>
 
                 <!-- This legend element is used for the heading of each section for the form. -->
-                <legend><span class="number">3</span> References</legend>
-
+                <div class="tooltip">
+                <legend><span class="number">3</span> References <span class="tooltiptext">Enter your your latest refrences.</span></legend>
+              </div>
                   <!-- Taking details of the first reference -->
                   <label for="job">Enter details of your 1st reference</label>
                   <input id="reference1_Firstname" type="text" name="reference1Firstname" placeholder="First name *">
@@ -133,14 +154,14 @@
                   <input type="text" name="reference2ContactNumber" placeholder="Contact Number *">
                   <input type="text" name="reference2Email" placeholder="Email Address *">
 
-              <p> The information you provide on this form, associated registration forms and on any CV or additional documents will be used by the</br>
-              Acorn Group to provide you with work finding services. In providing this service to you, you consent to your personal dara being included on a computerised</br>
-              database and consent to us trasnsferring your personal data to our clients and other third parties or with other information held by us or our clients. I hereby confirm</br>
-              that the information given is true and correct. I consent to my personal data being processed as detailed above. I understand that providing false or whitholding relavant information</br>
+              <p class="decleration_text"> The information you provide on this form, associated registration forms and on any CV or additional documents will be used by the
+              Acorn Group to provide you with work finding services. In providing this service to you, you consent to your personal dara being included on a computerised
+              database and consent to us trasnsferring your personal data to our clients and other third parties or with other information held by us or our clients. I hereby confirm
+              that the information given is true and correct. I consent to my personal data being processed as detailed above. I understand that providing false or whitholding relavant information
               will result in the termination of an assignment or the withdrawl of an offer of an assignment.</p>
 
           <!-- Submit button -->
-          <input type="submit" value="Apply"/>
+          <input type="submit" value="Send"/>
 
         </form>
       </div>

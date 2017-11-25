@@ -1,5 +1,6 @@
 import os
 from flask import Flask, redirect, request, render_template
+from werkzeug import secure_filename
 import sqlite3
 import datetime
 # import pdfkit
@@ -8,13 +9,13 @@ import datetime
 
 now = datetime.datetime.now()
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
-UPLOAD_FOLDER = os.path.join(APP_ROOT,'../static/file_uploads')
+UPLOAD_FOLDER = os.path.join(APP_ROOT,'static/file_uploads')
 
 DATABASE = "CandidateCenter.db"
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
 app = Flask(__name__)
-app.config['../static/file_uploads']=UPLOAD_FOLDER
+app.config['static/file_uploads']=UPLOAD_FOLDER
 
 @app.route("/Candidate/AddCandidate", methods = ['POST','GET'])
 def CandidateAddDetails():
@@ -92,27 +93,21 @@ def CandidateAddDetails():
     return "Hello2"
 
 def allowed_file(filename):
-    ext = filename.rsplit('.',1)[1]
-    print(ext)
-    return '.' in filename and ext in ALLOWED_EXTENSIONS
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
 
 
-@app.route("/", methods = ['POST','GET'])
-def file_upload():
-    msg = ''
+@app.route("/", methods=['GET', 'POST'])
+def index():
+    print("I want to upload the file!")
     if request.method == 'POST':
-        if 'file' not in request.files:
-            msg = 'No file given'
-        else:
-            file = request.files.['file']
-            if file.filename =="":
-                msg='no file name'
-            elif file and allowed_file(file.filename):
-                filename = secure_filename(file.filename)
-                filePath = os.path.join(app.config/['file_uploads'], filename)
-            file.save(filePath)
-            msg=filePath
-        return render_template('thankyouPage.html', msg=msg)
+        file = request.files['file']
+        if file and allowed_file(file.filename):
+            print("I want to upload the file2")
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            return redirect(url_for('index'))
+    return ""
 
 
 @app.route("/Candidate/Registration", methods = ['POST','GET'])

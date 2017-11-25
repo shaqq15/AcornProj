@@ -13,6 +13,33 @@ body{
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
 }
 
+/*Tooltip CSS*/
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 400px;
+    background-color: black;
+    color: #8a97a0;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    top: 100%;
+    margin-left: -60px;
+    font-size: 15px;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    }
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    }
+
+
 
 /* For the design of the form I looked at: https://www.sanwebe.com/2014/08/css-html-forms-designs#form-1-html and used some parts of their CSS.
 Their CSS significantly increased the quality of the form whilst enhancing user expirince. For this, they have also not ued any external libairies. */
@@ -123,9 +150,16 @@ Their CSS significantly increased the quality of the form whilst enhancing user 
     float: left;
 }
 
+.decleration_text{
+  padding-bottom: 25px;
+}
+
+
+
+
 /* thankyouPage.html CSS */
 
-.registration_toolbar{
+.website_toolbar{
   padding: 10px;
 }
 
@@ -172,5 +206,3 @@ Their CSS significantly increased the quality of the form whilst enhancing user 
 .inputFiles{
   margin-bottom: 20px;
 }
-
-.
