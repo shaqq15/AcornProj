@@ -31,12 +31,12 @@
           <input id="candidate_surname" type="text" name="surname" placeholder="Surname *">
           <!-- The tooltip has now added but just needs minor adjusting. -->
           <div class="tooltip">
-          <label for="job">Address<span class="tooltiptext">First line in the first box and second line in the second box</span></label>
+          <label for="job">Address *<span class="tooltiptext">First line in the first box and second line in the second box</span></label>
           </div>
 
           <input id="candidate_address1" type="text" name="CandidateAddress1">
           <input id="candidate_address2" type="text" name="CandidateAddress2">
-          <input id="candidate_postcode" type="text" name="CandidatePostcode"  placeholder="Postcode">
+          <input id="candidate_postcode" type="text" name="CandidatePostcode"  placeholder="Postcode *">
           <input id="candidate_contact_number" type="text" name="contactNumber" placeholder="Contact Number *">
           <input id="candidate_emergency_number" type="text" name="emergencyContactNumber" placeholder="Emergency Contact Number">
           <input id="candidate_email" type="text" name="email" placeholder="Contact Email *">
@@ -166,21 +166,69 @@
         </form>
       </div>
       <script>
+
+// Google SDK
+
+      function initMap() {
+        var myLatLng = {lat: -25.363, lng: 131.044};
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 4,
+          center: myLatLng
+        });
+
+        var marker = new google.maps.Marker({
+          position: myLatLng,
+          map: map,
+          title: 'Hello World!'
+        });
+      }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       function FormValidation()
       {
         // Section 1 //
         var candidateTitle = document.getElementById('candidate_title').value;
+
+
+
         var candidateName = document.getElementById('candidate_name').value;
         var candidateSurname = document.getElementById('candidate_surname').value;
+        var nameRegex = /^[A-Z][a-z][-a-zA-Z]+$/;
+
+
         var candidateAddress1 = document.getElementById('candidate_address1').value;
         var candidateAddress2 = document.getElementById('candidate_address2').value;
+        var addressRegex = /^[#.0-9a-zA-Z\s,-]+$/;
+
+
+
+
+        // For this regex solution I looked at https://stackoverflow.com/questions/164979/uk-postcode-regex-comprehensive
+        //  I did this beccause the solution was tested against the Goverment's specificfaction for postcodes
         var candidatePostcode = document.getElementById('candidate_postcode').value;
+        var postcodeRegex = /^([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9]?[A-Za-z]))))\s?[0-9][A-Za-z]{2})+$/;
+
+
+
         var candidateContactNumber = document.getElementById('candidate_contact_number').value;
-        var candidateEmergencyNumber = document.getElementById('candidate_emergency_number').value;
         var candidateEmail = document.getElementById('candidate_email').value;
         var candidateWorkWanted = document.getElementById('candidate_work_wanted').value;
-        var candidateQualifications = document.getElementById('candidate_qualifications').value;
-        var candidateCompanyType = document.getElementById('candidate_company_type').value;
+
+
+        // Checking the user's input against regex.
 
         if(candidateTitle == "Title *")
         {
@@ -188,32 +236,33 @@
           return false;
         }
 
-        if(candidateName == " ")
+        if(!candidateName.match(nameRegex))
         {
           alert("Please enter your name.");
           return false;
         }
 
-        if(candidateSurname == " ")
+        if(!candidateSurname.match(nameRegex))
         {
           alert("Please enter your surname.")
           return false;
         }
 
-        if(candidateAddress1 == " ")
+
+        if(!candidateAddress1.match(addressRegex))
         {
           alert("Please enter your first line of address.")
           return false;
         }
 
         // Might not be required //
-        if(candidateAddress2 == " ")
+        if(!candidateAddress2.match(addressRegex))
         {
           alert("Please enter your second line of address.")
           return false;
         }
 
-        if(candidatePostcode == " ")
+        if(!candidatePostcode.match(postcodeRegex))
         {
           alert("Please enter your postcode.")
           return false;
@@ -225,21 +274,9 @@
           return false;
         }
 
-        if(candidateEmergencyNumber == " ")
-        {
-          alert("Please enter your emergency contact number.")
-         return false;
-        }
-
         if(candidateEmail == " ")
         {
           alert("Please enter your email.")
-          return false;
-        }
-
-        if(candidateQualifications == " ")
-        {
-          alert("Please enter your qualifications.")
           return false;
         }
 
@@ -249,12 +286,6 @@
           return false;
         }
 
-        if(candidateCompanyType == " ")
-        {
-          alert("Please enter your company type.")
-          return false;
-        }
-      //
       //
       // // Section 3 //
       //     var ref1FirstName = document.getElementById('reference1_Firstname').value;
@@ -274,7 +305,6 @@
       //   }
       FormValidation();
     }
-
       </script>
     </body>
 </html>

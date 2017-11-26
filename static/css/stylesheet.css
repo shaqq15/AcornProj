@@ -206,3 +206,11 @@ Their CSS significantly increased the quality of the form whilst enhancing user 
 .inputFiles{
   margin-bottom: 20px;
 }
+
+/* Always set the map height explicitly to define the size of the div
+ * element that contains the map. */
+#map {
+  height: 50%;
+  width: 50%;
+  padding: 60px;
+}
