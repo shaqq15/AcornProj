@@ -31,12 +31,10 @@
           <input id="candidate_surname" type="text" name="surname" placeholder="Surname *">
           <!-- The tooltip has now added but just needs minor adjusting. -->
           <div class="tooltip">
-          <label for="job">Address *<span class="tooltiptext">First line in the first box and second line in the second box</span></label>
+          <label for="job">Address *<span class="tooltiptext">Enter your details and our engine will look for your address. </span></label>
           </div>
 
-          <input id="candidate_address1" type="text" name="CandidateAddress1">
-          <input id="candidate_address2" type="text" name="CandidateAddress2">
-          <input id="candidate_postcode" type="text" name="CandidatePostcode"  placeholder="Postcode *">
+          <input type="text" id="address" onchange="doGeocode()" />
           <input id="candidate_contact_number" type="text" name="contactNumber" placeholder="Contact Number *">
           <input id="candidate_emergency_number" type="text" name="emergencyContactNumber" placeholder="Emergency Contact Number">
           <input id="candidate_email" type="text" name="email" placeholder="Contact Email *">
@@ -208,18 +206,15 @@
         var candidateSurname = document.getElementById('candidate_surname').value;
         var nameRegex = /^[A-Z][a-z][-a-zA-Z]+$/;
 
+        //
+        // var candidateAddress1 = document.getElementById('candidate_address1').value;
+        // var candidateAddress2 = document.getElementById('candidate_address2').value;
+        // var addressRegex = /^[#.0-9a-zA-Z\s,-]+$/;
 
-        var candidateAddress1 = document.getElementById('candidate_address1').value;
-        var candidateAddress2 = document.getElementById('candidate_address2').value;
-        var addressRegex = /^[#.0-9a-zA-Z\s,-]+$/;
-
-
-
-
-        // For this regex solution I looked at https://stackoverflow.com/questions/164979/uk-postcode-regex-comprehensive
-        //  I did this beccause the solution was tested against the Goverment's specificfaction for postcodes
-        var candidatePostcode = document.getElementById('candidate_postcode').value;
-        var postcodeRegex = /^([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9]?[A-Za-z]))))\s?[0-9][A-Za-z]{2})+$/;
+        // // For this regex solution I looked at https://stackoverflow.com/questions/164979/uk-postcode-regex-comprehensive
+        // //  I did this beccause the solution was tested against the Goverment's specificfaction for postcodes
+        // var candidatePostcode = document.getElementById('candidate_postcode').value;
+        // var postcodeRegex = /^([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9]?[A-Za-z]))))\s?[0-9][A-Za-z]{2})+$/;
 
 
 
@@ -249,24 +244,24 @@
         }
 
 
-        if(!candidateAddress1.match(addressRegex))
-        {
-          alert("Please enter your first line of address.")
-          return false;
-        }
-
-        // Might not be required //
-        if(!candidateAddress2.match(addressRegex))
-        {
-          alert("Please enter your second line of address.")
-          return false;
-        }
-
-        if(!candidatePostcode.match(postcodeRegex))
-        {
-          alert("Please enter your postcode.")
-          return false;
-        }
+        // if(!candidateAddress1.match(addressRegex))
+        // {
+        //   alert("Please enter your first line of address.")
+        //   return false;
+        // }
+        //
+        // // Might not be required //
+        // if(!candidateAddress2.match(addressRegex))
+        // {
+        //   alert("Please enter your second line of address.")
+        //   return false;
+        // }
+        //
+        // if(!candidatePostcode.match(postcodeRegex))
+        // {
+        //   alert("Please enter your postcode.")
+        //   return false;
+        // }
 
         if(candidateContactNumber == " ")
         {
@@ -305,6 +300,31 @@
       //   }
       FormValidation();
     }
+
+    // For this solution, I looked at: https://stackoverflow.com/questions/34339521/google-maps-api-how-to-check-if-an-address-or-location-is-valid
+    // On the 26/11/2017 at 19:26
+
+  </script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDExVDw_47y0U4kukU1A0UscjXE7qDTRhk&callback=initMap"></script>
+    <script>
+      function doGeocode() {
+        var addr = document.getElementById("address");
+        // Get geocoder instance
+        var geocoder = new google.maps.Geocoder();
+
+        // Geocode the address
+        geocoder.geocode({
+          'address': addr.value
+        }, function(results, status) {
+          if (status === google.maps.GeocoderStatus.OK && results.length > 0) {
+
+            // set it to the correct, formatted address if it's valid
+            addr.value = results[0].formatted_address;;
+
+            // show an error if it's not
+          } else alert("Invalid address");
+        });
+      };
       </script>
     </body>
 </html>
