@@ -124,7 +124,7 @@
 
                 <!-- This legend element is used for the heading of each section for the form. -->
                 <div class="tooltip">
-                <legend><span class="number">3</span> References <span class="tooltiptext">Enter your your latest refrences.</span></legend>
+                <legend><span class="number">3</span> References <span class="tooltiptext">Here we require some details of your references.</span></legend>
               </div>
                   <!-- Taking details of the first reference -->
                   <label for="job">Enter details of your 1st reference</label>
@@ -141,16 +141,16 @@
 
                   <!-- Taking details of the second reference -->
                   <label for="job">Enter details of your 2nd reference</label>
-                  <input type="text" name="reference2Firstname" placeholder="First name *">
-                  <input type="text" name="reference2Surname" placeholder="Surname *">
-                  <input type="text" name="reference2JobTitle" placeholder="Job title *">
-                  <input type="text" name="reference2Company" placeholder="Company *">
+                  <input id="reference2_Firstname" type="text" name="reference2Firstname" placeholder="First name *">
+                  <input id="reference2_Surname" type="text" name="reference2Surname" placeholder="Surname *">
+                  <input id="reference2_JT" type="text" name="reference2JobTitle" placeholder="Job title *">
+                  <input id="reference2_Company" type="text" name="reference2Company" placeholder="Company *">
                   <label for="job">Address *</label>
-                  <input type="text" name="reference2Address1">
+                  <input id="reference2_Address" type="text" name="reference2Address1">
                   <input type="text" name="reference2Address2">
-                  <input type="text" name="reference2Postcode" placeholder="Postcode">
-                  <input type="text" name="reference2ContactNumber" placeholder="Contact Number *">
-                  <input type="text" name="reference2Email" placeholder="Email Address *">
+                  <input id="reference2_PC" type="text" name="reference2Postcode" placeholder="Postcode">
+                  <input id="reference2_CN" type="text" name="reference2ContactNumber" placeholder="Contact Number *">
+                  <input id="reference2_Email" type="text" name="reference2Email" placeholder="Email Address *">
 
               <p class="decleration_text"> The information you provide on this form, associated registration forms and on any CV or additional documents will be used by the
               Acorn Group to provide you with work finding services.</p>
@@ -270,11 +270,13 @@
           return false;
         }
 
+        //Section 2//
 
 
 
 
 
+          // Section 3 //
 
           var ref1FirstName = document.getElementById('reference1_Firstname').value;
           var ref1Surname = document.getElementById('reference1_Surname').value;
@@ -284,6 +286,15 @@
           var ref1PostCode = document.getElementById('reference1_PC').value;
           var ref1ContactNumber = document.getElementById('reference1_CN').value;
           var ref1Email = document.getElementById('reference1_Email').value;
+
+          var ref2FirstName = document.getElementById('reference2_Firstname').value;
+          var ref2Surname = document.getElementById('reference2_Surname').value;
+          var ref2JobTitle = document.getElementById('reference2_JT').value;
+          var ref2Company = document.getElementById('reference2_Company').value;
+          var ref2Address = document.getElementById('reference2_Address').value;
+          var ref2PostCode = document.getElementById('reference2_PC').value;
+          var ref2ContactNumber = document.getElementById('reference2_CN').value;
+          var ref2Email = document.getElementById('reference2_Email').value;
 
           if(!ref1FirstName.match(nameRegex))
           {
@@ -316,6 +327,42 @@
           }
 
           if(!ref1Email.match(emailRegex))
+          {
+            alert("Please enter your refrence's email address.");
+            return false;
+          }
+
+          // Second reference
+
+          if(ref2FirstName == "" || isNaN(ref2FirstName) == false){
+            alert("Please enter the name of your second reference.");
+            return false;
+          }
+
+          if(ref2Surname == "" || isNaN(ref2Surname) == false){
+            alert("Please enter the name of your second reference.");
+            return false;
+          }
+
+          if(ref1JobTitle == "")
+          {
+            alert("Please enter your refrence's job title.");
+            return false;
+          }
+
+          if(ref1Company == "")
+          {
+            alert("Please enter your refrence's company name.");
+            return false;
+          }
+
+          if(!ref2ContactNumber.match(contactNumberRegex))
+          {
+            alert("Please enter your refrence's contact number.");
+            return false;
+          }
+
+          if(!ref2Email.match(emailRegex))
           {
             alert("Please enter your refrence's email address.");
             return false;
