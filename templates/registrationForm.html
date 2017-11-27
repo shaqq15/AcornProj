@@ -153,9 +153,13 @@
                   <input type="text" name="reference2Email" placeholder="Email Address *">
 
               <p class="decleration_text"> The information you provide on this form, associated registration forms and on any CV or additional documents will be used by the
-              Acorn Group to provide you with work finding services. In providing this service to you, you consent to your personal dara being included on a computerised
-              database and consent to us trasnsferring your personal data to our clients and other third parties or with other information held by us or our clients. I hereby confirm
-              that the information given is true and correct. I consent to my personal data being processed as detailed above. I understand that providing false or whitholding relavant information
+              Acorn Group to provide you with work finding services.</p>
+
+              <p class="decleration_text">In providing this service to you, you consent to your personal dara being included on a computerised
+                database and consent to us trasnsferring your personal data to our clients and other third parties or with other information held by us or our clients. </p>
+              <p class="decleration_text">
+              I hereby confirm that the information given is true and correct. I consent to my personal data being processed as detailed above.
+              I understand that providing false or whitholding relavant information
               will result in the termination of an assignment or the withdrawl of an offer of an assignment.</p>
 
           <!-- Submit button -->
@@ -174,7 +178,7 @@
 
         var candidateName = document.getElementById('candidate_name').value;
         var candidateSurname = document.getElementById('candidate_surname').value;
-        var nameRegex = /^[A-Z][a-z][-a-zA-Z]+$/;
+        var nameRegex = /^[-a-zA-Z]+$/;
 
         // Spare code in case we need to go back to normal form validation.
         // var candidateAddress1 = document.getElementById('candidate_address1').value;
@@ -271,23 +275,52 @@
 
 
 
-      //
-      // // Section 3 //
-      //     var ref1FirstName = document.getElementById('reference1_Firstname').value;
-      //     var ref1Surname = document.getElementById('reference1_Surname').value;
-      //     var ref1JobTitle = document.getElementById('reference1_JT').value;
-      //     var ref1Company = document.getElementById('reference1_Company').value;
-      //     var ref1Address = document.getElementById('reference1_Address').value;
-      //     var ref1PostCode = document.getElementById('reference1_PC').value;
-      //     var ref1ContactNumber = document.getElementById('reference1_CN').value;
-      //     var ref1Email = document.getElementById('reference1_Email').value;
-      //
-      //     if (ref1FirstName == "")
-      //     {
-      //       alert("Please enter a valid First Name.")
-      //     }
-      //
-      //   }
+
+          var ref1FirstName = document.getElementById('reference1_Firstname').value;
+          var ref1Surname = document.getElementById('reference1_Surname').value;
+          var ref1JobTitle = document.getElementById('reference1_JT').value;
+          var ref1Company = document.getElementById('reference1_Company').value;
+          var ref1Address = document.getElementById('reference1_Address').value;
+          var ref1PostCode = document.getElementById('reference1_PC').value;
+          var ref1ContactNumber = document.getElementById('reference1_CN').value;
+          var ref1Email = document.getElementById('reference1_Email').value;
+
+          if(!ref1FirstName.match(nameRegex))
+          {
+            alert("Please enter your refrence's first name.");
+            return false;
+          }
+
+          if(!ref1Surname.match(nameRegex))
+          {
+            alert("Please enter your refrence's surname.");
+            return false;
+          }
+
+          if(ref1JobTitle == "")
+          {
+            alert("Please enter your refrence's job title.");
+            return false;
+          }
+
+          if(ref1Company == "")
+          {
+            alert("Please enter your refrence's company name.");
+            return false;
+          }
+
+          if(!ref1ContactNumber.match(contactNumberRegex))
+          {
+            alert("Please enter your refrence's contact number.");
+            return false;
+          }
+
+          if(!ref1Email.match(emailRegex))
+          {
+            alert("Please enter your refrence's email address.");
+            return false;
+          }
+
       FormValidation();
     }
 
