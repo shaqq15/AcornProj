@@ -1,21 +1,26 @@
 import os
-from flask import Flask, redirect, request, render_template
-from werkzeug import secure_filename
+from flask import Flask, redirect, request, render_template, url_for
+# from flask_weasyprint import HTML, render_pdf
+from werkzeug.utils import secure_filename
 import sqlite3
 import datetime
-# import pdfkit
+
+# HTML('http://127.0.0.1:5000/Candidate/AddCandidate').write_pdf('static/sample.pdf')
+
+
 
 # pdfkit.from_url('http://127.0.0.1:5000/static/registrationForm.html','examplePDF.pdf')
 
 now = datetime.datetime.now()
+
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 UPLOAD_FOLDER = os.path.join(APP_ROOT,'static/file_uploads')
 
 DATABASE = "CandidateCenter.db"
-ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
+ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'doc', 'docx'])
 
 app = Flask(__name__)
-app.config['static/file_uploads']=UPLOAD_FOLDER
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @app.route("/Candidate/AddCandidate", methods = ['POST','GET'])
 def CandidateAddDetails():
@@ -63,6 +68,28 @@ def CandidateAddDetails():
         candidateRefrence2ContactNumber = request.form.get("refrence2ContactNumber", default="Error")
         candidateRefrence2Email = request.form.get("refrence2Email", default="Error")
 
+        # File upload
+
+        def allowed_file(filename):
+            ext = filename.rsplit('.',1)[1]
+            print(ext)
+            return '.' in filename and ext in ALLOWED_EXTENSIONS
+
+        msg = ''
+        if request.method == 'POST':
+            if 'file' not in request.files:
+                msg = 'no file given'
+            else:
+                file = request.files['file']
+                if file.filename == '':
+                    msg = 'No file name'
+                elif file and allowed_file(file.filename):
+                    filename = secure_filename(file.filename)
+                    filePath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+                file.save(filePath)
+                msg = filePath
+            return render_template('thankyouPage.html', msg=msg)
+
         # try:
 
         conn = sqlite3.connect(DATABASE)
@@ -90,22 +117,9 @@ def CandidateAddDetails():
 
     return "Hello2"
 
-def allowed_file(filename):
-    return '.' in filename and \
-           filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
 
 
-@app.route("/", methods=['GET', 'POST'])
-def index():
-    print("I want to upload the file!")
-    if request.method == 'POST':
-        file = request.files['file']
-        if file and allowed_file(file.filename):
-            print("I want to upload the file2")
-            filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            return redirect(url_for('index'))
-    return ""
+
 
 
 @app.route("/Candidate/Registration", methods = ['POST','GET'])
@@ -131,6 +145,71 @@ def UserLogin():
         return "Hello"
 
     return "Hello2"
+
+
+# PDF convert code
+#
+# class Pdf():
+#
+#     def render_pdf(self, name, html):
+#
+#         from xhtml2pdf import pisa
+#         from StringIO import StringIO
+#
+#         pdf = StringIO()
+#
+#         pisa.CreatePDF(StringIO(html), pdf)
+#
+#         return pdf.getvalue()
+#
+#
+# @app.route('/pdf/Candidate', methods=['GET'])
+# def candidate_form(candidate, tin):
+#
+#     #pdf = StringIO()
+#     html = render_template('registrationForm.html', business_name=business_name, tin=tin)
+#     file_class = Pdf()
+#     pdf = file_class.render_pdf(candidate, html)
+#     headers = {
+#         'content-type': 'application.pdf',
+#         'content-disposition': 'attachment; filename=form.pdf'}
+#     return pdf, 200, headers
+
+
+        #
+        # if 'file' not in request.files:
+        #     flash('No file part')
+        #     return redirect(request.url)
+        # file = request.files['file']
+        # print("We have started the uploading process")
+        # # if user does not select file, browser also
+        # # submit a empty part without filename
+        # if file.filename == '':
+        #     print("We have started looking for the file")
+        #     flash('No selected file')
+        #     return redirect(request.url)
+        # if file and allowed_file(file.filename):
+        #     print("We have nearly uploaded the file.")
+        #     filename = secure_filename(file.filename)
+        #     file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        #     return redirect(url_for('uploaded_file',
+        #                             filename=filename))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 @app.route("/Login/UserLogin", methods = ['GET'])
