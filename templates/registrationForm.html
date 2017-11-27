@@ -278,25 +278,25 @@
         var candidateDisabilities = document.getElementById('candidate_disabilities').value;
         var disabilityDescription = document.getElementById('disability_description').value;
 
-        if(workElegibility == "Please Select")
+        if(workElegibility == "Please select")
         {
           alert("Please select your work eligibility.");
           return false;
         }
 
-        if(drivingLicense == "Please Select")
+        if(drivingLicense == "Please select")
         {
           alert("Please select if you have a driving licesne or not.");
           return false;
         }
 
-        if(criminalOffence == "Please Select")
+        if(criminalOffence == "Please select")
         {
           alert("Please if you have a criminal offence");
           return false;
         }
 
-        if(candidateDisabilities == "Please Select")
+        if(candidateDisabilities == "Please select")
         {
           alert("Please select if you have a disabiility.");
           return false;
@@ -333,73 +333,73 @@
 
           if(!ref1FirstName.match(nameRegex))
           {
-            alert("Please enter your refrence's first name.");
+            alert("Please enter your references' first name.");
             return false;
           }
 
           if(!ref1Surname.match(nameRegex))
           {
-            alert("Please enter your refrence's surname.");
+            alert("Please enter your references' surname.");
             return false;
           }
 
           if(ref1JobTitle == "")
           {
-            alert("Please enter your refrence's job title.");
+            alert("Please enter your references' job title.");
             return false;
           }
 
           if(ref1Company == "")
           {
-            alert("Please enter your refrence's company name.");
+            alert("Please enter your references' company name.");
             return false;
           }
 
           if(!ref1ContactNumber.match(contactNumberRegex))
           {
-            alert("Please enter your refrence's contact number.");
+            alert("Please enter your references' contact number.");
             return false;
           }
 
           if(!ref1Email.match(emailRegex))
           {
-            alert("Please enter your refrence's email address.");
+            alert("Please enter your references' email address.");
             return false;
           }
 
           // Second reference
 
           if(ref2FirstName == "" || isNaN(ref2FirstName) == false){
-            alert("Please enter the name of your second reference.");
+            alert("Please enter the first name of your second reference.");
             return false;
           }
 
           if(ref2Surname == "" || isNaN(ref2Surname) == false){
-            alert("Please enter the name of your second reference.");
+            alert("Please enter the surname of your second reference.");
             return false;
           }
 
-          if(ref1JobTitle == "")
+          if(ref2JobTitle == "")
           {
-            alert("Please enter your refrence's job title.");
+            alert("Please enter your references' job title.");
             return false;
           }
 
-          if(ref1Company == "")
+          if(ref2Company == "")
           {
-            alert("Please enter your refrence's company name.");
+            alert("Please enter your references' company name.");
             return false;
           }
 
           if(!ref2ContactNumber.match(contactNumberRegex))
           {
-            alert("Please enter your refrence's contact number.");
+            alert("Please enter your references' contact number.");
             return false;
           }
 
           if(!ref2Email.match(emailRegex))
           {
-            alert("Please enter your refrence's email address.");
+            alert("Please enter your references' email address.");
             return false;
           }
 
