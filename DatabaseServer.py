@@ -65,6 +65,25 @@ def CandidateAddDetails():
         candidateRefrence2ContactNumber = request.form.get("reference2ContactNumber", default="Error")
         candidateRefrence2Email = request.form.get("reference2Email", default="Error")
 
+        def allowed_file(filename):
+            ext = filename.rsplit('.',1)[1]
+            print(ext)
+            return '.' in filename and ext in ALLOWED_EXTENSIONS
+
+        msg = ''
+        if request.method == 'POST':
+            if 'file' not in request.files:
+                msg = 'no file given'
+            else:
+                file = request.files['file']
+                if file.filename == '':
+                    msg = 'No file name'
+                elif file and allowed_file(file.filename):
+                    filename = secure_filename(file.filename)
+                    filePath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+                file.save(filePath)
+                msg = filePath
+            return render_template('thankyouPage.html', msg=msg)
 
 
 
@@ -96,30 +115,13 @@ def CandidateAddDetails():
 
         # File upload
 
-    def allowed_file(filename):
-        ext = filename.rsplit('.',1)[1]
-        print(ext)
-        return '.' in filename and ext in ALLOWED_EXTENSIONS
-
-        msg = ''
-        if request.method == 'POST':
-            if 'file' not in request.files:
-                msg = 'no file given'
-            else:
-                file = request.files['file']
-                if file.filename == '':
-                    msg = 'No file name'
-                elif file and allowed_file(file.filename):
-                    filename = secure_filename(file.filename)
-                    filePath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-                    file.save(filePath)
-                    msg = filePath
-            return render_template('thankyouPage.html', msg=msg)
-
-        # try:
 
 
     return "Hello2"
+        # try:
+
+
+
 
 
 
