@@ -43,34 +43,63 @@ def CandidateAddDetails():
         candidateDisabilityDetails = request.form.get("disabilityDescription", default="Error")
 
         # # Candidate's first refrence details
-        candidateRefrence1Firstname = request.form.get("refrence1Firstname", default="Error")
-        candidateRefrence1Secondname = request.form.get("refrence1Secondname", default="Error")
-        candidateRefrence1JobTitle = request.form.get("refrence1JobTitle", default="Error")
-        candidateRefrence1Company = request.form.get("refrence1Company", default="Error")
-        candidateRefrence1AddressLine1 = request.form.get("refrence1Address1", default="Error")
-        candidateRefrence1AddressLine2 = request.form.get("refrence1Address2", default="Error")
-        candidateRefrence1Postcode = request.form.get("refrence1Postcode", default="Error")
-        candidateRefrence1ContactNumber = request.form.get("refrence1ContactNumber", default="Error")
-        candidateRefrence1Email = request.form.get("refrence1Email", default="Error")
+        candidateRefrence1Firstname = request.form.get("reference1Firstname", default="Error")
+        candidateRefrence1Secondname = request.form.get("reference1Surname", default="Error")
+        candidateRefrence1JobTitle = request.form.get("reference1JobTitle", default="Error")
+        candidateRefrence1Company = request.form.get("reference1Company", default="Error")
+        candidateRefrence1AddressLine1 = request.form.get("reference1Address1", default="Error")
+        candidateRefrence1AddressLine2 = request.form.get("reference1Address2", default="Error")
+        candidateRefrence1Postcode = request.form.get("reference1Postcode", default="Error")
+        candidateRefrence1ContactNumber = request.form.get("reference1ContactNumber", default="Error")
+        candidateRefrence1Email = request.form.get("reference1Email", default="Error")
 
 
         # # Candidate's second refrence details
-        candidateRefrence2Firstname = request.form.get("refrence1Firstname", default="Error")
-        candidateRefrence2Secondname = request.form.get("refrence1Secondname", default="Error")
-        candidateRefrence2JobTitle = request.form.get("refrence2JobTitle", default="Error")
-        candidateRefrence2Company = request.form.get("refrence2Company", default="Error")
-        candidateRefrence2AddressLine1 = request.form.get("refrence2Address1", default="Error")
-        candidateRefrence2AddressLine2 = request.form.get("refrence2Address2", default="Error")
-        candidateRefrence2Postcode = request.form.get("refrence2Postcode", default="Error")
-        candidateRefrence2ContactNumber = request.form.get("refrence2ContactNumber", default="Error")
-        candidateRefrence2Email = request.form.get("refrence2Email", default="Error")
+        candidateRefrence2Firstname = request.form.get("reference2Firstname", default="Error")
+        candidateRefrence2Secondname = request.form.get("reference2Surname", default="Error")
+        candidateRefrence2JobTitle = request.form.get("reference2JobTitle", default="Error")
+        candidateRefrence2Company = request.form.get("reference2Company", default="Error")
+        candidateRefrence2AddressLine1 = request.form.get("reference2Address1", default="Error")
+        candidateRefrence2AddressLine2 = request.form.get("reference2Address2", default="Error")
+        candidateRefrence2Postcode = request.form.get("reference2Postcode", default="Error")
+        candidateRefrence2ContactNumber = request.form.get("reference2ContactNumber", default="Error")
+        candidateRefrence2Email = request.form.get("reference2Email", default="Error")
+
+
+
+
+
+        conn = sqlite3.connect(DATABASE)
+        cur = conn.cursor()
+        cur.execute("INSERT INTO CandidateDetails ('CandidateTitle','CandidateFirstname', 'CandidateSecondname', 'CandidateAddress', 'CandidateContactNumber', 'CandidateEmergencyNumber', 'CandidateEmail', 'CandidateTypeOfWork', 'CandidateQualifications', 'CandidateRepresenting')\
+        			VALUES (?,?,?,?,?,?,?,?,?,?)",(candidateTitle, candidateFirstname, candidateSecondname, candidateAddress, candidateContactNumber, candidateEmergencyNumber, candidateEmail, candidateTypeOfWork, candidateQualifications, candidateRepresenting) )
+
+        cur.execute("INSERT INTO CandidateWorkElegibility ('CandidateWorkElegibility','CandidateDrivingLicense', 'CandidateCriminalConvictions', 'CandidateDisabilities', 'CandidateDisabilityDetails')\
+                    VALUES (?,?,?,?,?)",(candidateWorkElegibility, candidateDrivingLicense, candidateCriminalConvictions, candidateDisabilities, candidateDisabilityDetails) )
+
+        cur.execute("INSERT INTO CandidateRefrence1 ('RefrenceFirstname','RefrenceSecondname', 'RefrenceJobTitle', 'RefrenceCompany', 'RefrenceAddress1' ,'RefrenceAddress2', 'RefrencePostcode','RefrenceContact' , 'RefrenceEmail')\
+                    VALUES (?,?,?,?,?,?,?,?,?)",(candidateRefrence1Firstname, candidateRefrence1Secondname, candidateRefrence1JobTitle, candidateRefrence1Company, candidateRefrence1AddressLine1, candidateRefrence1AddressLine2, candidateRefrence1Postcode, candidateRefrence1ContactNumber, candidateRefrence1Email) )
+
+        cur.execute("INSERT INTO CandidateRefrence2 ('RefrenceFirstname','RefrenceSecondname', 'RefrenceJobTitle', 'RefrenceCompany', 'RefrenceAddress1' ,'RefrenceAddress2', 'RefrencePostcode','RefrenceContact' , 'RefrenceEmail')\
+                    VALUES (?,?,?,?,?,?,?,?,?)",(candidateRefrence2Firstname, candidateRefrence2Secondname, candidateRefrence2JobTitle, candidateRefrence2Company, candidateRefrence2AddressLine1, candidateRefrence2AddressLine2, candidateRefrence2Postcode, candidateRefrence2ContactNumber, candidateRefrence2Email) )
+
+        conn.commit()
+        print("Candidate details successfully added")
+        # except:
+        # conn.rollback()
+        # print("Error in insertion")
+        # finally:
+        conn.close()
+        return render_template("thankyouPage.html")
+
+
 
         # File upload
 
-        def allowed_file(filename):
-            ext = filename.rsplit('.',1)[1]
-            print(ext)
-            return '.' in filename and ext in ALLOWED_EXTENSIONS
+    def allowed_file(filename):
+        ext = filename.rsplit('.',1)[1]
+        print(ext)
+        return '.' in filename and ext in ALLOWED_EXTENSIONS
 
         msg = ''
         if request.method == 'POST':
@@ -89,32 +118,8 @@ def CandidateAddDetails():
 
         # try:
 
-        conn = sqlite3.connect(DATABASE)
-        cur = conn.cursor()
-        cur.execute("INSERT INTO CandidateDetails ('CandidateTitle','CandidateFirstname', 'CandidateSecondname', 'CandidateAddress', 'CandidateContactNumber', 'CandidateEmergencyNumber', 'CandidateEmail', 'CandidateTypeOfWork', 'CandidateQualifications', 'CandidateRepresenting')\
-					VALUES (?,?,?,?,?,?,?,?,?,?)",(candidateTitle, candidateFirstname, candidateSecondname, candidateAddress, candidateContactNumber, candidateEmergencyNumber, candidateEmail, candidateTypeOfWork, candidateQualifications, candidateRepresenting) )
-
-        cur.execute("INSERT INTO CandidateWorkElegibility ('CandidateWorkElegibility','CandidateDrivingLicense', 'CandidateCriminalConvictions', 'CandidateDisabilities', 'CandidateDisabilityDetails')\
-            		VALUES (?,?,?,?,?)",(candidateWorkElegibility, candidateDrivingLicense, candidateCriminalConvictions, candidateDisabilities, candidateDisabilityDetails) )
-
-        cur.execute("INSERT INTO CandidateRefrence1 ('RefrenceFirstname','RefrenceSecondname', 'RefrenceJobTitle', 'RefrenceCompany', 'RefrenceAddress1' ,'RefrenceAddress2', 'RefrencePostcode','RefrenceContact' , 'RefrenceEmail')\
-            		VALUES (?,?,?,?,?,?,?,?,?)",(candidateRefrence1Firstname, candidateRefrence1Secondname, candidateRefrence1JobTitle, candidateRefrence1Company, candidateRefrence1AddressLine1, candidateRefrence1AddressLine2, candidateRefrence1Postcode, candidateRefrence1ContactNumber, candidateRefrence1Email) )
-
-        cur.execute("INSERT INTO CandidateRefrence2 ('RefrenceFirstname','RefrenceSecondname', 'RefrenceJobTitle', 'RefrenceCompany', 'RefrenceAddress1' ,'RefrenceAddress2', 'RefrencePostcode','RefrenceContact' , 'RefrenceEmail')\
-                    VALUES (?,?,?,?,?,?,?,?,?)",(candidateRefrence2Firstname, candidateRefrence2Secondname, candidateRefrence2JobTitle, candidateRefrence2Company, candidateRefrence2AddressLine1, candidateRefrence2AddressLine2, candidateRefrence2Postcode, candidateRefrence2ContactNumber, candidateRefrence2Email) )
-
-        conn.commit()
-        print("Candidate details successfully added")
-        # except:
-        # conn.rollback()
-        # print("Error in insertion")
-        # finally:
-        conn.close()
-        return render_template("thankyouPage.html")
 
     return "Hello2"
-
-
 
 
 
