@@ -6,9 +6,6 @@ import sqlite3
 import datetime
 
 # HTML('http://127.0.0.1:5000/Candidate/AddCandidate').write_pdf('static/sample.pdf')
-
-
-
 # pdfkit.from_url('http://127.0.0.1:5000/static/registrationForm.html','examplePDF.pdf')
 
 now = datetime.datetime.now()
@@ -86,27 +83,9 @@ def CandidateAddDetails():
                 elif file and allowed_file(file.filename):
                     filename = secure_filename(file.filename)
                     filePath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-                file.save(filePath)
-                msg = filePath
+                    file.save(filePath)
+                    msg = filePath
             return render_template('thankyouPage.html', msg=msg)
-
-
-        msg = ''
-        if request.method == 'POST':
-            if 'file' not in request.files:
-                msg = 'no file given'
-            else:
-                file = request.files['file2']
-                if file.filename == '':
-                    msg = 'No file name'
-                elif file and allowed_file(file.filename):
-                    filename = secure_filename(file.filename)
-                    filePath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-                file.save(filePath)
-                msg = filePath
-            return render_template('thankyouPage.html', msg=msg)
-
-
 
         # try:
 
