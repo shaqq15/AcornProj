@@ -1,0 +1,490 @@
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="../static/css/stylesheet.css" />
+  <meta charset="UTF-8">
+  <title>Acorn Registration Form</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+  <link rel="stylesheet" href="css/style.css">
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <!--[if IE]>
+  <link rel="stylesheet" type="text/css" href="css/ie9.css">
+  <![endif]-->
+
+  <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-39365077-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+  </script>
+    </head>
+  <body>
+    <div class="website_toolbar">
+      <!-- The image used here was provided by Acorn themselves. -->
+      <img src="../static/images/Acorn_logo.png" height="41px" width="105px" alt="www.acornpeople.com" >
+    </div>
+    <div class="form-style-5">
+      <form action ="/Candidate/AddCandidate" method="POST" onsubmit="return FormValidation()" enctype = "multipart/form-data">
+        <fieldset>
+          <!-- This legend element is used for the heading of each section for the form. -->
+          <div class="tooltip">
+          <legend><span class="number">1</span>Candidate Information <span class="tooltiptext">Here we will ask you for some basic information</span></legend>
+          </div>
+
+          <!-- Options for the user to choose their title -->
+          <select id="candidate_title" name="title" required><br>
+          <option value="Title *">Title *</option>
+            <option value="mr">Mr</option>
+            <option value="sir">Sir</option>
+            <option value="dr">Dr</option>
+            <option value="miss">Miss</option>
+            <option value="mrs">Mrs</option>
+          </select>
+
+
+          <!-- User's details -->
+          <input id="candidate_name" type="text" name="firstname" placeholder="First Name *">
+          <input id="candidate_surname" type="text" name="surname" placeholder="Surname *">
+          <!-- The tooltip has now added but just needs minor adjusting. -->
+          <div class="tooltip">
+          <label for="job">Address *<span class="tooltiptext">Enter your details and our engine will look for your address. </span></label>
+          </div>
+
+          <input type="text" id="address" name="candidateAddress" onchange="doGeocode()" />
+          <input id="candidate_contact_number" type="text" name="contactNumber" placeholder="Contact Number *">
+          <input id="candidate_emergency_number" type="text" name="emergencyContactNumber" placeholder="Emergency Contact Number">
+          <input id="candidate_email" type="text" name="email" placeholder="Contact Email *">
+          <textarea id="candidate_work_wanted" name="work" placeholder="Type of work required *"></textarea>
+          <div class="tooltip">
+            <label for="cvUpload">Upload CV<span class="tooltiptext">File types allowed: txt, pdf, doc</span></label>
+        </div>
+
+          <input class="inputFiles" type="file" id="candidateCV" name="file" value="Upload">
+          <label for="spacing"> </label>
+          <!--  will need to look at the CSS for this -->
+          <input id="candidate_qualifications" type="text" name="QualificationsandLicences" placeholder="Qualifications / licences ">
+
+          <div class="tooltip">
+          <label for="qualificationUpload">Upload Qualifications and Licences<span class="tooltiptext">File types allowed: pdf, png, jpg, jpeg</span></label>
+        </div>
+          <input class="inputFiles" type="file" id="candidateQualificationsandLicences" name="file2" value="Upload2">
+          <label for="spacing"> </label>
+          <label for="representing">Representing:</label>
+          <select id="representing" name="representingCompany">
+
+          <!-- Drop down box for the user to choose what type of company they are representing. -->
+          <optgroup id="candidate_company_type" label="Company Type" required>
+            <option value="Please Select">Please Select</option>
+            <option value="Umbrella company">Umbrella Company</option>
+            <option value="Personal services">Personal Services Company</option>
+          </optgroup>
+
+        </optgroup>
+      </select>
+    </fieldset>
+    <fieldset>
+
+  <!-- This legend element is used for the heading of each section for the form. -->
+  <div class="tooltip">
+
+  <legend><span class="number">2</span> Work Eligibility <span class="tooltiptext">We will now ask you some work eligibility questions</span></legend>
+</div>
+    <label for="workElegibility">Are you eligible to work in the UK?</label>
+      <select id="work_elegibility" name="elegibilityChoice">
+
+        <!-- Options for the user to choose their work elegibility -->
+        <optgroup label="Work elgibility">
+          <option value="Please select">Please select</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </optgroup>
+
+        <select id="work_Elegibility" name="workElegibility">
+
+          <!-- Options for the user to choose if they have a license or not -->
+        <label for="drivinglicense">Do you have a current driving licence?</label>
+          <select id="driving_license" name="drivingLicenseChoice">
+            <optgroup label="Official Documents">
+              <option value="Please select">Please select</option>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </optgroup>
+
+            <select id="driving_License" name="drivingLicense">
+
+            <label for="criminalOffence">Do you have any unspent criminal convictions?</label>
+              <select id="criminal_offence" name="criminaloffences">
+
+                <!-- Options for the user to if they have a criminal offence or not -->
+                <optgroup label="criminal offfence">
+                  <option value="Please select">Please select</option>
+                  <option value="yes">Yes</option>
+                  <option value="no">No</option>
+                </optgroup>
+
+                <select id="criminal_Offence" name="criminaloffences">
+
+                <!-- Options for the user to choose if they have any disabilities or not -->
+                <label for="candidatedisabilities">Do you consider having a disability?</label>
+                  <select id="candidate_disabilities" name="candidateDisabilities">
+                    <optgroup label="disability">
+                      <option value="Please select">Please select</option>
+                      <option value="yes">Yes</option>
+                      <option value="no">No</option>
+                    </optgroup>
+
+                  <select id="candidate_Disabilities" name="candidateDisabilities">
+
+                <textarea id="disability_description" name="disabilityDescription" placeholder="Please provide full details of your disability"></textarea>
+                </fieldset>
+
+                <!-- This legend element is used for the heading of each section for the form. -->
+                <div class="tooltip">
+                <legend><span class="number">3</span> References <span class="tooltiptext">Here we require some details of your references.</span></legend>
+              </div>
+                  <!-- Taking details of the first reference -->
+                  <label for="job">Enter details of your 1st reference</label>
+                  <input id="reference1_Firstname" type="text" name="reference1Firstname" placeholder="First name *">
+                  <input id="reference1_Surname" type="text" name="reference1Surname" placeholder="Surname *">
+                  <input id="reference1_JT" type="text" name="reference1JobTitle" placeholder="Job title *">
+                  <input id="reference1_Company" type="text" name="reference1Company" placeholder="Company *">
+                  <label for="job">Address *</label>
+                  <input id="reference1_Address" type="text" name="reference1Address1">
+                  <input type="text" name="reference1Address2">
+                  <input id="reference1_PC" type="text" name="reference1Postcode" placeholder="Postcode">
+                  <input id="reference1_CN" type="text" name="reference1ContactNumber" placeholder="Contact Number *">
+                  <input id="reference1_Email" type="text" name="reference1Email" placeholder="Email Address *">
+
+                  <!-- Taking details of the second reference -->
+                  <label for="job">Enter details of your 2nd reference</label>
+                  <input id="reference2_Firstname" type="text" name="reference2Firstname" placeholder="First name *">
+                  <input id="reference2_Surname" type="text" name="reference2Surname" placeholder="Surname *">
+                  <input id="reference2_JT" type="text" name="reference2JobTitle" placeholder="Job title *">
+                  <input id="reference2_Company" type="text" name="reference2Company" placeholder="Company *">
+                  <label for="job">Address *</label>
+                  <input id="reference2_Address" type="text" name="reference2Address1">
+                  <input type="text" name="reference2Address2">
+                  <input id="reference2_PC" type="text" name="reference2Postcode" placeholder="Postcode">
+                  <input id="reference2_CN" type="text" name="reference2ContactNumber" placeholder="Contact Number *">
+                  <input id="reference2_Email" type="text" name="reference2Email" placeholder="Email Address *">
+
+              <p class="decleration_text"> The information you provide on this form, associated registration forms and on any CV or additional documents will be used by the
+              Acorn Group to provide you with work finding services.</p>
+
+              <p class="decleration_text">In providing this service to you, you consent to your personal data being included on a computerised
+                database and consent to us transferring your personal data to our clients and other third parties or with other information held by us or our clients. </p>
+              <p class="decleration_text">
+                I hereby confirm that the information given is true and correct. I consent to my personal data being processed as detailed above.
+                I understand that providing false or withholding relevant information
+                will result in the termination of an assignment or the withdrawal of an offer of an assignment.</p>
+
+                <fieldset>
+                  <h2 class="fs-title" align = "center">Confirmation</h2>
+                  <h3 class="fs-subtitle">By signing bellow you agree to our Terms and Conditions</h3>
+                  <div id="signature-pad" class="signature-pad">
+                    <div class="signature-pad--body">
+                      <canvas width="40%"></canvas>
+                    </div>
+                    <div class="signature-pad--footer">
+                      <div class="description">Sign above</div>
+
+                      <div class="signature-pad--actions">
+                        <div>
+                          <button type="button" class="button clear" data-action="clear" align = "center">Clear</button>
+                          <button type="button" class="button" data-action="undo" align = "center">Undo</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <script src="js/signature_pad.js"></script>
+                  <script src="js/app.js"></script>
+                </fieldset>
+              </form>
+              <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+              <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js'></script>
+
+              <script  src="js/index.js"></script>
+
+              <!-- Submit button -->
+              <input type="submit" value="Send"/>
+
+            </form>
+          </div>
+          <script>
+
+      function FormValidation()
+      {
+        // Section 1 //
+        var candidateTitle = document.getElementById('candidate_title').value;
+
+
+
+        var candidateName = document.getElementById('candidate_name').value;
+        var candidateSurname = document.getElementById('candidate_surname').value;
+        var nameRegex = /^[-a-zA-Z]+$/;
+
+        // Spare code in case we need to go back to normal form validation.
+        // var candidateAddress1 = document.getElementById('candidate_address1').value;
+        // var candidateAddress2 = document.getElementById('candidate_address2').value;
+        // var addressRegex = /^[#.0-9a-zA-Z\s,-]+$/;
+
+        // // For this regex solution I looked at https://stackoverflow.com/questions/164979/uk-postcode-regex-comprehensive
+        // //  I did this beccause the solution was tested against the Goverment's specificfaction for postcodes
+        // var candidatePostcode = document.getElementById('candidate_postcode').value;
+        // var postcodeRegex = /^([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9]?[A-Za-z]))))\s?[0-9][A-Za-z]{2})+$/;
+
+
+
+        var candidateContactNumber = document.getElementById('candidate_contact_number').value;
+        // This regex solution was taken from: http://www.regexlib.com/UserPatterns.aspx?authorid=d95177b0-6014-4e73-a959-73f1663ae814&AspxAutoDetectCookieSupport=1 on the 26/11/2017 at 21:41
+        var contactNumberRegex = /^(\+44\s?7\d{3}|\(?07\d{3}\)?)\s?\d{3}\s?\d{3}$/;
+
+        var candidateEmail = document.getElementById('candidate_email').value;
+        // This regex validation for the email address was taken from: https://stackoverflow.com/questions/46155/how-to-validate-email-address-in-javascript on the 26th of November at 21:13
+        var emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+        var candidateWorkWanted = document.getElementById('candidate_work_wanted').value;
+
+        var candidateCompanyType = document.getElementById('candidate_company_type').value;
+
+
+
+        // Checking the user's input against regex.
+
+        if(candidateTitle == "Title *")
+        {
+          alert("Please enter your title.");
+          return false;
+        }
+
+        if(!candidateName.match(nameRegex))
+        {
+          alert("Please enter your name.");
+          return false;
+        }
+
+        if(!candidateSurname.match(nameRegex))
+        {
+          alert("Please enter your surname.")
+          return false;
+        }
+
+
+        // if(!candidateAddress1.match(addressRegex))
+        // {
+        //   alert("Please enter your first line of address.")
+        //   return false;
+        // }
+        //
+        // // Might not be required //
+        // if(!candidateAddress2.match(addressRegex))
+        // {
+        //   alert("Please enter your second line of address.")
+        //   return false;
+        // }
+        //
+        // if(!candidatePostcode.match(postcodeRegex))
+        // {
+        //   alert("Please enter your postcode.")
+        //   return false;
+        // }
+
+        if(!candidateContactNumber.match(contactNumberRegex))
+        {
+          alert("Please enter your contact number correctly.")
+          return false;
+        }
+
+        if(!candidateEmail.match(emailRegex))
+        {
+          alert("Please enter your email address correctly.")
+          return false;
+        }
+
+        if(candidateWorkWanted == "")
+        {
+          alert("Please enter the type of work you want.")
+          return false;
+        }
+
+        if(candidateCompanyType == "Please Select")
+        {
+          alert("Please select what company type you are representing.");
+          return false;
+        }
+
+        //Section 2//
+
+        var workElegibility = document.getElementById('work_elegibility').value;
+        var drivingLicense  = document.getElementById('driving_license').value;
+        var criminalOffence = document.getElementById('criminal_offence').value;
+        var candidateDisabilities = document.getElementById('candidate_disabilities').value;
+        var disabilityDescription = document.getElementById('disability_description').value;
+
+        if(workElegibility == "Please select")
+        {
+          alert("Please select your work eligibility.");
+          return false;
+        }
+
+        if(drivingLicense == "Please select")
+        {
+          alert("Please select if you have a driving licesne or not.");
+          return false;
+        }
+
+        if(criminalOffence == "Please select")
+        {
+          alert("Please if you have a criminal offence");
+          return false;
+        }
+
+        if(candidateDisabilities == "Please select")
+        {
+          alert("Please select if you have a disabiility.");
+          return false;
+        }
+
+        if(candidateDisabilities == "yes" && disabilityDescription == "")
+        {
+          alert("Please specify your disability in the description box.");
+          return false;
+        }
+
+
+
+
+          // Section 3 //
+
+          var ref1FirstName = document.getElementById('reference1_Firstname').value;
+          var ref1Surname = document.getElementById('reference1_Surname').value;
+          var ref1JobTitle = document.getElementById('reference1_JT').value;
+          var ref1Company = document.getElementById('reference1_Company').value;
+          var ref1Address = document.getElementById('reference1_Address').value;
+          var ref1PostCode = document.getElementById('reference1_PC').value;
+          var ref1ContactNumber = document.getElementById('reference1_CN').value;
+          var ref1Email = document.getElementById('reference1_Email').value;
+
+          var ref2FirstName = document.getElementById('reference2_Firstname').value;
+          var ref2Surname = document.getElementById('reference2_Surname').value;
+          var ref2JobTitle = document.getElementById('reference2_JT').value;
+          var ref2Company = document.getElementById('reference2_Company').value;
+          var ref2Address = document.getElementById('reference2_Address').value;
+          var ref2PostCode = document.getElementById('reference2_PC').value;
+          var ref2ContactNumber = document.getElementById('reference2_CN').value;
+          var ref2Email = document.getElementById('reference2_Email').value;
+
+          if(!ref1FirstName.match(nameRegex))
+          {
+            alert("Please enter your references' first name.");
+            return false;
+          }
+
+          if(!ref1Surname.match(nameRegex))
+          {
+            alert("Please enter your references' surname.");
+            return false;
+          }
+
+          if(ref1JobTitle == "")
+          {
+            alert("Please enter your references' job title.");
+            return false;
+          }
+
+          if(ref1Company == "")
+          {
+            alert("Please enter your references' company name.");
+            return false;
+          }
+
+          if(!ref1ContactNumber.match(contactNumberRegex))
+          {
+            alert("Please enter your references' contact number.");
+            return false;
+          }
+
+          if(!ref1Email.match(emailRegex))
+          {
+            alert("Please enter your references' email address.");
+            return false;
+          }
+
+          // Second reference
+
+          if(ref2FirstName == "" || isNaN(ref2FirstName) == false){
+            alert("Please enter the first name of your second reference.");
+            return false;
+          }
+
+          if(ref2Surname == "" || isNaN(ref2Surname) == false){
+            alert("Please enter the surname of your second reference.");
+            return false;
+          }
+
+          if(ref2JobTitle == "")
+          {
+            alert("Please enter your references' job title.");
+            return false;
+          }
+
+          if(ref2Company == "")
+          {
+            alert("Please enter your references' company name.");
+            return false;
+          }
+
+          if(!ref2ContactNumber.match(contactNumberRegex))
+          {
+            alert("Please enter your references' contact number.");
+            return false;
+          }
+
+          if(!ref2Email.match(emailRegex))
+          {
+            alert("Please enter your references' email address.");
+            return false;
+          }
+
+      FormValidation();
+    }
+
+  </script>
+
+  <!-- For this solution, I looked at: https://stackoverflow.com/questions/34339521/google-maps-api-how-to-check-if-an-address-or-location-is-valid
+       On the 26/11/2017 at 19:26 -->
+
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDExVDw_47y0U4kukU1A0UscjXE7qDTRhk&callback=initMap"></script>
+    <script>
+      function doGeocode() {
+        var addr = document.getElementById("address");
+        // Get geocoder instance
+        var geocoder = new google.maps.Geocoder();
+
+        // Geocode the address
+        geocoder.geocode({
+          'address': addr.value
+        }, function(results, status) {
+          if (status === google.maps.GeocoderStatus.OK && results.length > 0) {
+
+            // set it to the correct, formatted address if it's valid
+            addr.value = results[0].formatted_address;;
+
+            // show an error if it's not
+          } else alert("Invalid address");
+        });
+      };
+      </script>
+    </body>
+</html>
