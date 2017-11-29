@@ -14,13 +14,67 @@
       Accessed on 21st Novemebr 2017 12:10. -->
         <img src="../static/images/check-mark.png">
       </section>
-      <section class="main_text">
-        <p>Thank you for submitting the form!</p>
+      <section id="main_content" class="main_text">
+        <p>Thank you <span id=candidate_name></span> for submitting the form!</p>
       </section>
       <section class ="sub_text">
         <small>We will review your application and contact you with further information,
            please keep a lookout for an email.</small>
       </section>
     </div>
+
+    <div class="social_media">
+      <h1> Follow us on social media </h1>
+      <section class="social_links">
+        <div class="twitter">
+          <h4> follow us Twitter</h4>
+        </div>
+        <div class="facebook">
+          <h4> Like us on Facebook</h4>
+        </div>
+        <div class="linkedin">
+          <h4> Find us on Linkedin</h4>
+        </div>
+      </section>
+    </div>
+<div id="footer"> </div>
+
+
+
+<!-- Facebook SDK -->
+    <script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId            : 'your-app-id',
+      autoLogAppEvents : true,
+      xfbml            : true,
+      version          : 'v2.11'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+
+</script>
+
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+   <script>
+   $(document).ready(function(){
+     $('#footer').load('templates/thankyouPage.html');
+     $('#main_content').load('templates/thankyouPage.html');
+     $('#candidate_name').load('templates/registrationForm.html');
+   });
+   </script>
+
+
+
+
+
+
   </body>
 </html>

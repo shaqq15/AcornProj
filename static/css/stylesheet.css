@@ -214,3 +214,29 @@ Their CSS significantly increased the quality of the form whilst enhancing user 
   width: 50%;
   padding: 60px;
 }
+
+.social_media h1{
+  text-align: center;
+  padding: 10px;
+  margin: 5px;#
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+.social_links{
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  margin: 30px;
+}
+/*
+.twitter{
+  float: left;
+}
+
+.facebook{
+  float: center;
+}
+
+.linkedin{
+  float: right;
+}*/
