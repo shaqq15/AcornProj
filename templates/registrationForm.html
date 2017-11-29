@@ -51,7 +51,7 @@
           <div class="tooltip">
           <label for="qualificationUpload">Upload Qualifications and Licences<span class="tooltiptext">File types allowed: pdf, png, jpg, jpeg</span></label>
         </div>
-          <input class="inputFiles" type="file" id="candidateQualificationsandLicences" name="file2" value="Upload2">
+          <input class="inputFiles" type="file" id="candidateQualificationsandLicences" name="file2" value="Upload">
           <label for="spacing"> </label>
           <label for="representing">Representing:</label>
           <select id="representing" name="representingCompany">
@@ -226,6 +226,7 @@
           return false;
         }
 
+      ///////////////////////////////////////////////////////////////////////////////////////
 
         // if(!candidateAddress1.match(addressRegex))
         // {
@@ -245,6 +246,8 @@
         //   alert("Please enter your postcode.")
         //   return false;
         // }
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////
 
         if(!candidateContactNumber.match(contactNumberRegex))
         {

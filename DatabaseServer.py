@@ -83,7 +83,21 @@ def CandidateAddDetails():
                     filePath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
                 file.save(filePath)
                 msg = filePath
-            return render_template('thankyouPage.html', msg=msg)
+
+        msg = ''
+        if request.method == 'POST':
+            if 'file' not in request.files:
+                msg = 'no file given'
+            else:
+                file = request.files['file2']
+                if file.filename == '':
+                    msg = 'No file name'
+                elif file and allowed_file(file.filename):
+                    filename = secure_filename(file.filename)
+                    filePath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+                file.save(filePath)
+                msg = filePath
+
 
 
 
