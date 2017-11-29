@@ -1,6 +1,6 @@
 import os
 from flask import Flask, redirect, request, render_template, url_for
-# from flask_weasyprint import HTML, render_pdf
+import dropbox
 from werkzeug.utils import secure_filename
 import sqlite3
 import datetime
@@ -65,6 +65,12 @@ def CandidateAddDetails():
         candidateRefrence2ContactNumber = request.form.get("reference2ContactNumber", default="Error")
         candidateRefrence2Email = request.form.get("reference2Email", default="Error")
 
+
+        # Do not share this token with anyone
+        # dbx = dropbox.Dropbox('IXtRx8hFV-AAAAAAAAAAG2RtWRIM0QCKXfvOeV9fteYVzFsG4P3jfm7N7OLtqk3L')
+        # dbx.users_get_current_account()
+        # print(dbx.users_get_current_account())
+
         def allowed_file(filename):
             ext = filename.rsplit('.',1)[1]
             print(ext)
@@ -125,14 +131,11 @@ def CandidateAddDetails():
         conn.close()
         return render_template("thankyouPage.html")
 
-
-
         # File upload
-
-
 
     return "Hello2"
         # try:
+
 
 
 
