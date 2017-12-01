@@ -1,6 +1,7 @@
 import os
 from flask import Flask, redirect, request, render_template, url_for
-import dropbox
+# import dropbox
+# from weasyprint import HTML
 from werkzeug.utils import secure_filename
 import sqlite3
 import datetime
@@ -11,13 +12,18 @@ import datetime
 now = datetime.datetime.now()
 
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
-UPLOAD_FOLDER = os.path.join(APP_ROOT,'static/file_uploads')
+UPLOAD_FOLDER_CV = os.path.join(APP_ROOT,'static/file_uploads/cv_uploads')
+UPLOAD_FOLDER_qualifications = os.path.join(APP_ROOT,'static/file_uploads/qualifications_uploads')
+# UPLOAD_FOLDER_signature = os.path.join(APP_ROOT,'static/file_uploads/signature_uploads')
 
 DATABASE = "CandidateCenter.db"
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'doc', 'docx'])
 
 app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+app.config['UPLOAD_FOLDER_CV'] = UPLOAD_FOLDER_CV
+app.config['UPLOAD_FOLDER_qualifications'] = UPLOAD_FOLDER_qualifications
+# app.config['UPLOAD_FOLDER_CV'] = UPLOAD_FOLDER_CV
 
 @app.route("/Candidate/AddCandidate", methods = ['POST','GET'])
 def CandidateAddDetails():
@@ -76,6 +82,8 @@ def CandidateAddDetails():
             print(ext)
             return '.' in filename and ext in ALLOWED_EXTENSIONS
 
+
+
         msg = ''
         if request.method == 'POST':
             if 'file' not in request.files:
@@ -86,7 +94,7 @@ def CandidateAddDetails():
                     msg = 'No file name'
                 elif file and allowed_file(file.filename):
                     filename = secure_filename(file.filename)
-                    filePath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+                    filePath = os.path.join(app.config['UPLOAD_FOLDER_CV'], filename)
                 file.save(filePath)
                 msg = filePath
 
@@ -100,7 +108,7 @@ def CandidateAddDetails():
                     msg = 'No file name'
                 elif file and allowed_file(file.filename):
                     filename = secure_filename(file.filename)
-                    filePath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+                    filePath = os.path.join(app.config['UPLOAD_FOLDER_qualifications'], filename)
                 file.save(filePath)
                 msg = filePath
 
@@ -217,22 +225,6 @@ def UserLogin():
         #                             filename=filename))
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @app.route("/Login/UserLogin", methods = ['GET'])
 def UserLoginPage():
     if request.method =='GET':
@@ -245,3 +237,4 @@ def adminpage():
 
 if __name__ == "__main__":
     app.run(debug=True)
+    # app.run(host="0.0.0.0", debug=True)
