@@ -111,7 +111,7 @@ def CandidateAddDetails():
                     filename = secure_filename(file.filename)
                     filePath = os.path.join(app.config['UPLOAD_FOLDER_CV'], filename)
                 file.save(filePath)
-                msg = filePath
+                msg1 = filePath
 
         msg = ''
         if request.method == 'POST':
@@ -125,7 +125,7 @@ def CandidateAddDetails():
                     filename = secure_filename(file.filename)
                     filePath = os.path.join(app.config['UPLOAD_FOLDER_qualifications'], filename)
                 file.save(filePath)
-                msg = filePath
+                msg2 = filePath
 
 
         # HTML('http://127.0.0.1:5000/Candidate/AddCandidate').write_pdf('static/pdf-documents')
@@ -148,8 +148,8 @@ def CandidateAddDetails():
 
         conn = sqlite3.connect(DATABASE)
         cur = conn.cursor()
-        cur.execute("INSERT INTO CandidateDetails ('CandidateTitle','CandidateFirstname', 'CandidateSecondname','CandidateDateOfBirth','CandidateNI', 'CandidateAddress', 'CandidateContactNumber', 'CandidateEmergencyNumber', 'CandidateEmail', 'CandidateTypeOfWork', 'CandidateQualifications', 'CandidateRepresenting')\
-        			VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",(candidateTitle, candidateFirstname, candidateSecondname, candidateDob, candidateNI, candidateAddress, candidateContactNumber, candidateEmergencyNumber, candidateEmail, candidateTypeOfWork, candidateQualifications, candidateRepresenting) )
+        cur.execute("INSERT INTO CandidateDetails ('CandidateTitle','CandidateFirstname', 'CandidateSecondname','CandidateDateOfBirth','CandidateNI', 'CandidateAddress', 'CandidateContactNumber', 'CandidateEmergencyNumber', 'CandidateEmail', 'CandidateTypeOfWork', 'CandidateQualifications', 'CandidateRepresenting','CandidateCVLocation','CandidateQualificationLocation')\
+        			VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",(candidateTitle, candidateFirstname, candidateSecondname, candidateDob, candidateNI, candidateAddress, candidateContactNumber, candidateEmergencyNumber, candidateEmail, candidateTypeOfWork, candidateQualifications, candidateRepresenting, msg1, msg2) )
 
         cur.execute("INSERT INTO CandidateWorkElegibility ('CandidateWorkElegibility','CandidateDrivingLicense', 'CandidateCriminalConvictions', 'CandidateDisabilities', 'CandidateDisabilityDetails')\
                     VALUES (?,?,?,?,?)",(candidateWorkElegibility, candidateDrivingLicense, candidateCriminalConvictions, candidateDisabilities, candidateDisabilityDetails) )
