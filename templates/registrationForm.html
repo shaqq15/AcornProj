@@ -3,6 +3,7 @@
     <link rel="stylesheet" type="text/css" href="../static/css/stylesheet.css" />
   </head>
   <body>
+    {% block body %}
     <div class="website_toolbar">
       <!-- The image used here was provided by Acorn themselves. -->
       <img src="../static/images/Acorn_logo.png" height="41px" width="105px" alt="www.acornpeople.com" >
@@ -29,6 +30,8 @@
           <!-- User's details -->
           <input id="candidate_name" type="text" name="firstname" placeholder="First Name *">
           <input id="candidate_surname" type="text" name="surname" placeholder="Surname *">
+          <input id="candidate_dob" type="text" name="dob" placeholder="Date of birth*">
+          <input id="candidate_NI_number" type="text" name="nationalInsurance" placeholder="National insurance number *">
           <!-- The tooltip has now added but just needs minor adjusting. -->
           <div class="tooltip">
           <label for="job">Address *<span class="tooltiptext">Enter your details and our engine will look for your address. </span></label>
@@ -441,5 +444,6 @@
         });
       };
       </script>
+      {% endblock %}
     </body>
 </html>

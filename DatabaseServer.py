@@ -1,12 +1,11 @@
 import os
-from flask import Flask, redirect, request, render_template, url_for
-# import dropbox
-# from weasyprint import HTML
+from flask import Flask, redirect, request, render_template, url_for, make_response
 from werkzeug.utils import secure_filename
+# from flaskext.mail import Mail, Message
+# from pdfs import create_pdf
 import sqlite3
 import datetime
 
-# HTML('http://127.0.0.1:5000/Candidate/AddCandidate').write_pdf('static/sample.pdf')
 # pdfkit.from_url('http://127.0.0.1:5000/static/registrationForm.html','examplePDF.pdf')
 
 now = datetime.datetime.now()
@@ -15,6 +14,10 @@ APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 UPLOAD_FOLDER_CV = os.path.join(APP_ROOT,'static/file_uploads/cv_uploads')
 UPLOAD_FOLDER_qualifications = os.path.join(APP_ROOT,'static/file_uploads/qualifications_uploads')
 # UPLOAD_FOLDER_signature = os.path.join(APP_ROOT,'static/file_uploads/signature_uploads')
+
+# mail = Mail()
+# mail.init_app(app)
+# mail_ext = Mail(app)
 
 DATABASE = "CandidateCenter.db"
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'doc', 'docx'])
@@ -25,6 +28,14 @@ app.config['UPLOAD_FOLDER_CV'] = UPLOAD_FOLDER_CV
 app.config['UPLOAD_FOLDER_qualifications'] = UPLOAD_FOLDER_qualifications
 # app.config['UPLOAD_FOLDER_CV'] = UPLOAD_FOLDER_CV
 
+#
+# folder_path = "static/pdf-documents/doument.pdf"
+# folder_name = os.path.basename(folder_path)
+# pdf_name = folder_name + '.py'
+
+
+
+
 @app.route("/Candidate/AddCandidate", methods = ['POST','GET'])
 def CandidateAddDetails():
     if request.method =='GET':
@@ -33,6 +44,8 @@ def CandidateAddDetails():
         candidateTitle = request.form.get("title", default="Error")
         candidateFirstname = request.form.get("firstname", default="Error")
         candidateSecondname = request.form.get("surname", default="Error")
+        candidateDob = request.form.get("dob", default="Error")
+        candidateNI = request.form.get("nationalInsurance", default="Error")
         candidateAddress = request.form.get("candidateAddress", default="Error")
         candidateContactNumber = request.form.get("contactNumber", default="Error")
         candidateEmergencyNumber = request.form.get("emergencyContactNumber", default="Error")
@@ -113,13 +126,28 @@ def CandidateAddDetails():
                 msg = filePath
 
 
+        # HTML('http://127.0.0.1:5000/Candidate/AddCandidate').write_pdf('static/pdf-documents')
+
+
+
+        # def your_view():
+        #     print("We're in the pdf file uplaod code!")
+        #     subject = "Mail with PDF"
+        #     receiver = "vitzz.gaming@gmail.com"
+        #     print("PDF document has been sent")
+        #     mail_to_be_sent = Message(subject=subject, recipients=[receiver])
+        #     mail_to_be_sent.body = "This email contains PDF."
+        #     pdf = create_pdf(render_template('registrationForm.html'))
+        #     mail_to_be_sent.attach("file.pdf", "static/pdf-documents", pdf.getvalue())
+        #     mail_ext.send(mail_to_be_sent)
+        #     return redirect(url_for('other_view'))
 
 
 
         conn = sqlite3.connect(DATABASE)
         cur = conn.cursor()
-        cur.execute("INSERT INTO CandidateDetails ('CandidateTitle','CandidateFirstname', 'CandidateSecondname', 'CandidateAddress', 'CandidateContactNumber', 'CandidateEmergencyNumber', 'CandidateEmail', 'CandidateTypeOfWork', 'CandidateQualifications', 'CandidateRepresenting')\
-        			VALUES (?,?,?,?,?,?,?,?,?,?)",(candidateTitle, candidateFirstname, candidateSecondname, candidateAddress, candidateContactNumber, candidateEmergencyNumber, candidateEmail, candidateTypeOfWork, candidateQualifications, candidateRepresenting) )
+        cur.execute("INSERT INTO CandidateDetails ('CandidateTitle','CandidateFirstname', 'CandidateSecondname','CandidateDateOfBirth','CandidateNI', 'CandidateAddress', 'CandidateContactNumber', 'CandidateEmergencyNumber', 'CandidateEmail', 'CandidateTypeOfWork', 'CandidateQualifications', 'CandidateRepresenting')\
+        			VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",(candidateTitle, candidateFirstname, candidateSecondname, candidateDob, candidateNI, candidateAddress, candidateContactNumber, candidateEmergencyNumber, candidateEmail, candidateTypeOfWork, candidateQualifications, candidateRepresenting) )
 
         cur.execute("INSERT INTO CandidateWorkElegibility ('CandidateWorkElegibility','CandidateDrivingLicense', 'CandidateCriminalConvictions', 'CandidateDisabilities', 'CandidateDisabilityDetails')\
                     VALUES (?,?,?,?,?)",(candidateWorkElegibility, candidateDrivingLicense, candidateCriminalConvictions, candidateDisabilities, candidateDisabilityDetails) )
