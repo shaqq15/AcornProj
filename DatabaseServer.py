@@ -95,7 +95,9 @@ def CandidateAddDetails():
             print(ext)
             return '.' in filename and ext in ALLOWED_EXTENSIONS
 
+        filePath = 'no file upload so far'
 
+        # We could also do a try & except here as well.
 
         msg = ''
         if request.method == 'POST':
