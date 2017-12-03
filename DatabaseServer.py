@@ -3,7 +3,7 @@ from flask import Flask, redirect, request, render_template, url_for, make_respo
 from werkzeug.utils import secure_filename
 import sqlite3
 import datetime
-import pdfkit
+# import pdfkit
 
 
 now = datetime.datetime.now()
@@ -38,10 +38,10 @@ app.config['UPLOAD_FOLDER_qualifications'] = UPLOAD_FOLDER_qualifications
 def CandidateAddDetails():
     if request.method =='GET':
     	return render_template('registrationForm.html')
-
-    print("We're in son")
-    with open('templates/registrationForm.html') as f:
-        pdfkit.from_file(f, 'test.pdf')
+    #
+    # print("We're in son")
+    # with open('templates/registrationForm.html') as f:
+    #     pdfkit.from_file(f, 'test.pdf')
 
 
 
@@ -71,9 +71,7 @@ def CandidateAddDetails():
         candidateRefrence1Secondname = request.form.get("reference1Surname", default="Error")
         candidateRefrence1JobTitle = request.form.get("reference1JobTitle", default="Error")
         candidateRefrence1Company = request.form.get("reference1Company", default="Error")
-        candidateRefrence1AddressLine1 = request.form.get("reference1Address1", default="Error")
-        candidateRefrence1AddressLine2 = request.form.get("reference1Address2", default="Error")
-        candidateRefrence1Postcode = request.form.get("reference1Postcode", default="Error")
+        candidateRefrence1Address = request.form.get("reference1Address", default="Error")
         candidateRefrence1ContactNumber = request.form.get("reference1ContactNumber", default="Error")
         candidateRefrence1Email = request.form.get("reference1Email", default="Error")
 
@@ -83,9 +81,7 @@ def CandidateAddDetails():
         candidateRefrence2Secondname = request.form.get("reference2Surname", default="Error")
         candidateRefrence2JobTitle = request.form.get("reference2JobTitle", default="Error")
         candidateRefrence2Company = request.form.get("reference2Company", default="Error")
-        candidateRefrence2AddressLine1 = request.form.get("reference2Address1", default="Error")
-        candidateRefrence2AddressLine2 = request.form.get("reference2Address2", default="Error")
-        candidateRefrence2Postcode = request.form.get("reference2Postcode", default="Error")
+        candidateRefrence2Address = request.form.get("reference2Address", default="Error")
         candidateRefrence2ContactNumber = request.form.get("reference2ContactNumber", default="Error")
         candidateRefrence2Email = request.form.get("reference2Email", default="Error")
 
@@ -143,11 +139,11 @@ def CandidateAddDetails():
         cur.execute("INSERT INTO CandidateWorkElegibility ('CandidateWorkElegibility','CandidateDrivingLicense', 'CandidateCriminalConvictions', 'CandidateDisabilities', 'CandidateDisabilityDetails')\
                     VALUES (?,?,?,?,?)",(candidateWorkElegibility, candidateDrivingLicense, candidateCriminalConvictions, candidateDisabilities, candidateDisabilityDetails) )
 
-        cur.execute("INSERT INTO CandidateRefrence1 ('RefrenceFirstname','RefrenceSecondname', 'RefrenceJobTitle', 'RefrenceCompany', 'RefrenceAddress1' ,'RefrenceAddress2', 'RefrencePostcode','RefrenceContact' , 'RefrenceEmail')\
-                    VALUES (?,?,?,?,?,?,?,?,?)",(candidateRefrence1Firstname, candidateRefrence1Secondname, candidateRefrence1JobTitle, candidateRefrence1Company, candidateRefrence1AddressLine1, candidateRefrence1AddressLine2, candidateRefrence1Postcode, candidateRefrence1ContactNumber, candidateRefrence1Email) )
+        cur.execute("INSERT INTO CandidateRefrence1 ('RefrenceFirstname','RefrenceSecondname', 'RefrenceJobTitle', 'RefrenceCompany', 'RefrenceAddress' ,'RefrenceContact' , 'RefrenceEmail')\
+                    VALUES (?,?,?,?,?,?,?)",(candidateRefrence1Firstname, candidateRefrence1Secondname, candidateRefrence1JobTitle, candidateRefrence1Company, candidateRefrence1Address, candidateRefrence1ContactNumber, candidateRefrence1Email) )
 
-        cur.execute("INSERT INTO CandidateRefrence2 ('RefrenceFirstname','RefrenceSecondname', 'RefrenceJobTitle', 'RefrenceCompany', 'RefrenceAddress1' ,'RefrenceAddress2', 'RefrencePostcode','RefrenceContact' , 'RefrenceEmail')\
-                    VALUES (?,?,?,?,?,?,?,?,?)",(candidateRefrence2Firstname, candidateRefrence2Secondname, candidateRefrence2JobTitle, candidateRefrence2Company, candidateRefrence2AddressLine1, candidateRefrence2AddressLine2, candidateRefrence2Postcode, candidateRefrence2ContactNumber, candidateRefrence2Email) )
+        cur.execute("INSERT INTO CandidateRefrence2 ('RefrenceFirstname','RefrenceSecondname', 'RefrenceJobTitle', 'RefrenceCompany', 'RefrenceAddress' ,'RefrenceContact' , 'RefrenceEmail')\
+                    VALUES (?,?,?,?,?,?,?)",(candidateRefrence2Firstname, candidateRefrence2Secondname, candidateRefrence2JobTitle, candidateRefrence2Company, candidateRefrence2Address, candidateRefrence2ContactNumber, candidateRefrence2Email) )
 
         conn.commit()
         print("Candidate details successfully added")
