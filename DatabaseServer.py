@@ -1,12 +1,10 @@
 import os
-from flask import Flask, redirect, request, render_template, url_for, make_response
+from flask import Flask, redirect, request, render_template, url_for, make_response, send_file
 from werkzeug.utils import secure_filename
-# from flaskext.mail import Mail, Message
-# from pdfs import create_pdf
 import sqlite3
 import datetime
+import pdfkit
 
-# pdfkit.from_url('http://127.0.0.1:5000/static/registrationForm.html','examplePDF.pdf')
 
 now = datetime.datetime.now()
 
@@ -40,6 +38,13 @@ app.config['UPLOAD_FOLDER_qualifications'] = UPLOAD_FOLDER_qualifications
 def CandidateAddDetails():
     if request.method =='GET':
     	return render_template('registrationForm.html')
+
+    print("We're in son")
+    with open('templates/registrationForm.html') as f:
+        pdfkit.from_file(f, 'test.pdf')
+
+
+
     if request.method =='POST':
         candidateTitle = request.form.get("title", default="Error")
         candidateFirstname = request.form.get("firstname", default="Error")
@@ -128,22 +133,6 @@ def CandidateAddDetails():
                 msg2 = filePath
 
 
-        # HTML('http://127.0.0.1:5000/Candidate/AddCandidate').write_pdf('static/pdf-documents')
-
-
-
-        # def your_view():
-        #     print("We're in the pdf file uplaod code!")
-        #     subject = "Mail with PDF"
-        #     receiver = "vitzz.gaming@gmail.com"
-        #     print("PDF document has been sent")
-        #     mail_to_be_sent = Message(subject=subject, recipients=[receiver])
-        #     mail_to_be_sent.body = "This email contains PDF."
-        #     pdf = create_pdf(render_template('registrationForm.html'))
-        #     mail_to_be_sent.attach("file.pdf", "static/pdf-documents", pdf.getvalue())
-        #     mail_ext.send(mail_to_be_sent)
-        #     return redirect(url_for('other_view'))
-
 
 
         conn = sqlite3.connect(DATABASE)
@@ -204,6 +193,92 @@ def UserLogin():
         return "Hello"
 
     return "Hello2"
+
+
+
+
+    #
+    # def pdf():
+    #     print("we're in the pdf function")
+    #     output = cStringIO.StringIO()
+    #     doc = SimpleDocTemplate("registrationForm.html",pagesize=letter)
+    #     Story=[]
+    #
+    #     Story.append(Paragraph(ptext, styles["Justify"]))
+    #
+    #     doc.build(Story)
+    #     pdf_out = output.getvalue()
+    #     output.close()
+    #
+    #     response = make_response(pdf_out)
+    #     response.headers['Content-Disposition'] = "attachment; filename='test.pdf"
+    #     response.mimetype = 'static/pdf-documents'
+    #     return send_file('registrationForm.html', as_attachment=True)
+    # def render_pdf_weasyprint(html):
+    #
+    #     from weasyprint import HTML
+    #     pdf = HTML(string=html.encode('utf-8'))
+    #     return pdf.write_pdf()
+
+
+        # def render_pdf_xhtml2pdf(html):
+        #     """mimerender helper to render a PDF from HTML using xhtml2pdf.
+        #     Usage: http://philfreo.com/blog/render-a-pdf-from-html-using-xhtml2pdf-and-mimerender-in-flask/
+        #         """
+        #     from xhtml2pdf import pisa
+        #     from cStringIO import StringIO
+        #     pdf = StringIO()
+        #     pisa.CreatePDF(StringIO(html.encode('utf-8')), pdf)
+        #     resp = pdf.getvalue()
+        #     pdf.close()
+        #     return resp
+
+        # def pdf():
+        #     from io import StringIO
+        #     print("we're in the pdf function")
+        #     output = cStringIO.StringIO()
+        #
+        #     p = canvas.Canvas(output)
+        #     p.drawString(100, 100, 'Hello')
+        #     p.showPage()
+        #     p.save()
+        #
+        #     pdf_out = output.getvalue()
+        #     output.close()
+        #
+        #     response = make_response(pdf_out)
+        #     response.headers['Content-Disposition'] = "attachment; filename='test.pdf"
+        #     response.mimetype = 'application/pdf'
+        #     return response
+
+
+        # pdfkit.from_url('http://127.0.0.1:5000/static/registrationForm.html','examplePDF.pdf')
+
+
+        # def render_pdf(html):
+        #     from xhtml2pdf import pisa
+        #     from cStringIO import StringIO
+        #     pdf = StringIO()
+        #     pisa.CreatePDF(StringIO(html.encode('utf-8')), pdf)
+        #     resp = pdf.getvalue()
+        #     pdf.close()
+        #     return resp
+        # @mimerender(default='html', html=lambda html: html, pdf=render_pdf, override_input_key='format')
+        # def view_invoice(org_id, invoice_id):
+        #     html = render_template('registrationForm.html', id=invoice_id)
+        #     return { 'html': html }
+
+        # def your_view():
+        #     print("We're in the pdf file uplaod code!")
+        #     subject = "Mail with PDF"
+        #     receiver = "vitzz.gaming@gmail.com"
+        #     print("PDF document has been sent")
+        #     mail_to_be_sent = Message(subject=subject, recipients=[receiver])
+        #     mail_to_be_sent.body = "This email contains PDF."
+        #     pdf = create_pdf(render_template('registrationForm.html'))
+        #     mail_to_be_sent.attach("file.pdf", "static/pdf-documents", pdf.getvalue())
+        #     mail_ext.send(mail_to_be_sent)
+        #     return redirect(url_for('other_view'))
 
 
 # PDF convert code

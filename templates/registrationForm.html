@@ -142,9 +142,11 @@
                   <input id="reference1_JT" type="text" name="reference1JobTitle" placeholder="Job title *">
                   <input id="reference1_Company" type="text" name="reference1Company" placeholder="Company *">
                   <label for="job">Address *</label>
-                  <input id="reference1_Address" type="text" name="reference1Address1">
-                  <input type="text" name="reference1Address2">
-                  <input id="reference1_PC" type="text" name="reference1Postcode" placeholder="Postcode">
+
+                  <input type="text" id="reference1_Address" name="candidateAddress" onchange="doGeocodeRef1()" />
+
+                  <!-- <input type="text" id="reference1_Address" name="reference1Address1" onchange="doGeocodeRef1()"/> -->
+
                   <input id="reference1_CN" type="text" name="reference1ContactNumber" placeholder="Contact Number *">
                   <input id="reference1_Email" type="text" name="reference1Email" placeholder="Email Address *">
 
@@ -155,9 +157,7 @@
                   <input id="reference2_JT" type="text" name="reference2JobTitle" placeholder="Job title *">
                   <input id="reference2_Company" type="text" name="reference2Company" placeholder="Company *">
                   <label for="job">Address *</label>
-                  <input id="reference2_Address" type="text" name="reference2Address1">
-                  <input type="text" name="reference2Address2">
-                  <input id="reference2_PC" type="text" name="reference2Postcode" placeholder="Postcode">
+                  <input type="text" id="reference2_Address" name="reference2Address1" onchange="doGeocodeRef2()" />
                   <input id="reference2_CN" type="text" name="reference2ContactNumber" placeholder="Contact Number *">
                   <input id="reference2_Email" type="text" name="reference2Email" placeholder="Email Address *">
 
@@ -427,6 +427,96 @@
     <script>
       function doGeocode() {
         var addr = document.getElementById("address");
+
+        // Get geocoder instance
+        var geocoder = new google.maps.Geocoder();
+        // var geocoder1 = new google.maps.Geocoder();
+        // var geocoder2 = new google.maps.Geocoder();
+
+        // Geocode the address
+        geocoder.geocode({
+          'address': addr.value,
+
+        }, function(results, status) {
+          if (status === google.maps.GeocoderStatus.OK && results.length > 0) {
+
+            // set it to the correct, formatted address if it's valid
+            addr.value = results[0].formatted_address;;
+
+            // show an error if it's not
+          } else alert("Invalid address");
+        });
+    };
+</script>
+
+<script>
+
+    function doGeocodeRef1() {
+      var addr = document.getElementById("reference1_Address");
+
+      // Get geocoder instance
+      var geocoder = new google.maps.Geocoder();
+      // var geocoder1 = new google.maps.Geocoder();
+      // var geocoder2 = new google.maps.Geocoder();
+
+      // Geocode the address
+      geocoder.geocode({
+        'address': addr.value,
+
+      }, function(results, status) {
+        if (status === google.maps.GeocoderStatus.OK && results.length > 0) {
+
+          // set it to the correct, formatted address if it's valid
+          addr.value = results[0].formatted_address;;
+
+          // show an error if it's not
+        } else alert("Invalid address");
+      });
+  };
+
+</script>
+
+<script>
+
+    function doGeocodeRef2() {
+      var addr = document.getElementById("reference2_Address");
+
+      // Get geocoder instance
+      var geocoder = new google.maps.Geocoder();
+      // var geocoder1 = new google.maps.Geocoder();
+      // var geocoder2 = new google.maps.Geocoder();
+
+      // Geocode the address
+      geocoder.geocode({
+        'address': addr.value,
+
+      }, function(results, status) {
+        if (status === google.maps.GeocoderStatus.OK && results.length > 0) {
+
+          // set it to the correct, formatted address if it's valid
+          addr.value = results[0].formatted_address;;
+
+          // show an error if it's not
+        } else alert("Invalid address");
+      });
+  };
+
+</script>
+
+
+
+
+
+
+
+
+
+      <!-- Candidate Refrence 1 Address -->
+<!--
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDExVDw_47y0U4kukU1A0UscjXE7qDTRhk&callback=initMap"></script>
+    <script>
+      function doGeocode() {
+        var addr = document.getElementById("reference1_Address");
         // Get geocoder instance
         var geocoder = new google.maps.Geocoder();
 
@@ -443,7 +533,87 @@
           } else alert("Invalid address");
         });
       };
-      </script>
+      </script> -->
+
+      <!-- Candidate Refrence 2 Address -->
+<!--
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDExVDw_47y0U4kukU1A0UscjXE7qDTRhk&callback=initMap"></script>
+    <script>
+      function doGeocode() {
+        var addr = document.getElementById("reference2_Address");
+        // Get geocoder instance
+        var geocoder = new google.maps.Geocoder();
+
+        // Geocode the address
+        geocoder.geocode({
+          'address': addr.value
+        }, function(results, status) {
+          if (status === google.maps.GeocoderStatus.OK && results.length > 0) {
+
+            // set it to the correct, formatted address if it's valid
+            addr.value = results[0].formatted_address;;
+
+            // show an error if it's not
+          } else alert("Invalid address");
+        });
+      };
+      </script> -->
+<!--
+      //
+      // function doGeocodeRef1() {
+      //   var addr1 = document.getElementById("reference1_Address");
+      //   var addr2 = document.getElementById("reference2_Address");
+      //
+      //   // Get geocoder instance
+      //   var geocoder = new google.maps.Geocoder();
+      //
+      //   // Geocode the address
+      //   geocoder.geocode({
+      //     'reference1_Address':addr1.value,
+      //
+      //   }, function(results, status) {
+      //     if (status === google.maps.GeocoderStatus.OK && results.length > 0) {
+      //
+      //       // set it to the correct, formatted address if it's valid
+      //       addr1.value = results[0].formatted_address;;
+      //
+      //       // show an error if it's not
+      //     } else alert("Invalid address");
+      //   });
+      // };
+      //
+      //
+      //
+      //
+      //
+      //
+      //
+      //
+      //   function doGeocodeRef2() {
+      //     var addr2 = document.getElementById("reference2_Address");
+      //
+      //     // Get geocoder instance
+      //     var geocoder = new google.maps.Geocoder();
+      //
+      //     // Geocode the address
+      //     geocoder.geocode({
+      //       'reference2_Address':addr2.value
+      //
+      //     }, function(results, status) {
+      //       if (status === google.maps.GeocoderStatus.OK && results.length > 0) {
+      //
+      //         // set it to the correct, formatted address if it's valid
+      //         addr2.value = results[0].formatted_address;;
+      //
+      //         // show an error if it's not
+      //       } else alert("Invalid address");
+      //     });
+      //   }; -->
+
+
+
+
+
       {% endblock %}
     </body>
 </html>
