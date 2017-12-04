@@ -434,74 +434,172 @@
 
           if(!ref1FirstName.match(nameRegex))
           {
+            document.getElementById("reference1_Firstname").style.borderStyle = "solid";
+            document.getElementById("reference1_Firstname").style.borderColor = "red";
             alert("Please enter your references' first name.");
             return false;
           }
 
+          if(ref1FirstName.match(nameRegex))
+          {
+            document.getElementById("reference1_Firstname").style.borderStyle = "";
+            document.getElementById("reference1_Firstname").style.borderColor = "";
+          }
+
           if(!ref1Surname.match(nameRegex))
           {
+            document.getElementById("reference1_Surname").style.borderStyle = "solid";
+            document.getElementById("reference1_Surname").style.borderColor = "red";
             alert("Please enter your references' surname.");
             return false;
           }
 
+          if(ref1Surname.match(nameRegex))
+          {
+            document.getElementById("reference1_Surname").style.borderStyle = "";
+            document.getElementById("reference1_Surname").style.borderColor = "";
+          }
+
           if(ref1JobTitle == "")
           {
+            document.getElementById("reference1_JT").style.borderStyle = "solid";
+            document.getElementById("reference1_JT").style.borderColor = "red";
             alert("Please enter your references' job title.");
             return false;
+          }
+
+          if(!ref1JobTitle == "")
+          {
+            document.getElementById("reference1_JT").style.borderStyle = "";
+            document.getElementById("reference1_JT").style.borderColor = "";
           }
 
           if(ref1Company == "")
           {
+            document.getElementById("reference1_Company").style.borderStyle = "solid";
+            document.getElementById("reference1_Company").style.borderColor = "red";
             alert("Please enter your references' company name.");
             return false;
+          }
+
+          if(!ref1Company == "")
+          {
+            document.getElementById("reference1_Company").style.borderStyle = "";
+            document.getElementById("reference1_Company").style.borderColor = "";
           }
 
           if(!ref1ContactNumber.match(contactNumberRegex))
           {
+            document.getElementById("reference1_CN").style.borderStyle = "solid";
+            document.getElementById("reference1_CN").style.borderColor = "red";
             alert("Please enter your references' contact number.");
             return false;
+          }
+
+          if(ref1ContactNumber.match(contactNumberRegex))
+          {
+            document.getElementById("reference1_CN").style.borderStyle = "";
+            document.getElementById("reference1_CN").style.borderColor = "";
           }
 
           if(!ref1Email.match(emailRegex))
           {
+            document.getElementById("reference1_Email").style.borderStyle = "solid";
+            document.getElementById("reference1_Email").style.borderColor = "red";
             alert("Please enter your references' email address.");
             return false;
+          }
+
+          if(ref1Email.match(emailRegex))
+          {
+            document.getElementById("reference1_Email").style.borderStyle = "";
+            document.getElementById("reference1_Email").style.borderColor = "";
           }
 
           // Second reference
 
-          if(ref2FirstName == "" || isNaN(ref2FirstName) == false){
-            alert("Please enter the first name of your second reference.");
+          if(!ref2FirstName.match(nameRegex))
+          {
+            document.getElementById("reference2_Firstname").style.borderStyle = "solid";
+            document.getElementById("reference2_Firstname").style.borderColor = "red";
+            alert("Please enter your references' first name.");
             return false;
           }
 
-          if(ref2Surname == "" || isNaN(ref2Surname) == false){
-            alert("Please enter the surname of your second reference.");
+          if(ref2FirstName.match(nameRegex))
+          {
+            document.getElementById("reference2_Firstname").style.borderStyle = "";
+            document.getElementById("reference2_Firstname").style.borderColor = "";
+          }
+
+          if(!ref2Surname.match(nameRegex))
+          {
+            document.getElementById("reference2_Surname").style.borderStyle = "solid";
+            document.getElementById("reference2_Surname").style.borderColor = "red";
+            alert("Please enter your references' surname.");
             return false;
+          }
+
+          if(ref2Surname.match(nameRegex))
+          {
+            document.getElementById("reference2_Surname").style.borderStyle = "";
+            document.getElementById("reference2_Surname").style.borderColor = "";
           }
 
           if(ref2JobTitle == "")
           {
+            document.getElementById("reference2_JT").style.borderStyle = "solid";
+            document.getElementById("reference2_JT").style.borderColor = "red";
             alert("Please enter your references' job title.");
             return false;
           }
 
+          if(!ref2JobTitle == "")
+          {
+            document.getElementById("reference2_JT").style.borderStyle = "";
+            document.getElementById("reference2_JT").style.borderColor = "";
+          }
+
           if(ref2Company == "")
           {
+            document.getElementById("reference2_Company").style.borderStyle = "solid";
+            document.getElementById("reference2_Company").style.borderColor = "red";
             alert("Please enter your references' company name.");
             return false;
           }
 
+          if(!ref2Company == "")
+          {
+            document.getElementById("reference2_Company").style.borderStyle = "";
+            document.getElementById("reference2_Company").style.borderColor = "";
+          }
+
           if(!ref2ContactNumber.match(contactNumberRegex))
           {
+            document.getElementById("reference2_CN").style.borderStyle = "solid";
+            document.getElementById("reference2_CN").style.borderColor = "red";
             alert("Please enter your references' contact number.");
             return false;
           }
 
+          if(ref2ContactNumber.match(contactNumberRegex))
+          {
+            document.getElementById("reference2_CN").style.borderStyle = "";
+            document.getElementById("reference2_CN").style.borderColor = "";
+          }
+
           if(!ref2Email.match(emailRegex))
           {
+            document.getElementById("reference2_Email").style.borderStyle = "solid";
+            document.getElementById("reference2_Email").style.borderColor = "red";
             alert("Please enter your references' email address.");
             return false;
+          }
+
+          if(ref2Email.match(emailRegex))
+          {
+            document.getElementById("reference2_Email").style.borderStyle = "";
+            document.getElementById("reference2_Email").style.borderColor = "";
           }
 
       FormValidation();
