@@ -41,7 +41,7 @@
           <!-- User's details -->
           <input id="candidate_name" type="text" name="firstname" placeholder="First Name *">
           <input id="candidate_surname" type="text" name="surname" placeholder="Surname *">
-          <input id="candidate_dob" type="text" name="dob" placeholder="Date of birth*">
+          <input id="candidate_dob" type="text" name="dob" placeholder="Date of birth (DD/MM/YYYY)*">
           <input id="candidate_NI_number" type="text" name="nationalInsurance" placeholder="National insurance number *">
           <!-- The tooltip has now added but just needs minor adjusting. -->
           <div class="tooltip">
@@ -229,9 +229,13 @@
 
         var candidateWorkWanted = document.getElementById('candidate_work_wanted').value;
 
-        var candidateCompanyType = document.getElementById('candidate_company_type').value;
+        var candidateCompanyType = document.getElementById('candidate_company_type').value
+
+        var candidateDOB = document.getElementById("candidate_dob").value
 
 
+        // Regex validation was taken form - https://stackoverflow.com/questions/15491894/regex-to-validate-date-format-dd-mm-yyyy on the 04/12/2017 T 18:10
+        var dobRegex = /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/;
 
         // Checking the user's input against regex.
 
@@ -275,6 +279,20 @@
         {
           document.getElementById("candidate_surname").style.borderStyle = "";
           document.getElementById("candidate_surname").style.borderColor = "";
+        }
+
+        if(!candidateDOB.match(dobRegex))
+        {
+          document.getElementById("candidate_dob").style.borderStyle = "solid";
+          document.getElementById("candidate_dob").style.borderColor = "red";
+          alert("Please enter your date of birth.");
+          return false;
+        }
+
+        if(candidateDOB.match(dobRegex))
+        {
+          document.getElementById("candidate_dob").style.borderStyle = "";
+          document.getElementById("candidate_dob").style.borderColor = "";
         }
 
         if(!candidateContactNumber.match(contactNumberRegex))
