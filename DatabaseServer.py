@@ -60,6 +60,7 @@ def CandidateAddDetails():
         candidateTypeOfWork = request.form.get("work", default="Error")
         candidateQualifications = request.form.get("QualificationsandLicences", default="Error")
         candidateRepresenting = request.form.get("representingCompany", default="Error")
+        candidateRepresentingName = request.form.get("representingCompanyName", default="Error")
 
         # Candidate work elegibility questions
         candidateWorkElegibility = request.form.get("elegibilityChoice", default="Error")
@@ -146,8 +147,8 @@ def CandidateAddDetails():
 
         conn = sqlite3.connect(DATABASE)
         cur = conn.cursor()
-        cur.execute("INSERT INTO CandidateDetails ('CandidateTitle','CandidateFirstname', 'CandidateSecondname','CandidateDateOfBirth','CandidateNI', 'CandidateAddress', 'CandidateContactNumber', 'CandidateEmergencyNumber', 'CandidateEmail', 'CandidateTypeOfWork', 'CandidateQualifications', 'CandidateRepresenting','CandidateCVLocation','CandidateQualificationLocation')\
-        			VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",(candidateTitle, candidateFirstname, candidateSecondname, candidateDob, candidateNI, candidateAddress, candidateContactNumber, candidateEmergencyNumber, candidateEmail, candidateTypeOfWork, candidateQualifications, candidateRepresenting, msg1, msg2) )
+        cur.execute("INSERT INTO CandidateDetails ('CandidateTitle','CandidateFirstname', 'CandidateSecondname','CandidateDateOfBirth','CandidateNI', 'CandidateAddress', 'CandidateContactNumber', 'CandidateEmergencyNumber', 'CandidateEmail', 'CandidateTypeOfWork', 'CandidateQualifications', 'CandidateRepresenting', 'CandidateRepresentingName', 'CandidateCVLocation','CandidateQualificationLocation')\
+        			VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",(candidateTitle, candidateFirstname, candidateSecondname, candidateDob, candidateNI, candidateAddress, candidateContactNumber, candidateEmergencyNumber, candidateEmail, candidateTypeOfWork, candidateQualifications, candidateRepresenting, candidateRepresentingName, msg1, msg2) )
 
         cur.execute("INSERT INTO CandidateWorkElegibility ('CandidateWorkElegibility','CandidateDrivingLicense', 'CandidateCriminalConvictions', 'CandidateDisabilities', 'CandidateDisabilityDetails')\
                     VALUES (?,?,?,?,?)",(candidateWorkElegibility, candidateDrivingLicense, candidateCriminalConvictions, candidateDisabilities, candidateDisabilityDetails) )
