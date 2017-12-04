@@ -18,6 +18,14 @@
 <!-- For this part, I have used google maps apis on the 26/11/2017 at 18:44  -->
 <!-- Source:https://developers.google.com/maps/documentation/javascript/examples/map-geolocation  -->
 
+
+<div class="candidateAddresses">
+  {% for row in rows %}
+    Here are some of the candidate addresses:  {{row["CandidateAddress"]}}
+  {% endfor %}
+</div>
+
+
   <div id="map"></div>
     <script>
       // Note: This example requires that you consent to location sharing when

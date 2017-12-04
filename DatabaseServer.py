@@ -4,6 +4,8 @@ from werkzeug.utils import secure_filename
 import sqlite3
 import datetime
 # import pdfkit
+from reportlab.pdfgen import canvas
+
 
 
 now = datetime.datetime.now()
@@ -128,6 +130,17 @@ def CandidateAddDetails():
                 file.save(filePath)
                 msg2 = filePath
 
+        print("we're in the pdf function")
+        import StringIO
+        
+        html = render_template('registrationForm.html')
+        return render_pdf(HTML(string=html))
+
+
+
+
+
+
 
 
 
@@ -215,54 +228,39 @@ def UserLogin():
     #     from weasyprint import HTML
     #     pdf = HTML(string=html.encode('utf-8'))
     #     return pdf.write_pdf()
-
-
-        # def render_pdf_xhtml2pdf(html):
-        #     """mimerender helper to render a PDF from HTML using xhtml2pdf.
-        #     Usage: http://philfreo.com/blog/render-a-pdf-from-html-using-xhtml2pdf-and-mimerender-in-flask/
-        #         """
-        #     from xhtml2pdf import pisa
-        #     from cStringIO import StringIO
-        #     pdf = StringIO()
-        #     pisa.CreatePDF(StringIO(html.encode('utf-8')), pdf)
-        #     resp = pdf.getvalue()
-        #     pdf.close()
-        #     return resp
-
-        # def pdf():
-        #     from io import StringIO
-        #     print("we're in the pdf function")
-        #     output = cStringIO.StringIO()
-        #
-        #     p = canvas.Canvas(output)
-        #     p.drawString(100, 100, 'Hello')
-        #     p.showPage()
-        #     p.save()
-        #
-        #     pdf_out = output.getvalue()
-        #     output.close()
-        #
-        #     response = make_response(pdf_out)
-        #     response.headers['Content-Disposition'] = "attachment; filename='test.pdf"
-        #     response.mimetype = 'application/pdf'
-        #     return response
-
-
-        # pdfkit.from_url('http://127.0.0.1:5000/static/registrationForm.html','examplePDF.pdf')
-
-
-        # def render_pdf(html):
-        #     from xhtml2pdf import pisa
-        #     from cStringIO import StringIO
-        #     pdf = StringIO()
-        #     pisa.CreatePDF(StringIO(html.encode('utf-8')), pdf)
-        #     resp = pdf.getvalue()
-        #     pdf.close()
-        #     return resp
-        # @mimerender(default='html', html=lambda html: html, pdf=render_pdf, override_input_key='format')
-        # def view_invoice(org_id, invoice_id):
-        #     html = render_template('registrationForm.html', id=invoice_id)
-        #     return { 'html': html }
+    #
+    #
+    #     def render_pdf_xhtml2pdf(html):
+    #         """mimerender helper to render a PDF from HTML using xhtml2pdf.
+    #         Usage: http://philfreo.com/blog/render-a-pdf-from-html-using-xhtml2pdf-and-mimerender-in-flask/
+    #             """
+    #         from xhtml2pdf import pisa
+    #         from cStringIO import StringIO
+    #         pdf = StringIO()
+    #         pisa.CreatePDF(StringIO(html.encode('utf-8')), pdf)
+    #         resp = pdf.getvalue()
+    #         pdf.close()
+    #         return resp
+    #
+    #     def pdf():
+    #
+    #
+    #
+    #     pdfkit.from_url('http://127.0.0.1:5000/static/registrationForm.html','examplePDF.pdf')
+    #
+    #
+    #     def render_pdf(html):
+    #         from xhtml2pdf import pisa
+    #         from cStringIO import StringIO
+    #         pdf = StringIO()
+    #         pisa.CreatePDF(StringIO(html.encode('utf-8')), pdf)
+    #         resp = pdf.getvalue()
+    #         pdf.close()
+    #         return resp
+    #     @mimerender(default='html', html=lambda html: html, pdf=render_pdf, override_input_key='format')
+    #     def view_invoice(org_id, invoice_id):
+    #         html = render_template('registrationForm.html', id=invoice_id)
+    #         return { 'html': html }
 
         # def your_view():
         #     print("We're in the pdf file uplaod code!")
@@ -275,6 +273,25 @@ def UserLogin():
         #     mail_to_be_sent.attach("file.pdf", "static/pdf-documents", pdf.getvalue())
         #     mail_ext.send(mail_to_be_sent)
         #     return redirect(url_for('other_view'))
+
+
+                #
+                #
+                # print("we're in the pdf function")
+                # output = StringIO()
+                #
+                # p = canvas.Canvas(output)
+                # p.drawString(100, 100, 'Hello')
+                # p.showPage()
+                # p.save()
+                #
+                # pdf_out = output.getvalue()
+                # output.close()
+                #
+                # response = make_response(pdf_out)
+                # response.headers['Content-Disposition'] = "attachment; filename='test.pdf"
+                # response.mimetype = 'application/pdf'
+                # return response
 
 
 # PDF convert code
@@ -304,7 +321,7 @@ def UserLogin():
 #         'content-type': 'application.pdf',
 #         'content-disposition': 'attachment; filename=form.pdf'}
 #     return pdf, 200, headers
-
+#
 
         #
         # if 'file' not in request.files:
@@ -331,10 +348,31 @@ def UserLoginPage():
     if request.method =='GET':
     	return render_template('login_page.html')
 
-@app.route("/Admin", methods = ['GET'])
+@app.route("/Admin", methods = ['GET','POST'])
 def adminpage():
     if request.method =='GET':
     	return render_template('admin.html')
+    def CandidateAddress():
+        con = sql.connect("CandidateCenter.db")
+        con.row_factory = sql.Row
+
+        cur = con.cursor()
+        cur.execute("SELECT CandidateAddress FROM CandidateDetails")
+
+        rows = cur.fetchall();
+        return render_template("admin.html",rows = rows)
+    if request.method == 'POST':
+        def CandidateAddress():
+            con = sql.connect("CandidateCenter.db")
+            con.row_factory = sql.Row
+
+            cur = con.cursor()
+            cur.execute("SELECT CandidateAddress FROM CandidateDetails")
+
+            rows = cur.fetchall();
+            return render_template("admin.html",rows = rows)
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -173,88 +173,53 @@
 
         </form>
       </div>
+
       <script>
-
-      // function FormValidation()
-      // {
-      //   // Section 1 //
-      //   var candidateTitle = document.getElementById('candidate_title').value;
-      //
-      //
-      //
-      //   var candidateName = document.getElementById('candidate_name').value;
-      //   var candidateSurname = document.getElementById('candidate_surname').value;
-      //   var nameRegex = /^[-a-zA-Z]+$/;
-
-        // Spare code in case we need to go back to normal form validation.
-        // var candidateAddress1 = document.getElementById('candidate_address1').value;
-        // var candidateAddress2 = document.getElementById('candidate_address2').value;
-        // var addressRegex = /^[#.0-9a-zA-Z\s,-]+$/;
-
-        // // For this regex solution I looked at https://stackoverflow.com/questions/164979/uk-postcode-regex-comprehensive
-        // //  I did this beccause the solution was tested against the Goverment's specificfaction for postcodes
-        // var candidatePostcode = document.getElementById('candidate_postcode').value;
-        // var postcodeRegex = /^([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9]?[A-Za-z]))))\s?[0-9][A-Za-z]{2})+$/;
-
-
-
-        // var candidateContactNumber = document.getElementById('candidate_contact_number').value;
-        // // This regex solution was taken from: http://www.regexlib.com/UserPatterns.aspx?authorid=d95177b0-6014-4e73-a959-73f1663ae814&AspxAutoDetectCookieSupport=1 on the 26/11/2017 at 21:41
-        // var contactNumberRegex = /^(\+44\s?7\d{3}|\(?07\d{3}\)?)\s?\d{3}\s?\d{3}$/;
-        //
-        // var candidateEmail = document.getElementById('candidate_email').value;
-        // // This regex validation for the email address was taken from: https://stackoverflow.com/questions/46155/how-to-validate-email-address-in-javascript on the 26th of November at 21:13
-        // var emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        //
-        // var candidateWorkWanted = document.getElementById('candidate_work_wanted').value;
-        //
-        // var candidateCompanyType = document.getElementById('candidate_company_type').value;
-        //
-        //
-        //
-        // // Checking the user's input against regex.
-        //
-        // if(candidateTitle == "Title *")
-        // {
-        //   alert("Please enter your title.");
-        //   return false;
-        // }
-        //
-        // if(!candidateName.match(nameRegex))
-        // {
-        //   alert("Please enter your name.");
-        //   return false;
-        // }
-        //
-        // if(!candidateSurname.match(nameRegex))
-        // {
-        //   alert("Please enter your surname.")
-        //   return false;
-        // }
-
-      ///////////////////////////////////////////////////////////////////////////////////////
-
-        // if(!candidateAddress1.match(addressRegex))
-        // {
-        //   alert("Please enter your first line of address.")
-        //   return false;
-        // }
-        //
-        // // Might not be required //
-        // if(!candidateAddress2.match(addressRegex))
-        // {
-        //   alert("Please enter your second line of address.")
-        //   return false;
-        // }
-        //
-        // if(!candidatePostcode.match(postcodeRegex))
-        // {
-        //   alert("Please enter your postcode.")
-        //   return false;
-        // }
-
-        ///////////////////////////////////////////////////////////////////////////////////////////////////
-
+    //
+    //   function FormValidation()
+    //   {
+    //     // Section 1 //
+    //     var candidateTitle = document.getElementById('candidate_title').value;
+    //
+    //
+    //     var candidateName = document.getElementById('candidate_name').value;
+    //     var candidateSurname = document.getElementById('candidate_surname').value;
+    //     var nameRegex = /^[-a-zA-Z]+$/;
+    //
+    //
+    //     var candidateContactNumber = document.getElementById('candidate_contact_number').value;
+    //     // This regex solution was taken from: http://www.regexlib.com/UserPatterns.aspx?authorid=d95177b0-6014-4e73-a959-73f1663ae814&AspxAutoDetectCookieSupport=1 on the 26/11/2017 at 21:41
+    //     var contactNumberRegex = /^(\+44\s?7\d{3}|\(?07\d{3}\)?)\s?\d{3}\s?\d{3}$/;
+    //
+    //     var candidateEmail = document.getElementById('candidate_email').value;
+    //     // This regex validation for the email address was taken from: https://stackoverflow.com/questions/46155/how-to-validate-email-address-in-javascript on the 26th of November at 21:13
+    //     var emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    //
+    //     var candidateWorkWanted = document.getElementById('candidate_work_wanted').value;
+    //
+    //     var candidateCompanyType = document.getElementById('candidate_company_type').value;
+    //
+    //
+    //
+    //     // Checking the user's input against regex.
+    //
+    //     if(candidateTitle == "Title *")
+    //     {
+    //       alert("Please enter your title.");
+    //       return false;
+    //     }
+    //
+    //     if(!candidateName.match(nameRegex)){
+    //       alert("Please enter your name.");
+    //       return false;
+    //     }
+    //
+    //     if(!candidateSurname.match(nameRegex))
+    //     {
+    //       alert("Please enter your surname.")
+    //       return false;
+    //     }
+    //
     //     if(!candidateContactNumber.match(contactNumberRegex))
     //     {
     //       alert("Please enter your contact number correctly.")
@@ -279,7 +244,7 @@
     //       return false;
     //     }
     //
-    //     //Section 2//
+    //     //  Section 2//
     //
     //     var workElegibility = document.getElementById('work_elegibility').value;
     //     var drivingLicense  = document.getElementById('driving_license').value;
