@@ -235,44 +235,101 @@
         // Checking the user's input against regex.
 
         if(candidateTitle == "Title *")
+          {
+            document.getElementById("candidate_title").style.borderStyle = "solid";
+            document.getElementById("candidate_title").style.borderColor = "red";
+            alert("Please Select your title.")
+            return false;
+          }
+
+        if(candidateTitle == "mr", "sir", "dr", "miss", "mrs")
         {
-          alert("Please enter your title.");
-          return false;
+          document.getElementById("candidate_title").style.borderStyle = "";
+          document.getElementById("candidate_title").style.borderColor = "";
         }
 
+
         if(!candidateName.match(nameRegex)){
+          document.getElementById("candidate_name").style.borderStyle = "solid";
+          document.getElementById("candidate_name").style.borderColor = "red";
           alert("Please enter your name.");
           return false;
         }
 
+        if(candidateName.match(nameRegex))
+        {
+          document.getElementById("candidate_name").style.borderStyle = "";
+          document.getElementById("candidate_name").style.borderColor = "";
+        }
+
         if(!candidateSurname.match(nameRegex))
         {
-          alert("Please enter your surname.")
+          document.getElementById("candidate_surname").style.borderStyle = "solid";
+          document.getElementById("candidate_surname").style.borderColor = "red";
+          alert("Please enter your surname.");
           return false;
+        }
+
+        if(candidateSurname.match(nameRegex))
+        {
+          document.getElementById("candidate_surname").style.borderStyle = "";
+          document.getElementById("candidate_surname").style.borderColor = "";
         }
 
         if(!candidateContactNumber.match(contactNumberRegex))
         {
+          document.getElementById("candidate_contact_number").style.borderStyle = "solid";
+          document.getElementById("candidate_contact_number").style.borderColor = "red";
           alert("Please enter your contact number correctly.")
           return false;
         }
 
+        if(candidateContactNumber.match(contactNumberRegex))
+        {
+          document.getElementById("candidate_contact_number").style.borderStyle = "";
+          document.getElementById("candidate_contact_number").style.borderColor = "";
+        }
+
         if(!candidateEmail.match(emailRegex))
         {
+          document.getElementById("candidate_email").style.borderStyle = "solid";
+          document.getElementById("candidate_email").style.borderColor = "red";
           alert("Please enter your email address correctly.")
           return false;
         }
 
+        if(candidateEmail.match(emailRegex))
+        {
+          document.getElementById("candidate_email").style.borderStyle = "";
+          document.getElementById("candidate_email").style.borderColor = "";
+        }
+
         if(candidateWorkWanted == "")
         {
+          document.getElementById("candidate_work_wanted").style.borderStyle = "solid";
+          document.getElementById("candidate_work_wanted").style.borderColor = "red";
           alert("Please enter the type of work you want.")
           return false;
         }
 
+        if(!candidateWorkWanted == "")
+        {
+          document.getElementById("candidate_work_wanted").style.borderStyle = "";
+          document.getElementById("candidate_work_wanted").style.borderColor = "";
+        }
+
         if(candidateCompanyType == "Please Select")
         {
+          document.getElementById("candidate_company_type").style.borderStyle = "solid";
+          document.getElementById("candidate_company_type").style.borderColor = "red";
           alert("Please select what company type you are representing.");
           return false;
+        }
+
+        if(!candidateCompanyType == "Please Select")
+        {
+          document.getElementById("candidate_company_type").style.borderStyle = "";
+          document.getElementById("candidate_company_type").style.borderColor = "";
         }
 
         //  Section 2//
@@ -427,8 +484,8 @@
   })();
   </script>
 
-  <script src="C:/Users/c1538514/Desktop/Acorn Form - Client Project/AcornProject/static/js/signature_pad.js"></script>
-  <script src="C:/Users/c1538514/Desktop/Acorn Form - Client Project/AcornProject/static/js/app.js"></script>
+  <script src="../static/js/signature_pad.js"></script>
+  <script src="../static/js/app.js"></script>
 
   <!-- For this solution, I looked at: https://stackoverflow.com/questions/34339521/google-maps-api-how-to-check-if-an-address-or-location-is-valid
        On the 26/11/2017 at 19:26 -->
