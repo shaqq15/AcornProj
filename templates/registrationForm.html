@@ -79,8 +79,8 @@
           <!-- Drop down box for the user to choose what type of company they are representing. -->
           <optgroup id="candidate_company_type" label="Company Type" required>
             <option value="Please Select">Please Select</option>
-            <option value="1">Umbrella Company</option>
-            <option value="2">Personal Services Company</option>
+            <option value="umbrella company">Umbrella Company</option>
+            <option value="personal services company">Personal Services Company</option>
           </optgroup>
 
         </optgroup>
@@ -100,7 +100,7 @@
         <!-- Options for the user to choose their work elegibility -->
         <optgroup label="Work elgibility">
           <option value="Please select">Please select</option>
-          <option value="2">Yes</option>
+          <option value="yes">Yes</option>
           <option value="no">No</option>
         </optgroup>
 
@@ -230,11 +230,13 @@
 
         var candidateWorkWanted = document.getElementById('candidate_work_wanted').value;
 
-        var candidateCompanyType = document.getElementById('candidate_company_type').value
+        var candidateCompanyType = document.getElementById('representing').value;
 
-        var candidateDOB = document.getElementById("candidate_dob").value
+        var candidateCompanyName = document.getElementById("candidate_company_name").value;
 
-        var candidateNI = document.getElementById("candidate_NI_number").value
+        var candidateDOB = document.getElementById("candidate_dob").value;
+
+        var candidateNI = document.getElementById("candidate_NI_number").value;
 
 
         // Regex validation was taken form - https://stackoverflow.com/questions/15491894/regex-to-validate-date-format-dd-mm-yyyy on the 04/12/2017 T 18:10
@@ -320,6 +322,7 @@
         }
 
 
+        /// Taken from http://www.imranulhoque.com/javascript/javascript-beginners-select-a-dropdown-option-by-value/ Accessed on 04/12/17 at 20:00
         function selectItemByValue(elmnt, value)
         {
           for(var i=0; i < elmnt.options.length; i++)
@@ -333,7 +336,7 @@
         {
           document.getElementById("candidate_NI_number").style.borderStyle = "";
           document.getElementById("candidate_NI_number").style.borderColor = "";
-          selectItemByValue(workElegibility, 2);
+          selectItemByValue(workElegibility, "yes");
         }
 
 
@@ -379,18 +382,11 @@
           document.getElementById("candidate_work_wanted").style.borderColor = "";
         }
 
-        if(candidateCompanyType == "Please Select")
+        if(candidateCompanyType == ("umbrella company", "personal services company") && candidateCompanyName == "")
         {
-          document.getElementById("candidate_company_type").style.borderStyle = "solid";
-          document.getElementById("candidate_company_type").style.borderColor = "red";
-          alert("Please select what company type you are representing.");
-          return false;
-        }
-
-        if(candidateCompanyType == "1", "2")
-        {
-          document.getElementById("candidate_company_type").style.borderStyle = "";
-          document.getElementById("candidate_company_type").style.borderColor = "";
+          document.getElementById("candidateCompanyName").style.borderStyle = "solid";
+          document.getElementById("candidateCompanyName").style.borderColor = "red";
+          alert("Please enter the company's name you are representing.");
         }
 
         //  Section 2//
@@ -404,7 +400,7 @@
           return false;
         }
 
-        if(!workElegibility == "Please select")
+        if(workElegibility == "yes", "no")
         {
           document.getElementById("work_elegibility").style.borderStyle = "";
           document.getElementById("work_elegibility").style.borderColor = "";
@@ -419,7 +415,7 @@
           return false;
         }
 
-        if(!drivingLicense == "Please select")
+        if(drivingLicense == "yes", "no")
         {
           document.getElementById("driving_license").style.borderStyle = "";
           document.getElementById("driving_license").style.borderColor = "";
@@ -435,7 +431,7 @@
           return false;
         }
 
-        if(!criminalOffence == "Please select")
+        if(criminalOffence == "yes", "no")
         {
           document.getElementById("criminal_offence").style.borderStyle = "";
           document.getElementById("criminal_offence").style.borderColor = "";
@@ -450,7 +446,7 @@
           return false;
         }
 
-        if(!candidateDisabilities == "Please select")
+        if(candidateDisabilities == "yes", "no")
         {
           document.getElementById("candidate_disabilities").style.borderStyle = "";
           document.getElementById("candidate_disabilities").style.borderColor = "";
