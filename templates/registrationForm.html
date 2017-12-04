@@ -205,247 +205,212 @@
 
         </form>
       </div>
+
       <script>
 
-      // function FormValidation()
-      // {
-      //   // Section 1 //
-      //   var candidateTitle = document.getElementById('candidate_title').value;
-      //
-      //
-      //
-      //   var candidateName = document.getElementById('candidate_name').value;
-      //   var candidateSurname = document.getElementById('candidate_surname').value;
-      //   var nameRegex = /^[-a-zA-Z]+$/;
-
-        // Spare code in case we need to go back to normal form validation.
-        // var candidateAddress1 = document.getElementById('candidate_address1').value;
-        // var candidateAddress2 = document.getElementById('candidate_address2').value;
-        // var addressRegex = /^[#.0-9a-zA-Z\s,-]+$/;
-
-        // // For this regex solution I looked at https://stackoverflow.com/questions/164979/uk-postcode-regex-comprehensive
-        // //  I did this beccause the solution was tested against the Goverment's specificfaction for postcodes
-        // var candidatePostcode = document.getElementById('candidate_postcode').value;
-        // var postcodeRegex = /^([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9]?[A-Za-z]))))\s?[0-9][A-Za-z]{2})+$/;
+      function FormValidation()
+      {
+        // Section 1 //
+        var candidateTitle = document.getElementById('candidate_title').value;
 
 
+        var candidateName = document.getElementById('candidate_name').value;
+        var candidateSurname = document.getElementById('candidate_surname').value;
+        var nameRegex = /^[-a-zA-Z]+$/;
 
-        // var candidateContactNumber = document.getElementById('candidate_contact_number').value;
-        // // This regex solution was taken from: http://www.regexlib.com/UserPatterns.aspx?authorid=d95177b0-6014-4e73-a959-73f1663ae814&AspxAutoDetectCookieSupport=1 on the 26/11/2017 at 21:41
-        // var contactNumberRegex = /^(\+44\s?7\d{3}|\(?07\d{3}\)?)\s?\d{3}\s?\d{3}$/;
-        //
-        // var candidateEmail = document.getElementById('candidate_email').value;
-        // // This regex validation for the email address was taken from: https://stackoverflow.com/questions/46155/how-to-validate-email-address-in-javascript on the 26th of November at 21:13
-        // var emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        //
-        // var candidateWorkWanted = document.getElementById('candidate_work_wanted').value;
-        //
-        // var candidateCompanyType = document.getElementById('candidate_company_type').value;
-        //
-        //
-        //
-        // // Checking the user's input against regex.
-        //
-        // if(candidateTitle == "Title *")
-        // {
-        //   alert("Please enter your title.");
-        //   return false;
-        // }
-        //
-        // if(!candidateName.match(nameRegex))
-        // {
-        //   alert("Please enter your name.");
-        //   return false;
-        // }
-        //
-        // if(!candidateSurname.match(nameRegex))
-        // {
-        //   alert("Please enter your surname.")
-        //   return false;
-        // }
 
-      ///////////////////////////////////////////////////////////////////////////////////////
+        var candidateContactNumber = document.getElementById('candidate_contact_number').value;
+        // This regex solution was taken from: http://www.regexlib.com/UserPatterns.aspx?authorid=d95177b0-6014-4e73-a959-73f1663ae814&AspxAutoDetectCookieSupport=1 on the 26/11/2017 at 21:41
+        var contactNumberRegex = /^(\+44\s?7\d{3}|\(?07\d{3}\)?)\s?\d{3}\s?\d{3}$/;
 
-        // if(!candidateAddress1.match(addressRegex))
-        // {
-        //   alert("Please enter your first line of address.")
-        //   return false;
-        // }
-        //
-        // // Might not be required //
-        // if(!candidateAddress2.match(addressRegex))
-        // {
-        //   alert("Please enter your second line of address.")
-        //   return false;
-        // }
-        //
-        // if(!candidatePostcode.match(postcodeRegex))
-        // {
-        //   alert("Please enter your postcode.")
-        //   return false;
-        // }
+        var candidateEmail = document.getElementById('candidate_email').value;
+        // This regex validation for the email address was taken from: https://stackoverflow.com/questions/46155/how-to-validate-email-address-in-javascript on the 26th of November at 21:13
+        var emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-        ///////////////////////////////////////////////////////////////////////////////////////////////////
+        var candidateWorkWanted = document.getElementById('candidate_work_wanted').value;
 
-    //     if(!candidateContactNumber.match(contactNumberRegex))
-    //     {
-    //       alert("Please enter your contact number correctly.")
-    //       return false;
-    //     }
-    //
-    //     if(!candidateEmail.match(emailRegex))
-    //     {
-    //       alert("Please enter your email address correctly.")
-    //       return false;
-    //     }
-    //
-    //     if(candidateWorkWanted == "")
-    //     {
-    //       alert("Please enter the type of work you want.")
-    //       return false;
-    //     }
-    //
-    //     if(candidateCompanyType == "Please Select")
-    //     {
-    //       alert("Please select what company type you are representing.");
-    //       return false;
-    //     }
-    //
-    //     //Section 2//
-    //
-    //     var workElegibility = document.getElementById('work_elegibility').value;
-    //     var drivingLicense  = document.getElementById('driving_license').value;
-    //     var criminalOffence = document.getElementById('criminal_offence').value;
-    //     var candidateDisabilities = document.getElementById('candidate_disabilities').value;
-    //     var disabilityDescription = document.getElementById('disability_description').value;
-    //
-    //     if(workElegibility == "Please select")
-    //     {
-    //       alert("Please select your work eligibility.");
-    //       return false;
-    //     }
-    //
-    //     if(drivingLicense == "Please select")
-    //     {
-    //       alert("Please select if you have a driving licesne or not.");
-    //       return false;
-    //     }
-    //
-    //     if(criminalOffence == "Please select")
-    //     {
-    //       alert("Please if you have a criminal offence");
-    //       return false;
-    //     }
-    //
-    //     if(candidateDisabilities == "Please select")
-    //     {
-    //       alert("Please select if you have a disabiility.");
-    //       return false;
-    //     }
-    //
-    //     if(candidateDisabilities == "yes" && disabilityDescription == "")
-    //     {
-    //       alert("Please specify your disability in the description box.");
-    //       return false;
-    //     }
-    //
-    //
-    //
-    //
-    //       // Section 3 //
-    //
-    //       var ref1FirstName = document.getElementById('reference1_Firstname').value;
-    //       var ref1Surname = document.getElementById('reference1_Surname').value;
-    //       var ref1JobTitle = document.getElementById('reference1_JT').value;
-    //       var ref1Company = document.getElementById('reference1_Company').value;
-    //       var ref1Address = document.getElementById('reference1_Address').value;
-    //       var ref1PostCode = document.getElementById('reference1_PC').value;
-    //       var ref1ContactNumber = document.getElementById('reference1_CN').value;
-    //       var ref1Email = document.getElementById('reference1_Email').value;
-    //
-    //       var ref2FirstName = document.getElementById('reference2_Firstname').value;
-    //       var ref2Surname = document.getElementById('reference2_Surname').value;
-    //       var ref2JobTitle = document.getElementById('reference2_JT').value;
-    //       var ref2Company = document.getElementById('reference2_Company').value;
-    //       var ref2Address = document.getElementById('reference2_Address').value;
-    //       var ref2PostCode = document.getElementById('reference2_PC').value;
-    //       var ref2ContactNumber = document.getElementById('reference2_CN').value;
-    //       var ref2Email = document.getElementById('reference2_Email').value;
-    //
-    //       if(!ref1FirstName.match(nameRegex))
-    //       {
-    //         alert("Please enter your references' first name.");
-    //         return false;
-    //       }
-    //
-    //       if(!ref1Surname.match(nameRegex))
-    //       {
-    //         alert("Please enter your references' surname.");
-    //         return false;
-    //       }
-    //
-    //       if(ref1JobTitle == "")
-    //       {
-    //         alert("Please enter your references' job title.");
-    //         return false;
-    //       }
-    //
-    //       if(ref1Company == "")
-    //       {
-    //         alert("Please enter your references' company name.");
-    //         return false;
-    //       }
-    //
-    //       if(!ref1ContactNumber.match(contactNumberRegex))
-    //       {
-    //         alert("Please enter your references' contact number.");
-    //         return false;
-    //       }
-    //
-    //       if(!ref1Email.match(emailRegex))
-    //       {
-    //         alert("Please enter your references' email address.");
-    //         return false;
-    //       }
-    //
-    //       // Second reference
-    //
-    //       if(ref2FirstName == "" || isNaN(ref2FirstName) == false){
-    //         alert("Please enter the first name of your second reference.");
-    //         return false;
-    //       }
-    //
-    //       if(ref2Surname == "" || isNaN(ref2Surname) == false){
-    //         alert("Please enter the surname of your second reference.");
-    //         return false;
-    //       }
-    //
-    //       if(ref2JobTitle == "")
-    //       {
-    //         alert("Please enter your references' job title.");
-    //         return false;
-    //       }
-    //
-    //       if(ref2Company == "")
-    //       {
-    //         alert("Please enter your references' company name.");
-    //         return false;
-    //       }
-    //
-    //       if(!ref2ContactNumber.match(contactNumberRegex))
-    //       {
-    //         alert("Please enter your references' contact number.");
-    //         return false;
-    //       }
-    //
-    //       if(!ref2Email.match(emailRegex))
-    //       {
-    //         alert("Please enter your references' email address.");
-    //         return false;
-    //       }
-    //
-    //   FormValidation();
-    // }
+        var candidateCompanyType = document.getElementById('candidate_company_type').value;
+
+
+
+        // Checking the user's input against regex.
+
+        if(candidateTitle == "Title *")
+        {
+          alert("Please enter your title.");
+          return false;
+        }
+
+        if(!candidateName.match(nameRegex)){
+          alert("Please enter your name.");
+          return false;
+        }
+
+        if(!candidateSurname.match(nameRegex))
+        {
+          alert("Please enter your surname.")
+          return false;
+        }
+
+        if(!candidateContactNumber.match(contactNumberRegex))
+        {
+          alert("Please enter your contact number correctly.")
+          return false;
+        }
+
+        if(!candidateEmail.match(emailRegex))
+        {
+          alert("Please enter your email address correctly.")
+          return false;
+        }
+
+        if(candidateWorkWanted == "")
+        {
+          alert("Please enter the type of work you want.")
+          return false;
+        }
+
+        if(candidateCompanyType == "Please Select")
+        {
+          alert("Please select what company type you are representing.");
+          return false;
+        }
+
+        //  Section 2//
+
+        var workElegibility = document.getElementById('work_elegibility').value;
+        var drivingLicense  = document.getElementById('driving_license').value;
+        var criminalOffence = document.getElementById('criminal_offence').value;
+        var candidateDisabilities = document.getElementById('candidate_disabilities').value;
+        var disabilityDescription = document.getElementById('disability_description').value;
+
+        if(workElegibility == "Please select")
+        {
+          alert("Please select your work eligibility.");
+          return false;
+        }
+
+        if(drivingLicense == "Please select")
+        {
+          alert("Please select if you have a driving licesne or not.");
+          return false;
+        }
+
+        if(criminalOffence == "Please select")
+        {
+          alert("Please if you have a criminal offence");
+          return false;
+        }
+
+        if(candidateDisabilities == "Please select")
+        {
+          alert("Please select if you have a disabiility.");
+          return false;
+        }
+
+        if(candidateDisabilities == "yes" && disabilityDescription == "")
+        {
+          alert("Please specify your disability in the description box.");
+          return false;
+        }
+
+
+
+
+          // Section 3 //
+
+          var ref1FirstName = document.getElementById('reference1_Firstname').value;
+          var ref1Surname = document.getElementById('reference1_Surname').value;
+          var ref1JobTitle = document.getElementById('reference1_JT').value;
+          var ref1Company = document.getElementById('reference1_Company').value;
+          var ref1Address = document.getElementById('reference1_Address').value;
+          var ref1PostCode = document.getElementById('reference1_PC').value;
+          var ref1ContactNumber = document.getElementById('reference1_CN').value;
+          var ref1Email = document.getElementById('reference1_Email').value;
+
+          var ref2FirstName = document.getElementById('reference2_Firstname').value;
+          var ref2Surname = document.getElementById('reference2_Surname').value;
+          var ref2JobTitle = document.getElementById('reference2_JT').value;
+          var ref2Company = document.getElementById('reference2_Company').value;
+          var ref2Address = document.getElementById('reference2_Address').value;
+          var ref2PostCode = document.getElementById('reference2_PC').value;
+          var ref2ContactNumber = document.getElementById('reference2_CN').value;
+          var ref2Email = document.getElementById('reference2_Email').value;
+
+          if(!ref1FirstName.match(nameRegex))
+          {
+            alert("Please enter your references' first name.");
+            return false;
+          }
+
+          if(!ref1Surname.match(nameRegex))
+          {
+            alert("Please enter your references' surname.");
+            return false;
+          }
+
+          if(ref1JobTitle == "")
+          {
+            alert("Please enter your references' job title.");
+            return false;
+          }
+
+          if(ref1Company == "")
+          {
+            alert("Please enter your references' company name.");
+            return false;
+          }
+
+          if(!ref1ContactNumber.match(contactNumberRegex))
+          {
+            alert("Please enter your references' contact number.");
+            return false;
+          }
+
+          if(!ref1Email.match(emailRegex))
+          {
+            alert("Please enter your references' email address.");
+            return false;
+          }
+
+          // Second reference
+
+          if(ref2FirstName == "" || isNaN(ref2FirstName) == false){
+            alert("Please enter the first name of your second reference.");
+            return false;
+          }
+
+          if(ref2Surname == "" || isNaN(ref2Surname) == false){
+            alert("Please enter the surname of your second reference.");
+            return false;
+          }
+
+          if(ref2JobTitle == "")
+          {
+            alert("Please enter your references' job title.");
+            return false;
+          }
+
+          if(ref2Company == "")
+          {
+            alert("Please enter your references' company name.");
+            return false;
+          }
+
+          if(!ref2ContactNumber.match(contactNumberRegex))
+          {
+            alert("Please enter your references' contact number.");
+            return false;
+          }
+
+          if(!ref2Email.match(emailRegex))
+          {
+            alert("Please enter your references' email address.");
+            return false;
+          }
+
+      FormValidation();
+    }
 
   </script>
 
