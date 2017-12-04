@@ -4,7 +4,7 @@ from werkzeug.utils import secure_filename
 import sqlite3
 import datetime
 # import pdfkit
-# from reportlab.pdfgen import canvas
+from reportlab.pdfgen import canvas
 
 
 
@@ -130,11 +130,11 @@ def CandidateAddDetails():
                 file.save(filePath)
                 msg2 = filePath
 
-        # print("we're in the pdf function")
-        # import StringIO
-        #
-        # html = render_template('registrationForm.html')
-        # return render_pdf(HTML(string=html))
+        print("we're in the pdf function")
+        import StringIO
+        
+        html = render_template('registrationForm.html')
+        return render_pdf(HTML(string=html))
 
 
 
