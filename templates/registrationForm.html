@@ -341,29 +341,67 @@
         var candidateDisabilities = document.getElementById('candidate_disabilities').value;
         var disabilityDescription = document.getElementById('disability_description').value;
 
+///
         if(workElegibility == "Please select")
         {
+          document.getElementById("work_elegibility").style.borderStyle = "solid";
+          document.getElementById("work_elegibility").style.borderColor = "red";
           alert("Please select your work eligibility.");
           return false;
         }
 
+        if(!workElegibility == "Please select")
+        {
+          document.getElementById("work_elegibility").style.borderStyle = "";
+          document.getElementById("work_elegibility").style.borderColor = "";
+        }
+////
+
         if(drivingLicense == "Please select")
         {
+          document.getElementById("driving_license").style.borderStyle = "solid";
+          document.getElementById("driving_license").style.borderColor = "red";
           alert("Please select if you have a driving licesne or not.");
           return false;
         }
 
+        if(!drivingLicense == "Please select")
+        {
+          document.getElementById("driving_license").style.borderStyle = "";
+          document.getElementById("driving_license").style.borderColor = "";
+        }
+
+////
+
         if(criminalOffence == "Please select")
         {
+          document.getElementById("criminal_offence").style.borderStyle = "solid";
+          document.getElementById("criminal_offence").style.borderColor = "red";
           alert("Please if you have a criminal offence");
           return false;
         }
 
+        if(!criminalOffence == "Please select")
+        {
+          document.getElementById("criminal_offence").style.borderStyle = "";
+          document.getElementById("criminal_offence").style.borderColor = "";
+        }
+////
+
         if(candidateDisabilities == "Please select")
         {
+          document.getElementById("candidate_disabilities").style.borderStyle = "solid";
+          document.getElementById("candidate_disabilities").style.borderColor = "red";
           alert("Please select if you have a disabiility.");
           return false;
         }
+
+        if(!candidateDisabilities == "Please select")
+        {
+          document.getElementById("candidate_disabilities").style.borderStyle = "";
+          document.getElementById("candidate_disabilities").style.borderColor = "";
+        }
+///
 
         if(candidateDisabilities == "yes" && disabilityDescription == "")
         {
