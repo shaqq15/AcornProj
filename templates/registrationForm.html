@@ -464,12 +464,12 @@
 
           // Section 3 //
 
+
           var ref1FirstName = document.getElementById('reference1_Firstname').value;
           var ref1Surname = document.getElementById('reference1_Surname').value;
           var ref1JobTitle = document.getElementById('reference1_JT').value;
           var ref1Company = document.getElementById('reference1_Company').value;
           var ref1Address = document.getElementById('reference1_Address').value;
-          var ref1PostCode = document.getElementById('reference1_PC').value;
           var ref1ContactNumber = document.getElementById('reference1_CN').value;
           var ref1Email = document.getElementById('reference1_Email').value;
 
@@ -478,9 +478,12 @@
           var ref2JobTitle = document.getElementById('reference2_JT').value;
           var ref2Company = document.getElementById('reference2_Company').value;
           var ref2Address = document.getElementById('reference2_Address').value;
-          var ref2PostCode = document.getElementById('reference2_PC').value;
           var ref2ContactNumber = document.getElementById('reference2_CN').value;
           var ref2Email = document.getElementById('reference2_Email').value;
+
+
+
+
 
           if(!ref1FirstName.match(nameRegex))
           {
@@ -495,6 +498,7 @@
             document.getElementById("reference1_Firstname").style.borderStyle = "";
             document.getElementById("reference1_Firstname").style.borderColor = "";
           }
+
 
           if(!ref1Surname.match(nameRegex))
           {
@@ -582,6 +586,7 @@
             document.getElementById("reference2_Firstname").style.borderColor = "";
           }
 
+
           if(!ref2Surname.match(nameRegex))
           {
             document.getElementById("reference2_Surname").style.borderStyle = "solid";
@@ -652,7 +657,10 @@
             document.getElementById("reference2_Email").style.borderColor = "";
           }
 
+
+
       FormValidation();
+
     }
 
   </script>
