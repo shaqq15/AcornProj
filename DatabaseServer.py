@@ -3,9 +3,11 @@ from flask import Flask, redirect, request, render_template, url_for, make_respo
 from werkzeug.utils import secure_filename
 import sqlite3
 import datetime
-# import pdfkit
-# from reportlab.pdfgen import canvas
+from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import letter
+from reportlab.lib.units import inch
 
+imageLocation = 'static/images/Acorn_logo_mini.png'
 
 
 now = datetime.datetime.now()
@@ -130,19 +132,15 @@ def CandidateAddDetails():
                     filePath = os.path.join(app.config['UPLOAD_FOLDER_qualifications'], filename)
                 file.save(filePath)
                 msg2 = filePath
-        #
-        # print("we're in the pdf function")
-        # import StringIO
-        #
-        # html = render_template('registrationForm.html')
-        # return render_pdf(HTML(string=html))
 
 
+        print("we're in the pdf function")
 
+        c = canvas.Canvas(candidateFirstname + ".pdf")
 
-
-
-
+        createPdf(c, candidateTitle, candidateFirstname,candidateSecondname,candidateDob,candidateNI,candidateAddress,candidateContactNumber, candidateEmergencyNumber, candidateEmail, candidateTypeOfWork, candidateQualifications, candidateRepresenting, candidateRepresentingName,
+         candidateWorkElegibility, candidateDrivingLicense, candidateCriminalConvictions, candidateDisabilities,candidateDisabilityDetails,candidateRefrence1Firstname, candidateRefrence1Secondname, candidateRefrence1JobTitle, candidateRefrence1Company, candidateRefrence1Address, candidateRefrence1ContactNumber,
+         candidateRefrence1Email, candidateRefrence2Firstname, candidateRefrence2Secondname, candidateRefrence2JobTitle,  candidateRefrence2Company, candidateRefrence2Address, candidateRefrence2ContactNumber, candidateRefrence2Email)
 
 
         conn = sqlite3.connect(DATABASE)
@@ -173,7 +171,68 @@ def CandidateAddDetails():
     return "Hello2"
         # try:
 
+# Source: For the creation of the Pdf document, I used the report lab module. https://www.reportlab.com/docs/reportlab-userguide.pdf Used on the 04/12/2017 at 22:07
 
+def createPdf(c,candidateTitle, candidateFirstname,candidateSecondname,candidateDob,candidateNI,candidateAddress,candidateContactNumber, candidateEmergencyNumber, candidateEmail, candidateTypeOfWork, candidateQualifications, candidateRepresenting, candidateRepresentingName,
+ candidateWorkElegibility, candidateDrivingLicense, candidateCriminalConvictions, candidateDisabilities,candidateDisabilityDetails,candidateRefrence1Firstname, candidateRefrence1Secondname, candidateRefrence1JobTitle, candidateRefrence1Company, candidateRefrence1Address, candidateRefrence1ContactNumber,
+ candidateRefrence1Email, candidateRefrence2Firstname, candidateRefrence2Secondname, candidateRefrence2JobTitle,  candidateRefrence2Company, candidateRefrence2Address, candidateRefrence2ContactNumber, candidateRefrence2Email):
+
+    c.drawImage(imageLocation, 10, 770)
+
+    c.drawString(10,760, "Title: " + candidateTitle)
+    c.drawString(150,760, "Firstname: " + candidateFirstname)
+    c.drawString(330,760, "Secondname: " + candidateSecondname)
+    c.drawString(10,740, "Date of birth: " + candidateDob)
+    c.drawString(200,740, "National Insurance Number: " + candidateNI)
+    c.drawString(10,720, "Address: " + candidateAddress)
+    c.drawString(10,700, "Contact Number: " + candidateContactNumber)
+    c.drawString(250,700, "Emergency contact Number: " + candidateEmergencyNumber)
+    c.drawString(10,664, "Email: " + candidateEmail)
+    c.drawString(10,650, "Type of work required: " + candidateTypeOfWork)
+    c.drawString(10,620, "Qualifications: " + candidateQualifications)
+    c.drawString(200,620, "Company Representing: " + candidateRepresenting)
+
+
+    c.drawString(10,590, "Work Elegibility: " + candidateWorkElegibility)
+    c.drawString(200,590, "Driving Licence: " + candidateDrivingLicense)
+    c.drawString(10,540, "Criminal Convictions: " + candidateCriminalConvictions)
+    c.drawString(250,540, "Disabilities: " + candidateDisabilities)
+    c.drawString(10,500, "Disability Details: " + candidateDisabilityDetails)
+
+
+    c.drawString(10,460, "Refrence 1 Firstname: " + candidateRefrence1Firstname)
+    c.drawString(300,460, "Refrence 2 Firstname: " + candidateRefrence2Firstname)
+
+    c.drawString(10,440, "Refrence 1 Surname: " + candidateRefrence1Secondname)
+    c.drawString(300,440, "Refrence 2 Secondname: " + candidateRefrence2Secondname)
+
+
+    c.drawString(10,420, "Refrence 1 Job Title: " + candidateRefrence1JobTitle)
+    c.drawString(300,420, "Refrence 2 Job Title: " + candidateRefrence2JobTitle)
+
+
+    c.drawString(10,400, "Refrence 1 Company: " + candidateRefrence1Company)
+    c.drawString(300,400, "Refrence 2 Company: " + candidateRefrence2Company)
+
+
+    c.drawString(10,380, "Refrence 1 Address: " + candidateRefrence1Address)
+    c.drawString(300,380, "Refrence 2 Address: " + candidateRefrence2Address)
+
+
+    c.drawString(10,360, "Refrence 1 Contact Number: " + candidateRefrence1ContactNumber)
+    c.drawString(300,360, "Refrence 2 Contact Number: " + candidateRefrence2ContactNumber)
+
+    c.drawString(10,340, "Refrence 1 Email: " + candidateRefrence1Email)
+    c.drawString(300,340, "Refrence 2 Email: " + candidateRefrence2Email)
+
+
+
+    # , candidateFirstname,candidateSecondname,candidateDob,candidateNI,candidateAddress,candidateContactNumber, candidateEmergencyNumber, candidateEmail, candidateTypeOfWork, candidateQualifications, candidateRepresenting,
+    #  candidateWorkElegibility, candidateDrivingLicense, candidateCriminalConvictions, candidateDisabilities,candidateDisabilityDetails,candidateRefrence1Firstname, candidateRefrence1Secondname, candidateRefrence1JobTitle, candidateRefrence1Company, candidateRefrence1Address, candidateRefrence1ContactNumber,
+    #  candidateRefrence1Email, candidateRefrence2Firstname, candidateRefrence2Secondname, candidateRefrence2JobTitle,  candidateRefrence2Company, candidateRefrence2Address, candidateRefrence2ContactNumber, candidateRefrence2Email)
+
+    c.showPage()
+    c.save()
 
 
 
@@ -205,143 +264,6 @@ def UserLogin():
     return "Hello2"
 
 
-
-
-    #
-    # def pdf():
-    #     print("we're in the pdf function")
-    #     output = cStringIO.StringIO()
-    #     doc = SimpleDocTemplate("registrationForm.html",pagesize=letter)
-    #     Story=[]
-    #
-    #     Story.append(Paragraph(ptext, styles["Justify"]))
-    #
-    #     doc.build(Story)
-    #     pdf_out = output.getvalue()
-    #     output.close()
-    #
-    #     response = make_response(pdf_out)
-    #     response.headers['Content-Disposition'] = "attachment; filename='test.pdf"
-    #     response.mimetype = 'static/pdf-documents'
-    #     return send_file('registrationForm.html', as_attachment=True)
-    # def render_pdf_weasyprint(html):
-    #
-    #     from weasyprint import HTML
-    #     pdf = HTML(string=html.encode('utf-8'))
-    #     return pdf.write_pdf()
-    #
-    #
-    #     def render_pdf_xhtml2pdf(html):
-    #         """mimerender helper to render a PDF from HTML using xhtml2pdf.
-    #         Usage: http://philfreo.com/blog/render-a-pdf-from-html-using-xhtml2pdf-and-mimerender-in-flask/
-    #             """
-    #         from xhtml2pdf import pisa
-    #         from cStringIO import StringIO
-    #         pdf = StringIO()
-    #         pisa.CreatePDF(StringIO(html.encode('utf-8')), pdf)
-    #         resp = pdf.getvalue()
-    #         pdf.close()
-    #         return resp
-    #
-    #     def pdf():
-    #
-    #
-    #
-    #     pdfkit.from_url('http://127.0.0.1:5000/static/registrationForm.html','examplePDF.pdf')
-    #
-    #
-    #     def render_pdf(html):
-    #         from xhtml2pdf import pisa
-    #         from cStringIO import StringIO
-    #         pdf = StringIO()
-    #         pisa.CreatePDF(StringIO(html.encode('utf-8')), pdf)
-    #         resp = pdf.getvalue()
-    #         pdf.close()
-    #         return resp
-    #     @mimerender(default='html', html=lambda html: html, pdf=render_pdf, override_input_key='format')
-    #     def view_invoice(org_id, invoice_id):
-    #         html = render_template('registrationForm.html', id=invoice_id)
-    #         return { 'html': html }
-
-        # def your_view():
-        #     print("We're in the pdf file uplaod code!")
-        #     subject = "Mail with PDF"
-        #     receiver = "vitzz.gaming@gmail.com"
-        #     print("PDF document has been sent")
-        #     mail_to_be_sent = Message(subject=subject, recipients=[receiver])
-        #     mail_to_be_sent.body = "This email contains PDF."
-        #     pdf = create_pdf(render_template('registrationForm.html'))
-        #     mail_to_be_sent.attach("file.pdf", "static/pdf-documents", pdf.getvalue())
-        #     mail_ext.send(mail_to_be_sent)
-        #     return redirect(url_for('other_view'))
-
-
-                #
-                #
-                # print("we're in the pdf function")
-                # output = StringIO()
-                #
-                # p = canvas.Canvas(output)
-                # p.drawString(100, 100, 'Hello')
-                # p.showPage()
-                # p.save()
-                #
-                # pdf_out = output.getvalue()
-                # output.close()
-                #
-                # response = make_response(pdf_out)
-                # response.headers['Content-Disposition'] = "attachment; filename='test.pdf"
-                # response.mimetype = 'application/pdf'
-                # return response
-
-
-# PDF convert code
-#
-# class Pdf():
-#
-#     def render_pdf(self, name, html):
-#
-#         from xhtml2pdf import pisa
-#         from StringIO import StringIO
-#
-#         pdf = StringIO()
-#
-#         pisa.CreatePDF(StringIO(html), pdf)
-#
-#         return pdf.getvalue()
-#
-#
-# @app.route('/pdf/Candidate', methods=['GET'])
-# def candidate_form(candidate, tin):
-#
-#     #pdf = StringIO()
-#     html = render_template('registrationForm.html', business_name=business_name, tin=tin)
-#     file_class = Pdf()
-#     pdf = file_class.render_pdf(candidate, html)
-#     headers = {
-#         'content-type': 'application.pdf',
-#         'content-disposition': 'attachment; filename=form.pdf'}
-#     return pdf, 200, headers
-#
-
-        #
-        # if 'file' not in request.files:
-        #     flash('No file part')
-        #     return redirect(request.url)
-        # file = request.files['file']
-        # print("We have started the uploading process")
-        # # if user does not select file, browser also
-        # # submit a empty part without filename
-        # if file.filename == '':
-        #     print("We have started looking for the file")
-        #     flash('No selected file')
-        #     return redirect(request.url)
-        # if file and allowed_file(file.filename):
-        #     print("We have nearly uploaded the file.")
-        #     filename = secure_filename(file.filename)
-        #     file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        #     return redirect(url_for('uploaded_file',
-        #                             filename=filename))
 
 
 @app.route("/Login/UserLogin", methods = ['GET'])
