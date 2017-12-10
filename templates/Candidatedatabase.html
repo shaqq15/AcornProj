@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/schilder-grotesk" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/stylesheet.css">
+    <title="Tutorials">
+  </head>
+  <body>
+    <header>
+      <div class="navigation_bar">
+        <ul>
+          <li><a class="active" href="/Admin">Admin</a></li>
+          <li><a href="/Database">Database</a></li>
+          <li><a href="/Graphs">Graphs</a></li>
+          <li><a href="/Maps">Maps</a></li>
+        </ul>
+      </div>
+    </header>
+    <div class="database_display">
+      <table id="table_data">
+        <tr>
+          <th>Candidate ID</th>
+          <th>Title</th>
+          <th>Firstname</th>
+          <th>Surname</th>
+          <th>D.O.B</th>
+          <th>NI Number</th>
+          <th>Address</th>
+          <th>Contact Number</th>
+          <th>Emergency Contact Number</th>
+          <th>Email Address</th>
+          <th>Type of work</th>
+          <th>Qualifications</th>
+          <th>Representing</th>
+          <th>Representing Company Name</th>
+          <th>CV Location</th>
+          <th>Qualifications Location</th>
+        </tr>
+        {% for row in data%}
+        <tr>
+          {% for cell in row%}
+          <td> {{cell}} </td>
+          {% endfor %}
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+
+
+
+  </body>
+</html>
