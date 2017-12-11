@@ -7,14 +7,7 @@ import datetime
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
 from reportlab.lib.units import inch
-from email.mime.multipart import MIMEMultipart
-from email.mime.application import MIMEApplication
-from email.mime.image import MIMEImage
-from email.mime.base import MIMEBase
-import smtplib
-import mimetypes
-import email
-import email.mime.application
+
 
 
 
@@ -33,7 +26,7 @@ UPLOAD_FOLDER_qualifications = os.path.join(APP_ROOT,'static/file_uploads/qualif
 # mail_ext = Mail(app)
 
 DATABASE = "CandidateCenter.db"
-ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'doc', 'docx'])
+ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'doc', 'docx'])
 
 app = Flask(__name__)
 
@@ -167,59 +160,11 @@ def CandidateAddDetails():
         candidateWorkElegibility, candidateDrivingLicense, candidateCriminalConvictions, candidateDisabilities,candidateDisabilityDetails,candidateRefrence1Firstname, candidateRefrence1Secondname, candidateRefrence1JobTitle, candidateRefrence1Company, candidateRefrence1Address, candidateRefrence1ContactNumber,
         candidateRefrence1Email, candidateRefrence2Firstname, candidateRefrence2Secondname, candidateRefrence2JobTitle,  candidateRefrence2Company, candidateRefrence2Address, candidateRefrence2ContactNumber, candidateRefrence2Email)
 
-        # SUBJECT = "Email Data"
-        #
-        # msg = MIMEMultipart()
-        # msg['Subject'] = SUBJECT
-        # msg['From'] = 'nsadevelopment2017@gmail.com'
-        # msg['To'] = 'vitzz.gaming@gmail.com'
-        #
-        # part = MIMEBase('application', "octet-stream")
-        # part.set_payload(open("Mehdi.pdf", "rb").read())
-        #
-        # part.add_header('Content-Disposition', 'attachment; filename="Mehdi.pdf"')
-        #
-        # msg.attach(part)
-        #
-        # mail = smtplib.SMTP('smtp.gmail.com')
-        # mail.sendmail('nsadevelopment2017@gmail.com','vitzz.gaming@gmail.com', msg.as_string())
-
-	# MAIL_SERVER='smtp.gmail.com',
-	# MAIL_PORT=465,
-	# MAIL_USE_SSL=True,
-	# MAIL_USERNAME = 'nsadevelopment2017@gmail.com',
-	# MAIL_PASSWORD = 'development2017'
-    #
-    #
-    #
-    #     def send_mail():
-    #         print("we're in the mail function")
-    #         msg = Message("Send Mail Tutorial!",
-    #         sender="nsadevelopment2017@gmail.com",
-    #     	recipients=["vitzz.gaming@gmail.com"])
-    #         msg.body = "Yo!\nHave you heard the good word of Python???"
-    #         fp = open('Mehdi.pdf', 'rb')
-    #         msgPdf = MIMEApplication(fp.read())
-    #         msg.attach(msgPdf)
-    #         fp.close()
-    #
-    #     send_mail()
-
-
-        # def send_mail():
-        #     msg = Message("Send Mail Tutorial!",
-        #     sender="nsadevelopment2017@gmail.com",
-        # 	recipients=["vitzz.gaming@gmail.com"])
-        #     msg.body = "Yo!\nHave you heard the good word of Python???"
-        #     filename=('Mehdi.pdf')
-        #     fp=open(filename,'rb')
-        #     att = email.mime.application.MIMEApplication(fp.read(),_subtype="pdf")
-        #     fp.close()
-        #     att.add_header('Hello','attachment',filename=filename)
-        #     msg.attach(att)
-        #     mail.send(msg)
-        #     send_mail()
-        # send_mail()
+        msg = Message("New Candiidate Added! "+candidateFirstname + "_" + candidateDob ,
+        sender="nsadevelopment2017@gmail.com",
+        recipients=["shaqqalii51@gmail.com"])
+        msg.body = "This is an email to the admin to say that a new candidate has been added."
+        mail.send(msg)
 
         conn = sqlite3.connect(DATABASE)
         cur = conn.cursor()
