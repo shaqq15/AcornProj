@@ -10,12 +10,46 @@
       <div class="navigation_bar">
         <ul>
           <li><a class="active" href="/Admin">Admin</a></li>
-          <li><a href="/Database">Database</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropbtn">Database</a>
+            <div class="dropdown-content">
+              <a href="/CandidateDatabase">Candidate DB</a>
+              <a href="/CandidateRefrence1">Refrence1 DB</a>
+              <a href="/CandidateRefrence2">Refrence2 DB</a>
+              <a href="/CandidateWorkElegibility">Work Elegibilty DB</a>
+            </div>
+          </li>
           <li><a href="/Graphs">Graphs</a></li>
           <li><a href="/Maps">Maps</a></li>
+          <li><a href="/Statistics">Stats</a></li>
         </ul>
       </div>
     </header>
+    <h2 class="page_heading"> Database Overview</h2>
+    <div class="database_display">
+      <table id="table_data">
+        <tr>
+          <th>Description</th>
+          <th>Statistics</th>
+        </tr>
+        <tr>
+            <td> Candidates elegible to work in the UK </td>
+            <td> Stat goes here </td>
+          <tr>
+          <tr>
+            <td> Candidates with driving licenses </td>
+            <td> Stat goes here </td>
+          </tr>
+          <tr>
+            <td> Candidates with disabilities </td>
+            <td> Stat goes here </td>
+          </tr>
+          <tr>
+            <td> Candidates with criminal convictions </td>
+            <td> Stat goes here </td>
+          </tr>
+      </table>
+    </div>
 
   </body>
 </html>

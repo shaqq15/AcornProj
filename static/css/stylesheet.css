@@ -270,7 +270,7 @@ Their CSS significantly increased the quality of the form whilst enhancing user 
 
 
 .active {
-    background-color: #002D62;;
+    background-color: #002D62;
 }
 
 li a, .dropbtn {
@@ -318,4 +318,48 @@ ul {
     padding: 0;
     overflow: hidden;
     background-color: #333;
+}
+
+#page {
+    display: none;
+}
+#loading {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(192, 192, 192, 0.5);
+    background-image: url("http://i.stack.imgur.com/MnyxU.gif");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.database_display tr{
+  border-style: solid;
+  border-color: black;
+  border-width: 3px;
+}
+
+.database_display td{
+  border-style: solid;
+  border-color: black;
+  border-width: 3px;
+}
+
+.database_display tr:hover {background-color: #D3D3D3;}
+
+.graph_title{
+  text-align: center;
+  margin: 20px;
+}
+
+.data_present{
+  display: inline-block;
+}
+
+.data_present2{
+  float: left;
 }

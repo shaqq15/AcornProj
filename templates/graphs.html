@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <!-- <script src="static/js/chartMaker.js"></script> -->
     <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/schilder-grotesk" type="text/css"/>
     <link rel="stylesheet" type="text/css" href="../static/css/stylesheet.css">
     <script src='static/js/Chart.min.js'></script>
@@ -10,14 +11,201 @@
     <div class="navigation_bar">
       <ul>
         <li><a class="active" href="/Admin">Admin</a></li>
-        <li><a href="/Database">Database</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropbtn">Database</a>
+          <div class="dropdown-content">
+            <a href="/CandidateDatabase">Candidate DB</a>
+            <a href="/CandidateRefrence1">Refrence1 DB</a>
+            <a href="/CandidateRefrence2">Refrence2 DB</a>
+            <a href="/CandidateWorkElegibility">Work Elegibilty DB</a>
+          </div>
+        </li>
         <li><a href="/Graphs">Graphs</a></li>
         <li><a href="/Maps">Maps</a></li>
+        <li><a href="/Statistics">Stats</a></li>
       </ul>
     </div>
-    <div class="charts">
-      <canvas id="chart" width="600" height="400"></canvas>
+    <h1 class="graph_title">Overview of the statistics using graphs</h1>
+    <div class="data_present1">
+      <canvas id="myChart1" width="600" height="400"></canvas>
     </div>
-    <script src="../static/js/chartMaker.js"></script>
+      <div class="data_present2">
+      <canvas id="myChart2" width="600" height="400"></canvas>
+    </div>
+    <div class="data_present3">
+    <canvas id="myChart3" width="600" height="400"></canvas>
+  </div>
+  <div class="data_present4">
+  <canvas id="myChart4" width="600" height="400"></canvas>
+</div>
+<script>
+
+
+Chart.defaults.global.responsive = false;
+
+// define the chart data
+var chartData = {
+labels : [{% for item in labels %}
+          "{{item}}",
+         {% endfor %}],
+datasets : [{
+   label: '{{ legend }}',
+   fill: true,
+   lineTension: 0.1,
+   backgroundColor: "rgba(75,192,192,0.4)",
+   borderColor: "rgba(75,192,192,1)",
+   borderCapStyle: 'butt',
+   borderDash: [],
+   borderDashOffset: 0.0,
+   borderJoinStyle: 'miter',
+   pointBorderColor: "rgba(75,192,192,1)",
+   pointBackgroundColor: "#fff",
+   pointBorderWidth: 1,
+   pointHoverRadius: 5,
+   pointHoverBackgroundColor: "rgba(75,192,192,1)",
+   pointHoverBorderColor: "rgba(220,220,220,1)",
+   pointHoverBorderWidth: 2,
+   pointRadius: 1,
+   pointHitRadius: 10,
+   data : [{% for item in values %}
+             {{item}},
+           {% endfor %}],
+   spanGaps: false
+}]
+}
+
+var ctx = document.getElementById("myChart1").getContext("2d");
+
+var myChart = new Chart(ctx, {
+type: 'line',
+data: chartData,
+});
+</script>
+
+<script>
+
+Chart.defaults.global.responsive = false;
+
+// define the chart data
+var chartData = {
+labels : [{% for item2 in labels2 %}
+          "{{item2}}",
+         {% endfor %}],
+datasets : [{
+   label: '{{ legend2 }}',
+   fill: true,
+   lineTension: 0.1,
+   backgroundColor: "rgba(75,192,192,0.4)",
+   borderColor: "rgba(75,192,192,1)",
+   borderCapStyle: 'butt',
+   borderDash: [],
+   borderDashOffset: 0.0,
+   borderJoinStyle: 'miter',
+   pointBorderColor: "rgba(75,192,192,1)",
+   pointBackgroundColor: "#fff",
+   pointBorderWidth: 1,
+   pointHoverRadius: 5,
+   pointHoverBackgroundColor: "rgba(75,192,192,1)",
+   pointHoverBorderColor: "rgba(220,220,220,1)",
+   pointHoverBorderWidth: 2,
+   pointRadius: 1,
+   pointHitRadius: 10,
+   data : [{% for item2 in values2 %}
+             {{item2}},
+           {% endfor %}],
+   spanGaps: false
+}]
+}
+
+var ctx = document.getElementById("myChart2").getContext("2d");
+
+var myChart = new Chart(ctx, {
+type: 'pie',
+data: chartData,
+});
+</script>
+
+<script>
+
+var chartData = {
+labels : [{% for item3 in labels3 %}
+          "{{item3}}",
+         {% endfor %}],
+datasets : [{
+   label: '{{ legend3 }}',
+   fill: true,
+   lineTension: 0.1,
+   backgroundColor: "rgba(75,192,192,0.4)",
+   borderColor: "rgba(75,192,192,1)",
+   borderCapStyle: 'butt',
+   borderDash: [],
+   borderDashOffset: 0.0,
+   borderJoinStyle: 'miter',
+   pointBorderColor: "rgba(75,192,192,1)",
+   pointBackgroundColor: "#fff",
+   pointBorderWidth: 1,
+   pointHoverRadius: 5,
+   pointHoverBackgroundColor: "rgba(75,192,192,1)",
+   pointHoverBorderColor: "rgba(220,220,220,1)",
+   pointHoverBorderWidth: 2,
+   pointRadius: 1,
+   pointHitRadius: 10,
+   data : [{% for item3 in values3 %}
+             {{item3}},
+           {% endfor %}],
+   spanGaps: false
+}]
+}
+
+var ctx = document.getElementById("myChart3").getContext("2d");
+
+var myChart = new Chart(ctx,{
+type: 'pie',
+data: chartData,
+});
+
+</script>
+
+<script>
+
+var chartData = {
+labels : [{% for item4 in labels4 %}
+          "{{item4}}",
+         {% endfor %}],
+datasets : [{
+   label: '{{ legend4 }}',
+   fill: true,
+   lineTension: 0.1,
+   backgroundColor: "rgba(75,192,192,0.4)",
+   borderColor: "rgba(75,192,192,1)",
+   borderCapStyle: 'butt',
+   borderDash: [],
+   borderDashOffset: 0.0,
+   borderJoinStyle: 'miter',
+   pointBorderColor: "rgba(75,192,192,1)",
+   pointBackgroundColor: "#fff",
+   pointBorderWidth: 1,
+   pointHoverRadius: 5,
+   pointHoverBackgroundColor: "rgba(75,192,192,1)",
+   pointHoverBorderColor: "rgba(220,220,220,1)",
+   pointHoverBorderWidth: 2,
+   pointRadius: 1,
+   pointHitRadius: 10,
+   data : [{% for item4 in values4 %}
+             {{item4}},
+           {% endfor %}],
+   spanGaps: false
+}]
+}
+
+var ctx = document.getElementById("myChart4").getContext("2d");
+
+new Chart(ctx, {
+data: chartData,
+type: 'bar',
+});
+
+</script>
+
   </body>
 </html>

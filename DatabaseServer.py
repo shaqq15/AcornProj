@@ -42,7 +42,7 @@ app.config['UPLOAD_FOLDER_qualifications'] = UPLOAD_FOLDER_qualifications
 # app.config['UPLOAD_FOLDER_CV'] = UPLOAD_FOLDER_CV
 
 app.config.update(
-	# MAIL_SERVER='smtp.gmail.com',
+	MAIL_SERVER='smtp.gmail.com',
 	MAIL_PORT=465,
 	MAIL_USE_SSL=True,
 	MAIL_USERNAME = 'nsadevelopment2017@gmail.com',
@@ -406,18 +406,36 @@ def database4():
         return render_template("CandidateWorkElegibility.html", data=data)
 
 
+# @app.route("/Graphs", methods=['GET','POST'])
+# def graphs():
+#     if request.method=='GET':
+#         return render_template("graphs.html")
+#     if request.method =='POST':
+#         def chart():
+#             labels = ["January","February","March","April","May","June","July","August"]
+#             values = [10,9,8,7,6,4,7,8]
+#             colors = [ "#F7464A", "#46BFBD", "#FDB45C", "#FEDCBA","#ABCDEF", "#DDDDDD", "#ABCABC"  ]
+#             return render_template('graphs.html', set=zip(values, labels, colors))
 
+@app.route("/Graphs")
+def chart():
+	legend = 'Monthly Candidates'
+	labels = ["September", "October", "November", "December"]
+	values = [0, 0, 28, 76]
 
-@app.route("/Graphs", methods=['GET','POST'])
-def graphs():
-    if request.method=='GET':
-        return render_template("graphs.html")
-    if request.method =='POST':
-        def chart():
-            labels = ["January","February","March","April","May","June","July","August"]
-            values = [10,9,8,7,6,4,7,8]
-            colors = [ "#F7464A", "#46BFBD", "#FDB45C", "#FEDCBA","#ABCDEF", "#DDDDDD", "#ABCABC"  ]
-            return render_template('graphs.html', set=zip(values, labels, colors))
+	legend2 = 'Candidates elegible to work in the UK'
+	labels2 = ["Not elegible to work in the UK", "Elegible to work in the UK"]
+	values2 = [1, 102]
+
+	legend3 = 'Candidates with criminal convictions'
+	labels3 = ["Without convictions", "With convictions"]
+	values3 = [0, 103]
+
+	legend4 = 'Candidates with diabilities'
+	labels4 = ["Without disabilities", "With disabilities"]
+	values4 = [4, 100]
+
+	return render_template('graphs.html', values=values, labels=labels, legend=legend, values2=values2, labels2=labels2, legend2=legend2, values3=values3, labels3=labels3, legend3=legend3, values4=values4, labels4=labels4, legend4=legend4)
 
 
 @app.route("/Maps", methods=['GET'])
@@ -434,3 +452,4 @@ def stats():
 if __name__ == "__main__":
     app.run(debug=True)
     # app.run(host="0.0.0.0", debug=True)
+	# app.run(host='0.0.0.0', port=5001)

@@ -4,6 +4,7 @@
     <link rel="stylesheet" type="text/css" href="../static/css/stylesheet.css" />
   </head>
   <body>
+  <div id="page">
     <div class="website_toolbar">
       <!-- The image used here was provided by Acorn themselves. -->
       <img src="../static/images/Acorn_logo.png" height="41px" width="105px" alt="www.acornpeople.com" >
@@ -22,6 +23,8 @@
            please keep a lookout for an email.</small>
       </section>
     </div>
+  </div>
+  <div id="loading"></div>
 
     <!-- <div class="social_media">
       <h1> Follow us on social media </h1>
@@ -71,6 +74,29 @@
    });
    </script>
 
+<!-- For this content loader I used: http://jsfiddle.net/MrPolywhirl/cbLsc81f/ on the 10th December 2017 at 13:51 -->
+
+<script>
+function onReady(callback) {
+    var intervalID = window.setInterval(checkReady, 1300);
+
+    function checkReady() {
+        if (document.getElementsByTagName('body')[0] !== undefined) {
+            window.clearInterval(intervalID);
+            callback.call(this);
+        }
+    }
+}
+
+function show(id, value) {
+    document.getElementById(id).style.display = value ? 'block' : 'none';
+}
+
+onReady(function () {
+    show('page', true);
+    show('loading', false);
+});
+</script>
 
 
 
