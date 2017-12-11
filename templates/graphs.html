@@ -26,17 +26,17 @@
       </ul>
     </div>
     <h1 class="graph_title">Overview of the statistics using graphs</h1>
-    <div class="data_present1">
+    <div class="data_present1" style="float:left; display:inline; width: 35%;">
       <canvas id="myChart1" width="600" height="400"></canvas>
+      <h1 class="graph_title" align="left" style="font-size:100%" style="float:left; display:inline; width: 20%;">The graph above illustrates the rapid increase of our monthly candidates between the months of October and December</h1>
     </div>
-      <div class="data_present2">
+      <div class="data_present2" style="float:left; display:inline; width: 35%;">
       <canvas id="myChart2" width="600" height="400"></canvas>
+      <h2 class="graph_title" align="left" style="font-size:100%" style="float:left; display:inline; width: 20%;">The graph above illustrates the number of people who are eligible to work in the UK, as you can see the amount of people who are not eligible to work in the Uk are at a minimum.</h2>
     </div>
-    <div class="data_present3">
-    <canvas id="myChart3" width="600" height="400"></canvas>
-  </div>
-  <div class="data_present4">
+  <div class="data_present4" style="float:left; display:inline; width: 28%;">
   <canvas id="myChart4" width="600" height="400"></canvas>
+  <h3 class="graph_title" align="left" style="font-size:100%" style="float:left; display:inline; width: 20%;">The graph above illustrates the amount of candidates with any sort of disabilities that have been listed.</h3>
 </div>
 <script>
 
@@ -95,8 +95,8 @@ datasets : [{
    label: '{{ legend2 }}',
    fill: true,
    lineTension: 0.1,
-   backgroundColor: "rgba(75,192,192,0.4)",
-   borderColor: "rgba(75,192,192,1)",
+   backgroundColor: "rgba(255,102,102,0.4)",
+   borderColor: "rgba(255,0,0,1)",
    borderCapStyle: 'butt',
    borderDash: [],
    borderDashOffset: 0.0,
@@ -128,47 +128,6 @@ data: chartData,
 <script>
 
 var chartData = {
-labels : [{% for item3 in labels3 %}
-          "{{item3}}",
-         {% endfor %}],
-datasets : [{
-   label: '{{ legend3 }}',
-   fill: true,
-   lineTension: 0.1,
-   backgroundColor: "rgba(75,192,192,0.4)",
-   borderColor: "rgba(75,192,192,1)",
-   borderCapStyle: 'butt',
-   borderDash: [],
-   borderDashOffset: 0.0,
-   borderJoinStyle: 'miter',
-   pointBorderColor: "rgba(75,192,192,1)",
-   pointBackgroundColor: "#fff",
-   pointBorderWidth: 1,
-   pointHoverRadius: 5,
-   pointHoverBackgroundColor: "rgba(75,192,192,1)",
-   pointHoverBorderColor: "rgba(220,220,220,1)",
-   pointHoverBorderWidth: 2,
-   pointRadius: 1,
-   pointHitRadius: 10,
-   data : [{% for item3 in values3 %}
-             {{item3}},
-           {% endfor %}],
-   spanGaps: false
-}]
-}
-
-var ctx = document.getElementById("myChart3").getContext("2d");
-
-var myChart = new Chart(ctx,{
-type: 'pie',
-data: chartData,
-});
-
-</script>
-
-<script>
-
-var chartData = {
 labels : [{% for item4 in labels4 %}
           "{{item4}}",
          {% endfor %}],
@@ -176,8 +135,8 @@ datasets : [{
    label: '{{ legend4 }}',
    fill: true,
    lineTension: 0.1,
-   backgroundColor: "rgba(75,192,192,0.4)",
-   borderColor: "rgba(75,192,192,1)",
+   backgroundColor: "rgba(255,255,153,0.4)",
+   borderColor: "rgba(255,255,0,1)",
    borderCapStyle: 'butt',
    borderDash: [],
    borderDashOffset: 0.0,
