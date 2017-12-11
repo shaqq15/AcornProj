@@ -7,7 +7,14 @@ import datetime
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
 from reportlab.lib.units import inch
-
+from email.mime.multipart import MIMEMultipart
+from email.mime.application import MIMEApplication
+from email.mime.image import MIMEImage
+from email.mime.base import MIMEBase
+import smtplib
+import mimetypes
+import email
+import email.mime.application
 
 
 
@@ -26,7 +33,7 @@ UPLOAD_FOLDER_qualifications = os.path.join(APP_ROOT,'static/file_uploads/qualif
 # mail_ext = Mail(app)
 
 DATABASE = "CandidateCenter.db"
-ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'doc', 'docx'])
+ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'doc', 'docx'])
 
 app = Flask(__name__)
 
@@ -149,6 +156,7 @@ def CandidateAddDetails():
                 msg2 = filePath
 
         print("we're in the pdf function")
+
         pdf_name = candidateFirstname + ".pdf"
         # Save_pdf_filepath = os.path.join(os.path.expanduser("~"), "static/file_uploads/pdf_forms", pdf_name)
 
@@ -160,11 +168,59 @@ def CandidateAddDetails():
         candidateWorkElegibility, candidateDrivingLicense, candidateCriminalConvictions, candidateDisabilities,candidateDisabilityDetails,candidateRefrence1Firstname, candidateRefrence1Secondname, candidateRefrence1JobTitle, candidateRefrence1Company, candidateRefrence1Address, candidateRefrence1ContactNumber,
         candidateRefrence1Email, candidateRefrence2Firstname, candidateRefrence2Secondname, candidateRefrence2JobTitle,  candidateRefrence2Company, candidateRefrence2Address, candidateRefrence2ContactNumber, candidateRefrence2Email)
 
-        msg = Message("New Candiidate Added! "+candidateFirstname + "_" + candidateDob ,
-        sender="nsadevelopment2017@gmail.com",
-        recipients=["shaqqalii51@gmail.com"])
-        msg.body = "This is an email to the admin to say that a new candidate has been added."
-        mail.send(msg)
+        # SUBJECT = "Email Data"
+        #
+        # msg = MIMEMultipart()
+        # msg['Subject'] = SUBJECT
+        # msg['From'] = 'nsadevelopment2017@gmail.com'
+        # msg['To'] = 'vitzz.gaming@gmail.com'
+        #
+        # part = MIMEBase('application', "octet-stream")
+        # part.set_payload(open("Mehdi.pdf", "rb").read())
+        #
+        # part.add_header('Content-Disposition', 'attachment; filename="Mehdi.pdf"')
+        #
+        # msg.attach(part)
+        #
+        # mail = smtplib.SMTP('smtp.gmail.com')
+        # mail.sendmail('nsadevelopment2017@gmail.com','vitzz.gaming@gmail.com', msg.as_string())
+
+	# MAIL_SERVER='smtp.gmail.com',
+	# MAIL_PORT=465,
+	# MAIL_USE_SSL=True,
+	# MAIL_USERNAME = 'nsadevelopment2017@gmail.com',
+	# MAIL_PASSWORD = 'development2017'
+    #
+    #
+    #
+    #     def send_mail():
+    #         print("we're in the mail function")
+    #         msg = Message("Send Mail Tutorial!",
+    #         sender="nsadevelopment2017@gmail.com",
+    #     	recipients=["vitzz.gaming@gmail.com"])
+    #         msg.body = "Yo!\nHave you heard the good word of Python???"
+    #         fp = open('Mehdi.pdf', 'rb')
+    #         msgPdf = MIMEApplication(fp.read())
+    #         msg.attach(msgPdf)
+    #         fp.close()
+    #
+    #     send_mail()
+
+
+        # def send_mail():
+        #     msg = Message("Send Mail Tutorial!",
+        #     sender="nsadevelopment2017@gmail.com",
+        # 	recipients=["vitzz.gaming@gmail.com"])
+        #     msg.body = "Yo!\nHave you heard the good word of Python???"
+        #     filename=('Mehdi.pdf')
+        #     fp=open(filename,'rb')
+        #     att = email.mime.application.MIMEApplication(fp.read(),_subtype="pdf")
+        #     fp.close()
+        #     att.add_header('Hello','attachment',filename=filename)
+        #     msg.attach(att)
+        #     mail.send(msg)
+        #     send_mail()
+        # send_mail()
 
         conn = sqlite3.connect(DATABASE)
         cur = conn.cursor()
@@ -387,16 +443,30 @@ def chart():
 @app.route("/Maps", methods=['GET'])
 def maps():
     if request.method=='GET':
-		# conn = sqlite3.connect(DATABASE)
-        # cur = conn.cursor()
-        # cur.execute("SELECT CandidateAddress FROM CandidateDetails")
-        # data = cur.fetchall()
         return render_template("maps.html")
 
 @app.route("/Statistics", methods=['GET'])
 def stats():
-    if request.method=='GET':
-        return render_template("statistics.html")
+	if request.method=='GET':
+		conn = sqlite3.connect(DATABASE)
+		cur = conn.cursor()
+		# temp = request.args.get
+		cur.execute("SELECT COUNT(CandidateWorkElegibility) FROM CandidateWorkElegibility WHERE CandidateWorkElegibility=?;", ['yes'])
+		canWork = cur.fetchall()
+		cur.execute("SELECT COUNT(CandidateDrivingLicense) FROM CandidateWorkElegibility WHERE CandidateDrivingLicense=?;", ['yes'])
+		hasDL = cur.fetchall()
+		cur.execute("SELECT COUNT(CandidateCriminalConvictions) FROM CandidateWorkElegibility WHERE CandidateCriminalConvictions=?;", ['yes'])
+		convictions = cur.fetchall()
+		cur.execute("SELECT COUNT(CandidateDisabilities) FROM CandidateWorkElegibility WHERE CandidateDisabilities=?;", ['yes'])
+		disabilities = cur.fetchall()
+
+		# print(canWork[0][0])
+		# print(hasDL[0][0])
+		# print(convictions[0][0])
+		# print(disabilities[0][0])
+
+		return render_template("statistics.html", canWork=canWork[0][0], hasDL=hasDL[0][0], convictions=convictions[0][0], disabilities=disabilities[0][0])
+
 
 
 if __name__ == "__main__":
