@@ -156,7 +156,6 @@ def CandidateAddDetails():
                 msg2 = filePath
 
         print("we're in the pdf function")
-
         pdf_name = candidateFirstname + ".pdf"
         # Save_pdf_filepath = os.path.join(os.path.expanduser("~"), "static/file_uploads/pdf_forms", pdf_name)
 
@@ -443,6 +442,10 @@ def chart():
 @app.route("/Maps", methods=['GET'])
 def maps():
     if request.method=='GET':
+		# conn = sqlite3.connect(DATABASE)
+        # cur = conn.cursor()
+        # cur.execute("SELECT CandidateAddress FROM CandidateDetails")
+        # data = cur.fetchall()
         return render_template("maps.html")
 
 @app.route("/Statistics", methods=['GET'])
