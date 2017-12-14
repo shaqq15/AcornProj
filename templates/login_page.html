@@ -5,10 +5,10 @@
 </head>
   <body>
   <div id="login_section" class="form-style-5">
-  <form onsubmit="return validate()" action = "/Admin" method = "GET" name="myform">
+  <form onsubmit="return validate()" method = "post" name="myform">
         <legend>Login Page</legend>
-        <input id="username" type="text" name="firstname" placeholder="Username">
-        <input id="password" type="text" name="surname" placeholder="Password">
+        <input id="username" type="text" name="username" placeholder="Username">
+        <input id="password" type="password" name="password" placeholder="Password">
         <br>
         <input class="login_button" type="submit" value="Login"/>
       </form>
@@ -21,8 +21,8 @@
   <script>
           function validate(){
             var pass = true;
-            var text = (document.forms["myform"]["Username"].value);
-            var text1 = (document.forms["myform"]["Password"].value);
+            var text = (document.forms["myform"]["username"].value);
+            var text1 = (document.forms["myform"]["password"].value);
             console.log(text);
             if (text.match("admin")){
               pass = true;
@@ -38,6 +38,7 @@
                 alert('Incorrect credentials, please try again.');
                 return false;
           }
+          // return ;
         }
     </script>
 
