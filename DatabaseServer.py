@@ -1,5 +1,5 @@
 import os
-from flask import Flask, redirect, request, render_template, url_for, make_response, send_file, Markup
+from flask import Flask, redirect, request, render_template, url_for, make_response, send_file, Markup, session, escape
 from flask_mail import Mail, Message
 from werkzeug.utils import secure_filename
 import sqlite3
@@ -36,7 +36,7 @@ DATABASE = "CandidateCenter.db"
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'doc', 'docx'])
 
 app = Flask(__name__)
-
+app.secret_key='R03zP5GDGj'
 app.config['UPLOAD_FOLDER_CV'] = UPLOAD_FOLDER_CV
 app.config['UPLOAD_FOLDER_qualifications'] = UPLOAD_FOLDER_qualifications
 # app.config['UPLOAD_FOLDER_CV'] = UPLOAD_FOLDER_CV
@@ -340,12 +340,42 @@ def UserLogin():
     return "Hello2"
 
 
-
-
-@app.route("/Login/UserLogin", methods = ['GET'])
+@app.route("/Login/UserLogin", methods = ['GET', 'POST'])
 def UserLoginPage():
-    if request.method =='GET':
-    	return render_template('login_page.html')
+	if request.method =='GET':
+		session.clear()
+		return render_template('login_page.html')
+	if request.method == 'POST':
+		try:
+			username=request.form.get('username', default="Error")
+			print("uname is",username)
+			password=request.form.get('password', default="Error")
+			print("pass is",password)
+			print("fetching login details")
+			conn=sqlite3.connect("CandidateCenter.db")
+			cur=conn.cursor()
+			cur.execute("SELECT Username FROM UserLogins WHERE Username=?",[username])
+			data=cur.fetchall()
+			cur.execute("SELECT Password FROM UserLogins WHERE Password=?",[password])
+			data2=cur.fetchall()
+			print(data)
+			print(data2)
+		except:
+			print("error with ",data)
+			conn.close()
+		finally:
+			if data ==[] or data2 ==[]:
+				conn.close()
+				msg="Username or password is incorrect."
+				return render_template("login_page.html", msg=msg)
+			elif data==[('admin',)] and data2==[('password',)]:
+				session['UserType']='admin'
+				print(session['UserType'])
+				return redirect('/Admin')
+			else:
+				session['UserType']="User"
+				session['username']=username
+				return redirect("/Candidate/AddCandidate")
 
 @app.route("/Admin", methods = ['GET','POST'])
 def adminpage():
